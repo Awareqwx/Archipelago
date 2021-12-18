@@ -11,11 +11,9 @@ def create_regions(world, player: int):
     
     # Create regions and assign locations to each region
     for region in regionMap:
-        print(region)
         exit_array = regionMap[region]
         if len(exit_array) == 0:
             exit_array = None
         new_region = create_region(world, player, region, [location["location"] for location in location_table if location["region"] == region], exit_array)
-        print("Region: ", new_region.name)
             
         world.regions += [new_region]

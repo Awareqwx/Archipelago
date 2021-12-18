@@ -81,9 +81,7 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
             location = RaftLocation(player, location, loc_id, ret)
             ret.locations.append(location)
     if exits:
-        print(exits)
         for exit in exits:
-            print("Exit: ", exit)
             ret.exits.append(Entrance(player, exit, ret))
 
     return ret
