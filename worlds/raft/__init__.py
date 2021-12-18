@@ -28,8 +28,6 @@ class RaftWorld(World):
     data_version = 2
 
     def generate_basic(self):
-
-
         # Link regions together
         for region in regionMap:
             for linkedRegion in regionMap[region]:
@@ -37,25 +35,24 @@ class RaftWorld(World):
 
         # Generate item pool
         pool = []
-        extras = 0
+        extras = len(location_table) - len(item_table) - 1
+        if extras < 0:
+            extras = 0
         for item in item_table:
             raft_item = self.create_item(item["name"])
             for i in range(item["count"]):
                 pool.append(raft_item)
 
-        for item_name in self.world.random.choices(sorted(advancement_item_names),
-                                                   k=extras):
+        for item_name in self.world.random.choices(sorted(advancement_item_names), k=extras):
             item = self.create_item(item_name)
             item.advancement = False  # as it's an extra, just fast-fill it somewhere (is this actually correct...?)
             pool.append(item)
-        # TODO non-advancement items
 
         self.world.itempool += pool
 
         # Victory item
         self.world.get_location("RadioTowerRadioTranscription", self.player).place_locked_item( #TODO: Add actual victory location
-            RaftItem("Victory", True, None, player=self.player)
-        )
+            RaftItem("Victory", True, None, player=self.player))
 
     def set_rules(self):
         set_rules(self.world, self.player)

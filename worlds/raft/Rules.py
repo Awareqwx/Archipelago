@@ -56,4 +56,4 @@ def set_rules(world, player):
     # Process locations
 
     # Victory location
-    world.completion_condition[player] = lambda state: state.has('RadioTowerRadioTranscription', player) #TODO: Add actual victory condition
+    world.completion_condition[player] = lambda state: state.has('Victory', player) #TODO: Add actual victory condition
