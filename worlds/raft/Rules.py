@@ -45,10 +45,10 @@ class RaftLogic(LogicMixin):
 def set_rules(world, player):
     # Map region to check to see if we can access it
     regionChecks = {
-        "Radio Tower": lambda state: state.can_access_radio_tower(player),
+        "RadioTower": lambda state: state.can_access_radio_tower(player),
         "Vasagatan": lambda state: state.can_access_vasagatan(player),
-        "Balboa Island": lambda state: state.can_access_balboa_island(player),
-        "Caravan Island": lambda state: state.can_access_caravan_island(player),
+        "BalboaIsland": lambda state: state.can_access_balboa_island(player),
+        "CaravanIsland": lambda state: state.can_access_caravan_island(player),
         "Tangaroa": lambda state: state.can_access_tangaroa(player)
     }
     # Location rules
@@ -56,4 +56,4 @@ def set_rules(world, player):
     # Process locations
 
     # Victory location
-    world.completion_condition[player] = lambda state: state.has('Victory', player) #TODO: Add actual victory condition
+    world.completion_condition[player] = lambda state: state.has('Victory', player)
