@@ -28,11 +28,6 @@ class RaftWorld(World):
     data_version = 2
 
     def generate_basic(self):
-        # Link regions together
-        for region in regionMap:
-            for linkedRegion in regionMap[region]:
-                self.world.get_entrance(linkedRegion, self.player).connect(self.world.get_region(linkedRegion, self.player))
-
         # Generate item pool
         pool = []
         extras = len(location_table) - len(item_table) - 1
