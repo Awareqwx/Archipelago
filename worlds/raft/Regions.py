@@ -26,5 +26,8 @@ def create_regions(world, player: int):
     # Link regions together
     for region in regionMap:
         for linkedRegion in regionMap[region]:
-            connection = world.get_entrance(region + "To" + linkedRegion, player)
+            connection = world.get_entrance(getConnectionName(region, linkedRegion), player)
             connection.connect(world.get_region(linkedRegion, player))
+
+def getConnectionName(entranceName: str, exitName: str):
+    return entranceName + "To" + exitName

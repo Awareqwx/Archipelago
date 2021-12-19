@@ -5,7 +5,7 @@ from .Locations import location_table, lookup_name_to_id as locations_lookup_nam
 from .Items import item_table, lookup_name_to_item, advancement_item_names
 from .Items import lookup_name_to_id as items_lookup_name_to_id
 
-from .Regions import create_regions, regionMap
+from .Regions import create_regions, regionMap, getConnectionName
 from .Rules import set_rules
 from .Options import options
 
@@ -78,7 +78,7 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
             ret.locations.append(locationObj)
     if exits:
         for exit in exits:
-            ret.exits.append(Entrance(player, name + "To" + exit, ret))
+            ret.exits.append(Entrance(player, getConnectionName(name, exit), ret))
 
     return ret
 
