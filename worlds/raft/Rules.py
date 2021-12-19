@@ -47,7 +47,7 @@ def set_rules(world, player):
     regionChecks = {
         "Raft": lambda state: True,
         "ResearchTable": lambda state: True,
-        "RadioTower": lambda state: True, # state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
+        "RadioTower": lambda state: state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
         "Vasagatan": lambda state: state.can_access_vasagatan(player),
         "BalboaIsland": lambda state: state.can_access_balboa_island(player),
         "CaravanIsland": lambda state: state.can_access_caravan_island(player),
@@ -58,7 +58,8 @@ def set_rules(world, player):
     for region in regionMap:
         if region != "Menu":
             # TODO Add item requirements (eg Caravan Island requires zipline for some, but not all, checks)
-            set_rule(world.get_entrance(region, player), regionChecks[region])
+            for exitRegion in world.get_region(region, player).exits:
+                set_rule(world.get_entrance(exitRegion.name, player), regionChecks[region])
      
     # Process locations
     # for location in location_table:
