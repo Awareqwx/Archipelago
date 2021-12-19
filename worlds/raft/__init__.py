@@ -9,7 +9,7 @@ from .Regions import create_regions, regionMap
 from .Rules import set_rules
 from .Options import options
 
-from BaseClasses import Region, Entrance, Location, MultiWorld, Item
+from BaseClasses import Region, RegionType, Entrance, Location, MultiWorld, Item
 from ..AutoWorld import World
 
 
@@ -45,10 +45,6 @@ class RaftWorld(World):
 
         self.world.itempool += pool
 
-        # Victory item
-        self.world.get_location("RadioTowerRadioTranscription", self.player).place_locked_item( #TODO: Add actual victory location
-            RaftItem("Victory", True, None, player=self.player))
-
     def set_rules(self):
         set_rules(self.world, self.player)
 
@@ -65,16 +61,21 @@ class RaftWorld(World):
 
     def get_required_client_version(self) -> typing.Tuple[int, int, int]:
         return max((0, 2, 0), super(RaftWorld, self).get_required_client_version())
+    
+    def pre_fill(self):
+        # Victory item
+        self.world.get_location("RadioTowerRadioTranscriptionLOC", self.player).place_locked_item( #TODO: Add actual victory location
+            RaftItem("Victory", True, None, player=self.player))
 
 
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None):
-    ret = Region(name, None, name, player)
+    ret = Region(name, RegionType.Generic, name, player)
     ret.world = world
     if locations:
         for location in locations:
             loc_id = locations_lookup_name_to_id.get(location, 0)
-            location = RaftLocation(player, location, loc_id, ret)
-            ret.locations.append(location)
+            locationObj = RaftLocation(player, location, loc_id, ret)
+            ret.locations.append(locationObj)
     if exits:
         for exit in exits:
             ret.exits.append(Entrance(player, exit, ret))

@@ -18,8 +18,13 @@ def create_regions(world, player: int):
             
         world.regions += [new_region]
 
+    menu = create_region(world, player, "Menu", None, ["Raft"])
+    world.regions += [menu]
+    menuConn = world.get_entrance("Raft", player)
+    menuConn.connect(world.get_region("Raft", player))
+
     # Link regions together
     for region in regionMap:
-        if region != "Menu":
-            for linkedRegion in regionMap[region]:
-                world.get_entrance(region, player).connect(world.get_region(linkedRegion, player))
+        for linkedRegion in regionMap[region]:
+            connection = world.get_entrance(region, player)
+            connection.connect(world.get_region(linkedRegion, player))

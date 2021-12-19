@@ -255,8 +255,8 @@
         "region": "RadioTower"
     }, {
         "id": 48052,
-        "name": "RadioTowerRadioTranscription",
-        "location": "RadioTowerRadioTranscription",
+        "name": "RadioTowerRadioTranscriptionLOC",
+        "location": "RadioTowerRadioTranscriptionLOC",
         "region": "RadioTower"
     }
 ]

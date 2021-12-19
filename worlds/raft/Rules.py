@@ -12,7 +12,7 @@ class RaftLogic(LogicMixin):
         return self.has("Engine", player) and self.has("Steering Wheel", player)
 
     def can_access_radio_tower(self, player):
-        self.can_navigate(player)
+        return self.can_navigate(player)
 
     def can_complete_radio_tower(self, player):
         return self.can_access_radio_tower(player)
@@ -47,7 +47,7 @@ def set_rules(world, player):
     regionChecks = {
         "Raft": lambda state: True,
         "ResearchTable": lambda state: True,
-        "RadioTower": lambda state: state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
+        "RadioTower": lambda state: True, # state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
         "Vasagatan": lambda state: state.can_access_vasagatan(player),
         "BalboaIsland": lambda state: state.can_access_balboa_island(player),
         "CaravanIsland": lambda state: state.can_access_caravan_island(player),
@@ -61,8 +61,8 @@ def set_rules(world, player):
             set_rule(world.get_entrance(region, player), regionChecks[region])
      
     # Process locations
-    for location in location_table:
-        set_rule(world.get_location(location["name"], player), regionChecks[location["region"]])
+    # for location in location_table:
+        # set_rule(world.get_location(location["name"], player), regionChecks[location["region"]])
 
     # Victory location
     world.completion_condition[player] = lambda state: state.has('Victory', player)
