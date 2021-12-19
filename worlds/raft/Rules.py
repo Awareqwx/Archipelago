@@ -62,8 +62,8 @@ def set_rules(world, player):
                 set_rule(world.get_entrance(exitRegion.name, player), regionChecks[region])
      
     # Process locations
-    # for location in location_table:
-        # set_rule(world.get_location(location["name"], player), regionChecks[location["region"]])
+    for location in location_table:
+        set_rule(world.get_location(location["name"], player), regionChecks[location["region"]])
 
     # Victory location
     world.completion_condition[player] = lambda state: state.has('Victory', player)
