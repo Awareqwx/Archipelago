@@ -1,262 +1,272 @@
-[{
+[
+    {
         "id": 48001,
-        "name": "MetalSpear",
-        "location": "MetalSpear",
+        "name": "Placeable_ItemNet",
         "region": "ResearchTable"
-    }, {
+    },
+    {
         "id": 48002,
-        "name": "PaintBrush",
-        "location": "PaintBrush",
-        "region": "ResearchTable"
-    }, {
-        "id": 48003,
-        "name": "ScrapHook",
-        "location": "ScrapHook",
-        "region": "ResearchTable"
-    }, {
-        "id": 48004,
-        "name": "MetalAxe",
-        "location": "MetalAxe",
-        "region": "ResearchTable"
-    }, {
-        "id": 48005,
-        "name": "MetalFishingRod",
-        "location": "MetalFishingRod",
-        "region": "ResearchTable"
-    }, {
-        "id": 48006,
-        "name": "BasicBow",
-        "location": "BasicBow",
-        "region": "ResearchTable"
-    }, {
-        "id": 48007,
-        "name": "Binoculars",
-        "location": "Binoculars",
-        "region": "ResearchTable"
-    }, {
-        "id": 48008,
-        "name": "StoneArrow",
-        "location": "StoneArrow",
-        "region": "ResearchTable"
-    }, {
-        "id": 48009,
-        "name": "Table",
-        "location": "Table",
-        "region": "ResearchTable"
-    }, {
-        "id": 48010,
-        "name": "Rug",
-        "location": "Rug",
-        "region": "ResearchTable"
-    }, {
-        "id": 48011,
-        "name": "PaintMill",
-        "location": "PaintMill",
-        "region": "ResearchTable"
-    }, {
-        "id": 48012,
-        "name": "Lantern",
-        "location": "Lantern",
-        "region": "ResearchTable"
-    }, {
-        "id": 48013,
-        "name": "Clock",
-        "location": "Clock",
-        "region": "ResearchTable"
-    }, {
-        "id": 48014,
-        "name": "Chair",
-        "location": "Chair",
-        "region": "ResearchTable"
-    }, {
-        "id": 48015,
-        "name": "Storage",
-        "location": "Storage",
-        "region": "ResearchTable"
-    }, {
-        "id": 48016,
-        "name": "CollectionNet",
-        "location": "CollectionNet",
-        "region": "ResearchTable"
-    }, {
-        "id": 48017,
-        "name": "Smelter",
-        "location": "Smelter",
-        "region": "ResearchTable"
-    }, {
-        "id": 48018,
-        "name": "BirdsNest",
-        "location": "BirdsNest",
-        "region": "ResearchTable"
-    }, {
-        "id": 48019,
-        "name": "Hammock",
-        "location": "Hammock",
-        "region": "ResearchTable"
-    }, {
-        "id": 48020,
-        "name": "StationaryAnchor",
-        "location": "StationaryAnchor",
-        "region": "ResearchTable"
-    }, {
-        "id": 48021,
-        "name": "Scarecrow",
-        "location": "Scarecrow",
-        "region": "ResearchTable"
-    }, {
-        "id": 48022,
-        "name": "LargeCropPlot",
-        "location": "LargeCropPlot",
-        "region": "ResearchTable"
-    }, {
-        "id": 48023,
-        "name": "MediumCropPlot",
-        "location": "MediumCropPlot",
-        "region": "ResearchTable"
-    }, {
-        "id": 48024,
-        "name": "AdvancedPurifier",
-        "location": "AdvancedPurifier",
-        "region": "ResearchTable"
-    }, {
-        "id": 48025,
-        "name": "AdvancedGrill",
-        "location": "AdvancedGrill",
-        "region": "ResearchTable"
-    }, {
-        "id": 48026,
-        "name": "EmptyBottle",
-        "location": "EmptyBottle",
-        "region": "ResearchTable"
-    }, {
-        "id": 48027,
-        "name": "Flippers",
-        "location": "Flippers",
-        "region": "ResearchTable"
-    }, {
-        "id": 48028,
-        "name": "OxygenBottle",
-        "location": "OxygenBottle",
-        "region": "ResearchTable"
-    }, {
-        "id": 48029,
-        "name": "Hinge",
-        "location": "Hinge",
-        "region": "ResearchTable"
-    }, {
-        "id": 48030,
-        "name": "CircuitBoard",
-        "location": "CircuitBoard",
-        "region": "ResearchTable"
-    }, {
-        "id": 48031,
-        "name": "Bolt",
-        "location": "Bolt",
-        "region": "ResearchTable"
-    }, {
-        "id": 48032,
-        "name": "Battery",
-        "location": "Battery",
-        "region": "ResearchTable"
-    }, {
-        "id": 48033,
-        "name": "CookingPot",
-        "location": "CookingPot",
-        "region": "ResearchTable"
-    }, {
-        "id": 48034,
-        "name": "ClayBowl",
-        "location": "ClayBowl",
-        "region": "ResearchTable"
-    }, {
-        "id": 48035,
-        "name": "NetLauncher",
-        "location": "NetLauncher",
-        "region": "ResearchTable"
-    }, {
-        "id": 48036,
-        "name": "Shovel",
-        "location": "Shovel",
-        "region": "ResearchTable"
-    }, {
-        "id": 48037,
-        "name": "Shear",
-        "location": "Shear",
-        "region": "ResearchTable"
-    }, {
-        "id": 48038,
         "name": "Bucket",
-        "location": "Bucket",
         "region": "ResearchTable"
-    }, {
-        "id": 48039,
-        "name": "NetCanister",
-        "location": "NetCanister",
+    },
+    {
+        "id": 48003,
+        "name": "PaintBrush",
         "region": "ResearchTable"
-    }, {
-        "id": 48040,
-        "name": "HealingSalve",
-        "location": "HealingSalve",
-        "region": "ResearchTable"
-    }, {
-        "id": 48041,
-        "name": "GoodHealingSalve",
-        "location": "GoodHealingSalve",
-        "region": "ResearchTable"
-    }, {
-        "id": 48042,
-        "name": "GrassPlot",
-        "location": "GrassPlot",
-        "region": "ResearchTable"
-    }, {
-        "id": 48043,
-        "name": "Sprinkler",
-        "location": "Sprinkler",
-        "region": "ResearchTable"
-    }, {
-        "id": 48044,
+    },
+    {
+        "id": 48004,
         "name": "Backpack",
-        "location": "Backpack",
         "region": "ResearchTable"
-    }, {
+    },
+    {
+        "id": 48005,
+        "name": "FishingRod_Metal",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48006,
+        "name": "NetCanister",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48007,
+        "name": "Placeable_CookingStand_Food_Two",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48008,
+        "name": "Placeable_Cropplot_Large",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48009,
+        "name": "Placeable_Anchor_Stationary",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48010,
+        "name": "Placeable_PaintMill",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48011,
+        "name": "Placeable_Storage_Medium",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48012,
+        "name": "Axe",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48013,
+        "name": "Hook_Scrap",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48014,
+        "name": "SweepNet",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48015,
+        "name": "Bow",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48016,
+        "name": "Spear_Scrap",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48017,
+        "name": "Flipper",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48018,
+        "name": "OxygenBottle",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48019,
+        "name": "Binoculars",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48020,
+        "name": "Placeable_Cropplot_Medium",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48021,
+        "name": "Placeable_Lantern_Basic",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48022,
+        "name": "Placeable_Scarecrow",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48023,
+        "name": "Placeable_Bed_Hammock",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48024,
+        "name": "Placeable_CookingStand_Smelter",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48025,
+        "name": "Placeable_CookingStand_Purifier_Two",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48026,
+        "name": "Placeable_Cropplot_Grass",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48027,
+        "name": "Placeable_BirdsNest",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48028,
+        "name": "Shovel",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48029,
+        "name": "Arrow_Stone",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48030,
+        "name": "Arrow_Metal",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48031,
+        "name": "Placeable_CookingPot",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48032,
+        "name": "Placeable_BeeHive",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48033,
+        "name": "Equipment_LeatherHelmet",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48034,
+        "name": "Equipment_LeatherChest",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48035,
+        "name": "Equipment_LeatherLegs",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48036,
+        "name": "PlasticBottle_Empty",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48037,
+        "name": "Claybowl_Empty",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48038,
+        "name": "HealingSalve",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48039,
+        "name": "HealingSalve_Good",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48040,
+        "name": "Placeable_Sprinkler",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48041,
+        "name": "Jar_Honey",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48042,
+        "name": "Battery",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48043,
+        "name": "Bolt",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48044,
+        "name": "CircuitBoard",
+        "region": "ResearchTable"
+    },
+    {
         "id": 48045,
-        "name": "LeatherHelmet",
-        "location": "LeatherHelmet",
+        "name": "Hinge",
         "region": "ResearchTable"
-    }, {
+    },
+    {
         "id": 48046,
-        "name": "LeatherBodyArmor",
-        "location": "LeatherBodyArmor",
+        "name": "Shear",
         "region": "ResearchTable"
-    }, {
+    },
+    {
         "id": 48047,
-        "name": "LeatherGreaves",
-        "location": "LeatherGreaves",
+        "name": "NetGun",
         "region": "ResearchTable"
-    }, {
+    },
+    {
         "id": 48048,
-        "name": "Beehive",
-        "location": "Beehive",
+        "name": "Placeable_TrophyBoard_Large",
         "region": "ResearchTable"
-    }, {
+    },
+    {
         "id": 48049,
-        "name": "RadioTowerDiary1",
-        "location": "RadioTowerDiary1",
-        "region": "RadioTower"
-    }, {
+        "name": "Placeable_TrophyBoard_Medium",
+        "region": "ResearchTable"
+    },
+    {
         "id": 48050,
-        "name": "RadioTowerDiary2",
-        "location": "RadioTowerDiary2",
-        "region": "RadioTower"
-    }, {
+        "name": "Placeable_TrophyBoard_Small",
+        "region": "ResearchTable"
+    },
+    {
         "id": 48051,
-        "name": "RadioTowerDiary3",
-        "location": "RadioTowerDiary3",
+        "name": "RadioTowerDiary1",
         "region": "RadioTower"
-    }, {
+    },
+    {
         "id": 48052,
+        "name": "RadioTowerDiary2",
+        "region": "RadioTower"
+    },
+    {
+        "id": 48053,
+        "name": "RadioTowerDiary3",
+        "region": "RadioTower"
+    },
+    {
+        "id": 48054,
         "name": "RadioTowerRadioTranscriptionLOC",
-        "location": "RadioTowerRadioTranscriptionLOC",
         "region": "RadioTower"
     }
 ]
