@@ -1,272 +1,567 @@
 [
     {
         "id": 48001,
-        "name": "Placeable_ItemNet",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48002,
-        "name": "Bucket",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48003,
-        "name": "PaintBrush",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48004,
-        "name": "Backpack",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48005,
-        "name": "FishingRod_Metal",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48006,
         "name": "NetCanister",
         "region": "ResearchTable"
     },
     {
-        "id": 48007,
-        "name": "Placeable_CookingStand_Food_Two",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48008,
-        "name": "Placeable_Cropplot_Large",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48009,
-        "name": "Placeable_Anchor_Stationary",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48010,
-        "name": "Placeable_PaintMill",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48011,
-        "name": "Placeable_Storage_Medium",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48012,
-        "name": "Axe",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48013,
-        "name": "Hook_Scrap",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48014,
-        "name": "SweepNet",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48015,
-        "name": "Bow",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48016,
-        "name": "Spear_Scrap",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48017,
-        "name": "Flipper",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48018,
-        "name": "OxygenBottle",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48019,
-        "name": "Binoculars",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48020,
-        "name": "Placeable_Cropplot_Medium",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48021,
-        "name": "Placeable_Lantern_Basic",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48022,
-        "name": "Placeable_Scarecrow",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48023,
-        "name": "Placeable_Bed_Hammock",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48024,
-        "name": "Placeable_CookingStand_Smelter",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48025,
-        "name": "Placeable_CookingStand_Purifier_Two",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48026,
-        "name": "Placeable_Cropplot_Grass",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48027,
-        "name": "Placeable_BirdsNest",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48028,
-        "name": "Shovel",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48029,
-        "name": "Arrow_Stone",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48030,
-        "name": "Arrow_Metal",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48031,
-        "name": "Placeable_CookingPot",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48032,
-        "name": "Placeable_BeeHive",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48033,
-        "name": "Equipment_LeatherHelmet",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48034,
-        "name": "Equipment_LeatherChest",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48035,
-        "name": "Equipment_LeatherLegs",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48036,
-        "name": "PlasticBottle_Empty",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48037,
-        "name": "Claybowl_Empty",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48038,
-        "name": "HealingSalve",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48039,
-        "name": "HealingSalve_Good",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48040,
-        "name": "Placeable_Sprinkler",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48041,
-        "name": "Jar_Honey",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48042,
-        "name": "Battery",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48043,
-        "name": "Bolt",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48044,
-        "name": "CircuitBoard",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48045,
-        "name": "Hinge",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48046,
-        "name": "Shear",
-        "region": "ResearchTable"
-    },
-    {
-        "id": 48047,
+        "id": 48002,
         "name": "NetGun",
         "region": "ResearchTable"
     },
     {
-        "id": 48048,
+        "id": 48003,
+        "name": "Spear_Scrap",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48004,
+        "name": "Arrow_Metal",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48005,
+        "name": "Arrow_Stone",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48006,
+        "name": "Bow",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48007,
+        "name": "SweepNet",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48008,
+        "name": "Shovel",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48009,
+        "name": "Shear",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48010,
+        "name": "Hook_Scrap",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48011,
+        "name": "FishingRod_Metal",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48012,
+        "name": "Binoculars",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48013,
+        "name": "Axe",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48014,
+        "name": "Placeable_Storage_Medium",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48015,
+        "name": "Placeable_ItemNet",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48016,
+        "name": "Placeable_CookingStand_Smelter",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48017,
+        "name": "Placeable_BirdsNest",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48018,
+        "name": "Placeable_BeeHive",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48019,
+        "name": "Placeable_Bed_Hammock",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48020,
         "name": "Placeable_TrophyBoard_Large",
         "region": "ResearchTable"
     },
     {
-        "id": 48049,
+        "id": 48021,
         "name": "Placeable_TrophyBoard_Medium",
         "region": "ResearchTable"
     },
     {
-        "id": 48050,
+        "id": 48022,
         "name": "Placeable_TrophyBoard_Small",
         "region": "ResearchTable"
     },
     {
+        "id": 48023,
+        "name": "Placeable_PaintMill",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48024,
+        "name": "PaintBrush",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48025,
+        "name": "Placeable_Lantern_Basic",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48026,
+        "name": "Placeable_Anchor_Stationary",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48027,
+        "name": "Hinge",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48028,
+        "name": "CircuitBoard",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48029,
+        "name": "Bolt",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48030,
+        "name": "Battery",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48031,
+        "name": "Jar_Honey",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48032,
+        "name": "Placeable_Sprinkler",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48033,
+        "name": "Placeable_Scarecrow",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48034,
+        "name": "Placeable_Cropplot_Grass",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48035,
+        "name": "Placeable_Cropplot_Large",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48036,
+        "name": "Placeable_Cropplot_Medium",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48037,
+        "name": "Placeable_CookingStand_Purifier_Two",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48038,
+        "name": "Placeable_CookingStand_Food_Two",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48039,
+        "name": "Placeable_CookingPot",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48040,
+        "name": "HealingSalve_Good",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48041,
+        "name": "HealingSalve",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48042,
+        "name": "Bucket",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48043,
+        "name": "Claybowl_Empty",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48044,
+        "name": "PlasticBottle_Empty",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48045,
+        "name": "OxygenBottle",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48046,
+        "name": "Flipper",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48047,
+        "name": "Equipment_LeatherLegs",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48048,
+        "name": "Equipment_LeatherChest",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48049,
+        "name": "Equipment_LeatherHelmet",
+        "region": "ResearchTable"
+    },
+    {
+        "id": 48050,
+        "name": "Backpack",
+        "region": "ResearchTable"
+    },
+    {
         "id": 48051,
-        "name": "RadioTowerDiary1",
+        "name": "Pickup_Landmark_Blueprint_HeadLight",
         "region": "RadioTower"
     },
     {
         "id": 48052,
-        "name": "RadioTowerDiary2",
+        "name": "NoteBookPickup_Base_Index1_Briefcase",
         "region": "RadioTower"
     },
     {
         "id": 48053,
-        "name": "RadioTowerDiary3",
+        "name": "NoteBookPickup_Base_Index2_PostItNote",
         "region": "RadioTower"
     },
     {
         "id": 48054,
-        "name": "NoteBookPickup_Tangaroa_Index53_NextFrequency",
+        "name": "NoteBookPickup_Base_Index3_NotePad",
         "region": "RadioTower"
+    },
+    {
+        "id": 48055,
+        "name": "NoteBookPickup_Base_Index4_NotePad",
+        "region": "RadioTower"
+    },
+    {
+        "id": 48056,
+        "name": "NoteBookPickup_Base_Index5_SignalboardTrace",
+        "region": "RadioTower"
+    },
+    {
+        "id": 48057,
+        "name": "NoteBookPickup_Vasagatan_Index6_Recording 1-5",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48058,
+        "name": "NoteBookPickup_Vasagatan_Index7_Recording 2-5",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48059,
+        "name": "NoteBookPickup_Vasagatan_Index8_Recording 3-5",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48060,
+        "name": "NoteBookPickup_Vasagatan_Index9_Recording 4-5",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48061,
+        "name": "NoteBookPickup_Vasagatan_Index10_Recording 5-5",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48062,
+        "name": "NoteBookPickup_Vasagatan_Index11_NoteFromOskar",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48063,
+        "name": "NoteBookPickup_Vasagatan_Index12_NoteFromCeline",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48064,
+        "name": "NoteBookPickup_Vasagatan_Index13_NoteFromHannes",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48065,
+        "name": "NoteBookPickup_Vasagatan_Index14_MagazineClipping",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48066,
+        "name": "NoteBookPickup_Vasagatan_Index15_CaptainsLog 1-2",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48067,
+        "name": "NoteBookPickup_Vasagatan_Index16_CaptainsLog 2-2",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48068,
+        "name": "NoteBookPickup_Vasagatan_Index17_PostItNote_FrequencyToBalboa",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48069,
+        "name": "NoteBookPickup_Vasagatan_Index18_WilkstromsReport",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48070,
+        "name": "Pickup_Landmark_Blueprint_MotorWheel",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48071,
+        "name": "Pickup_Landmark_Blueprint_SteeringWheel",
+        "region": "Vasagatan"
+    },
+    {
+        "id": 48072,
+        "name": "Pickup_Landmark_Blueprint_Machete",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48073,
+        "name": "NoteBookPickup_BalboaIsland_Index31_Picture of two engineers",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48074,
+        "name": "NoteBookPickup_BalboaIsland_Index19_Schedule of engineers",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48075,
+        "name": "Pickup_Landmark_Blueprint_BiofuelExtractor",
+        "region": "BalboaIslandCompletion"
+    },
+    {
+        "id": 48076,
+        "name": "NoteBookPickup_BalboaIsland_Index22_Note from hentry",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48077,
+        "name": "NoteBookPickup_BalboaIsland_Index25_Correas Diary 3-3",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48078,
+        "name": "Pickup_Landmark_Blueprint_Fueltank",
+        "region": "BalboaIslandCompletion"
+    },
+    {
+        "id": 48079,
+        "name": "NoteBookPickup_BalboaIsland_Index23_Correas Diary 1-3",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48080,
+        "name": "NoteBookPickup_BalboaIsland_Index24_Correas Diary 2-3",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48081,
+        "name": "Pickup_Landmark_Blueprint_Pipes",
+        "region": "BalboaIslandCompletion"
+    },
+    {
+        "id": 48082,
+        "name": "NoteBookPickup_BalboaIsland_Index21_Map to bear lure stash",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48083,
+        "name": "NoteBookPickup_BalboaIsland_Index29_Doll murderer 4-5",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48084,
+        "name": "NoteBookPickup_BalboaIsland_Index26_Doll murderer 1-5",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48085,
+        "name": "NoteBookPickup_BalboaIsland_Index28_Doll murderer 3-5",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48086,
+        "name": "NoteBookPickup_BalboaIsland_Index30_Doll murderer 5-5",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48087,
+        "name": "NoteBookPickup_BalboaIsland_Index27_Doll murderer 2-5",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48088,
+        "name": "NoteBookPickup_CaravanIsland_Index34_Note1Journal1-6-FirstEntry",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48089,
+        "name": "NoteBookPickup_CaravanIsland_Index35_Note2Journal2-6-PipeExperiment",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48090,
+        "name": "NoteBookPickup_CaravanIsland_Index36_Note3Journal5-6-RocketExperiment",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48091,
+        "name": "NoteBookPickup_CaravanIsland_Index37_Note4MothersLetter",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48092,
+        "name": "NoteBookPickup_CaravanIsland_Index38_Note5Journal3-6-DiveExperiment",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48093,
+        "name": "NoteBookPickup_CaravanIsland_Index39_Note6Journal4-6-KelpExperiment",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48094,
+        "name": "NoteBookPickup_CaravanIsland_Index40_Note7RaftSocietyNewsArticle",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48095,
+        "name": "NoteBookPickup_CaravanIsland_Index41_Note8Journal6-6-LeavingCaravanIsland",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48096,
+        "name": "NoteBookPickup_CaravanIsland_Index42_Note9DoctorsNote",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48097,
+        "name": "NoteBookPickup_CaravanIsland_Index43_FrequencyToTangaroa 1",
+        "region": "CaravanIsland"
+    },
+    {
+        "id": 48098,
+        "name": "Pickup_Landmark_Blueprint_EngineControls",
+        "region": "CaravanIslandCompletion"
+    },
+    {
+        "id": 48099,
+        "name": "Pickup_Landmark_Blueprint_MetalDetector",
+        "region": "CaravanIslandCompletion"
+    },
+    {
+        "id": 48100,
+        "name": "NoteBookPickup_Tangaroa_Index44_Ruben1-5",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48101,
+        "name": "NoteBookPickup_Tangaroa_Index45_Ruben2-5",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48102,
+        "name": "NoteBookPickup_Tangaroa_Index46_Ruben3-5",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48103,
+        "name": "NoteBookPickup_Tangaroa_Index47_Ruben4-5",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48104,
+        "name": "NoteBookPickup_Tangaroa_Index48_Ruben5-5",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48105,
+        "name": "NoteBookPickup_Tangaroa_Index49_GardenerDiary",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48106,
+        "name": "NoteBookPickup_Tangaroa_Index50_RiotLog",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48107,
+        "name": "NoteBookPickup_Tangaroa_Index51_TulleyNote",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48108,
+        "name": "NoteBookPickup_Tangaroa_Index52_Cipher",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48109,
+        "name": "NoteBookPickup_Tangaroa_Index53_NextFrequency",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48110,
+        "name": "Pickup_Landmark_Blueprint_Pipes_Water",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48111,
+        "name": "Pickup_Landmark_Blueprint_ElectricPurifier",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48112,
+        "name": "Pickup_Landmark_Blueprint_Watertank",
+        "region": "Tangaroa"
+    },
+    {
+        "id": 48113,
+        "name": "Pickup_Landmark_Blueprint_Storage_Large",
+        "region": "Tangaroa"
     }
 ]

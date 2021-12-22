@@ -170,7 +170,7 @@
     {
         "id": 47029,
         "count": 1,
-        "progression": true,
+        "progression": false,
         "name": "Placeable_EngineControls"
     },
     {
@@ -236,7 +236,7 @@
     {
         "id": 47040,
         "count": 1,
-        "progression": true,
+        "progression": false,
         "name": "Placeable_FuelTank"
     },
     {
@@ -254,7 +254,7 @@
     {
         "id": 47043,
         "count": 1,
-        "progression": true,
+        "progression": false,
         "name": "Placeable_Pipe_Fuel"
     },
     {
@@ -284,7 +284,7 @@
     {
         "id": 47048,
         "count": 1,
-        "progression": true,
+        "progression": false,
         "name": "Placeable_ZiplineBase"
     },
     {
@@ -368,7 +368,7 @@
     {
         "id": 47062,
         "count": 1,
-        "progression": false,
+        "progression": true,
         "name": "Machete"
     },
     {
@@ -386,7 +386,307 @@
     {
         "id": 47065,
         "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index1_FamilyPicture"
+    },
+    {
+        "id": 47066,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index1_RadioTower"
+    },
+    {
+        "id": 47067,
+        "count": 1,
         "progression": true,
-        "name": "RadioTowerRadioTranscription"
+        "name": "NoteBookNote_Index2_Post-it"
+    },
+    {
+        "id": 47068,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index3_Base_Enhanced"
+    },
+    {
+        "id": 47069,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index5_RadioTower_Trace"
+    },
+    {
+        "id": 47070,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index4_RadioTower_4"
+    },
+    {
+        "id": 47071,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index12_Vasagatan_NoteFromCeline"
+    },
+    {
+        "id": 47072,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index6_Vasagatan_Recording 1-5"
+    },
+    {
+        "id": 47073,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index7_Vasagatan_Recording 2-5"
+    },
+    {
+        "id": 47074,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index11_Vasagatan_NoteFromOskar"
+    },
+    {
+        "id": 47075,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index9_Vasagatan_Recording 4.5"
+    },
+    {
+        "id": 47076,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index8_Vasagatan_Recording 3-5"
+    },
+    {
+        "id": 47077,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index14_Vasagatan_MagazineClipping"
+    },
+    {
+        "id": 47078,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index16_Vasagatan_CaptainsLog 2-2"
+    },
+    {
+        "id": 47079,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index15_Vasagatan_CaptainsLog 1-2"
+    },
+    {
+        "id": 47080,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index10_Vasagatan_Recording 5-5"
+    },
+    {
+        "id": 47081,
+        "count": 1,
+        "progression": true,
+        "name": "NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa"
+    },
+    {
+        "id": 47082,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index13_Vasagatan_NoteFromHannes"
+    },
+    {
+        "id": 47083,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index18_Vasagatan_WilkstromsReport"
+    },
+    {
+        "id": 47084,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index19_BalboaIsland_Schedule of engineers"
+    },
+    {
+        "id": 47085,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index23_BalboaIsland_Correas Diary 1-3"
+    },
+    {
+        "id": 47086,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index22_BalboaIsland_Note from hentry"
+    },
+    {
+        "id": 47087,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index31_BalboaIsland_Picture of two engineers"
+    },
+    {
+        "id": 47088,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index24_BalboaIsland_Correas Diary 2-3"
+    },
+    {
+        "id": 47089,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index25_BalboaIsland_Correas Diary 3-3"
+    },
+    {
+        "id": 47090,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index26_BalboaIsland_Doll murderer 1-5"
+    },
+    {
+        "id": 47091,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index28_BalboaIsland_Doll murderer 3-5"
+    },
+    {
+        "id": 47092,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index27_BalboaIsland_Doll murderer 2-5"
+    },
+    {
+        "id": 47093,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index21_BalboaIsland_Map to bear lure stash"
+    },
+    {
+        "id": 47094,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index29_BalboaIsland_Doll murderer 4-5"
+    },
+    {
+        "id": 47095,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index30_BalboaIsland_Doll murderer 5-5"
+    },
+    {
+        "id": 47096,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index35_Landmark_CaravanIsland_Note2Journal2/6-PipeExperiment"
+    },
+    {
+        "id": 47097,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index34_Landmark_CaravanIsland_Note1Journal1/6-FirstEntry"
+    },
+    {
+        "id": 47098,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index38_Landmark_CaravanIsland_Note5Journal3/6-DiveExperiment"
+    },
+    {
+        "id": 47099,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index39_Landmark_CaravanIsland_Note6Journal4/6-KelpExperiment"
+    },
+    {
+        "id": 47100,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index36_Landmark_CaravanIsland_Note3Journal5/6-RocketExperiment"
+    },
+    {
+        "id": 47101,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index41_Landmark_CaravanIsland_Note8Journal6/6-LeavingCaravanIsland"
+    },
+    {
+        "id": 47102,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index37_Landmark_CaravanIsland_Note4MothersLetter"
+    },
+    {
+        "id": 47103,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index40_Landmark_CaravanIsland_Note7RaftSocietyNewsArticle"
+    },
+    {
+        "id": 47104,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index42_Landmark_CaravanIsland_Note9DoctorsNote"
+    },
+    {
+        "id": 47105,
+        "count": 1,
+        "progression": true,
+        "name": "NoteBookNote_Index43_Landmark_CaravanIsland_FrequencyToTangaroa"
+    },
+    {
+        "id": 47106,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index44_Landmark_Tangaroa_Ruben1-5"
+    },
+    {
+        "id": 47107,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index45_Landmark_Tangaroa_Ruben2-5"
+    },
+    {
+        "id": 47108,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index46_Landmark_Tangaroa_Ruben3-5"
+    },
+    {
+        "id": 47109,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index48_Landmark_Tangaroa_Ruben5-5"
+    },
+    {
+        "id": 47110,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index47_Landmark_Tangaroa_Ruben4-5"
+    },
+    {
+        "id": 47111,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index50_Landmark_Tangaroa_RiotLog"
+    },
+    {
+        "id": 47112,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index49_Landmark_Tangaroa_GardenerDiary"
+    },
+    {
+        "id": 47113,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index52_Landmark_Tangaroa_Cipher"
+    },
+    {
+        "id": 47114,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index51_Landmark_Tangaroa_TulleyNote"
+    },
+    {
+        "id": 47115,
+        "count": 1,
+        "progression": false,
+        "name": "NoteBookNote_Index53_Landmark_Tangaroa_NextFrequency"
     }
 ]

@@ -34,7 +34,7 @@ class RaftLogic(LogicMixin):
         return self.can_access_vasagatan(player)
 
     def can_access_balboa_island(self, player):
-        return self.can_complete_vasagatan(player) and self.can_drive(state, player) and self.has("NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa", player)
+        return self.can_complete_vasagatan(player) and self.can_drive(player) and self.has("NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa", player)
 
     def can_complete_balboa_island(self, player):
         return self.can_access_balboa_island(player) and self.has("Machete", player)
@@ -58,10 +58,15 @@ def set_rules(world, player):
         "Raft": lambda state: True,
         "ResearchTable": lambda state: True,
         "RadioTower": lambda state: state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
+        "RadioTowerCompletion": lambda state: state.can_complete_radio_tower(player),
         "Vasagatan": lambda state: state.can_access_vasagatan(player),
+        "VasagatanCompletion": lambda state: state.can_complete_vasagatan(player),
         "BalboaIsland": lambda state: state.can_access_balboa_island(player),
+        "BalboaIslandCompletion": lambda state: state.can_complete_balboa_island(player),
         "CaravanIsland": lambda state: state.can_access_caravan_island(player),
-        "Tangaroa": lambda state: state.can_access_tangaroa(player)
+        "CaravanIslandCompletion": lambda state: state.can_complete_caravan_island(player),
+        "Tangaroa": lambda state: state.can_access_tangaroa(player),
+        "TangaroaCompletion": lambda state: state.can_complete_tangaroa(player)
     }
 
     # Location rules
