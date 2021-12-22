@@ -25,7 +25,7 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    data_version = 2
+    data_version = 6
 
     def generate_basic(self):
         # Generate item pool
@@ -64,7 +64,7 @@ class RaftWorld(World):
     
     def pre_fill(self):
         # Victory item
-        self.world.get_location("RadioTowerRadioTranscriptionLOC", self.player).place_locked_item( #TODO: Add actual victory location
+        self.world.get_location("NoteBookNote_Index53_Landmark_Tangaroa_NextFrequency", self.player).place_locked_item(
             RaftItem("Victory", True, None, player=self.player))
 
 

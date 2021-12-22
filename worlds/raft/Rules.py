@@ -4,42 +4,52 @@ from .Regions import regionMap
 from ..AutoWorld import LogicMixin
 
 class RaftLogic(LogicMixin):
+    def can_produce_metals(self, player):
+        return self.has("Placeable_CookingStand_Smelter", player)
+    
+    def has_game_basics(self, player):
+        return self.has("Bolt", player) and self.has("Hinge", player)
 
-    def can_navigate(self, player): # The player can both find locations with the receiver and can change course with the sail
-        return self.has("Sail", player) and self.has("Battery", player) and self.has("Receiver", player) and self.has("Antenna", player)
+    def can_navigate(self, player): # Sail is added by default and not considered in Archipelago
+        return (self.can_produce_metals(player) and self.has_game_basics(player)
+            and self.has("Battery", player) and self.has("CircuitBoard", player)
+            and self.has("Placeable_Reciever", player) and self.has("Placeable_Reciever_Antenna", player))
 
     def can_drive(self, player): # The player can go wherever they want with the engine
-        return self.has("Engine", player) and self.has("Steering Wheel", player)
+        return (self.can_produce_metals(player) and self.has_game_basics(player)
+            and self.has("Placeable_MotorWheel", player) and self.has("Placeable_SteeringWheel", player))
 
     def can_access_radio_tower(self, player):
+        # Technically the player doesn't need things like the sail to reach the Radio Tower,
+        # but paddling there is not very efficient or engaging gameplay.
         return self.can_navigate(player)
 
     def can_complete_radio_tower(self, player):
         return self.can_access_radio_tower(player)
 
     def can_access_vasagatan(self, player):
-        return self.can_navigate(player) and self.has("Vasagatan Coordinates", player)
+        return self.can_complete_radio_tower(player) and self.can_navigate(player) and self.has("NoteBookNote_Index2_Post-it", player)
 
     def can_complete_vasagatan(self, player):
-        return self.can_access_vasagatan(player) and self.has("Bomb", player)
+        return self.can_access_vasagatan(player)
 
     def can_access_balboa_island(self, player):
-        return self.can_navigate(player) and self.can_drive(state, player) and self.has("Balboa Coordinates", player)
+        return self.can_complete_vasagatan(player) and self.can_drive(state, player) and self.has("NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa", player)
 
     def can_complete_balboa_island(self, player):
         return self.can_access_balboa_island(player) and self.has("Machete", player)
 
     def can_access_caravan_island(self, player):
-        return self.can_navigate(player) and self.can_drive(player) and self.has("Caravan Coordinates", player)
+        return self.can_complete_balboa_island(player) and self.can_drive(player) # Coordinates are given from Relay Station quest
 
     def can_complete_caravan_island(self, player):
-        return self.can_access_caravan_island(player) and self.has("Zipline", player)
+        return self.can_access_caravan_island(player) and self.has("ZiplineTool", player)
 
     def can_access_tangaroa(self, player):
-        return self.can_navigate(player) and self.can_drive(player) and self.has("Tangaroa Coordinates", player)
+        return self.can_complete_caravan_island(player) and self.can_drive(player) and self.has("NoteBookNote_Index43_Landmark_CaravanIsland_FrequencyToTangaroa", player)
 
     def can_complete_tangaroa(self, player):
-        return self.can_access_tangaroa(player) and self.has("Generator Part", player, 3) and self.has("Tape", 9)
+        return self.can_access_tangaroa(player)
 
 
 def set_rules(world, player):

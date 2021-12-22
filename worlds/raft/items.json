@@ -1,7 +1,392 @@
 [
-    { "id": 47001, "count": 1, "progression": true, "name": "RadioTowerRadioTranscriptionITEM" },
-    { "id": 47002, "count": 1, "progression": true, "name": "Sail" },
-    { "id": 47003, "count": 1, "progression": true, "name": "Battery" },
-    { "id": 47004, "count": 1, "progression": true, "name": "Receiver" },
-    { "id": 47005, "count": 1, "progression": true, "name": "Antenna" }
+    {
+        "id": 47001,
+        "count": 1,
+        "progression": false,
+        "name": "Backpack"
+    },
+    {
+        "id": 47002,
+        "count": 1,
+        "progression": false,
+        "name": "Equipment_LeatherHelmet"
+    },
+    {
+        "id": 47003,
+        "count": 1,
+        "progression": false,
+        "name": "Equipment_LeatherChest"
+    },
+    {
+        "id": 47004,
+        "count": 1,
+        "progression": false,
+        "name": "Equipment_LeatherLegs"
+    },
+    {
+        "id": 47005,
+        "count": 1,
+        "progression": false,
+        "name": "Flipper"
+    },
+    {
+        "id": 47006,
+        "count": 1,
+        "progression": false,
+        "name": "HeadLight"
+    },
+    {
+        "id": 47007,
+        "count": 1,
+        "progression": false,
+        "name": "OxygenBottle"
+    },
+    {
+        "id": 47008,
+        "count": 1,
+        "progression": true,
+        "name": "ZiplineTool"
+    },
+    {
+        "id": 47009,
+        "count": 1,
+        "progression": false,
+        "name": "PlasticBottle_Empty"
+    },
+    {
+        "id": 47010,
+        "count": 1,
+        "progression": false,
+        "name": "Claybowl_Empty"
+    },
+    {
+        "id": 47011,
+        "count": 1,
+        "progression": false,
+        "name": "Bucket"
+    },
+    {
+        "id": 47012,
+        "count": 1,
+        "progression": false,
+        "name": "HealingSalve"
+    },
+    {
+        "id": 47013,
+        "count": 1,
+        "progression": false,
+        "name": "HealingSalve_Good"
+    },
+    {
+        "id": 47014,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_CookingPot"
+    },
+    {
+        "id": 47015,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_CookingStand_Food_Two"
+    },
+    {
+        "id": 47016,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_CookingStand_Purifier_Two"
+    },
+    {
+        "id": 47017,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Electric_Purifier"
+    },
+    {
+        "id": 47018,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Cropplot_Medium"
+    },
+    {
+        "id": 47019,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Cropplot_Large"
+    },
+    {
+        "id": 47020,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Cropplot_Grass"
+    },
+    {
+        "id": 47021,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Scarecrow"
+    },
+    {
+        "id": 47022,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Sprinkler"
+    },
+    {
+        "id": 47023,
+        "count": 1,
+        "progression": false,
+        "name": "Jar_Honey"
+    },
+    {
+        "id": 47024,
+        "count": 1,
+        "progression": true,
+        "name": "Battery"
+    },
+    {
+        "id": 47025,
+        "count": 1,
+        "progression": true,
+        "name": "Bolt"
+    },
+    {
+        "id": 47026,
+        "count": 1,
+        "progression": true,
+        "name": "CircuitBoard"
+    },
+    {
+        "id": 47027,
+        "count": 1,
+        "progression": true,
+        "name": "Hinge"
+    },
+    {
+        "id": 47028,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Anchor_Stationary"
+    },
+    {
+        "id": 47029,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_EngineControls"
+    },
+    {
+        "id": 47030,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_MotorWheel"
+    },
+    {
+        "id": 47031,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_Reciever"
+    },
+    {
+        "id": 47032,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_Reciever_Antenna"
+    },
+    {
+        "id": 47033,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_SteeringWheel"
+    },
+    {
+        "id": 47034,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_BatteryCharger"
+    },
+    {
+        "id": 47035,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Bed_Hammock"
+    },
+    {
+        "id": 47036,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_BeeHive"
+    },
+    {
+        "id": 47037,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_BiofuelExtractor"
+    },
+    {
+        "id": 47038,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_BirdsNest"
+    },
+    {
+        "id": 47039,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_CookingStand_Smelter"
+    },
+    {
+        "id": 47040,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_FuelTank"
+    },
+    {
+        "id": 47041,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_WaterTank"
+    },
+    {
+        "id": 47042,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_ItemNet"
+    },
+    {
+        "id": 47043,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_Pipe_Fuel"
+    },
+    {
+        "id": 47044,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Pipe_Water"
+    },
+    {
+        "id": 47045,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Storage_Medium"
+    },
+    {
+        "id": 47046,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Storage_Large"
+    },
+    {
+        "id": 47047,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Trashcan"
+    },
+    {
+        "id": 47048,
+        "count": 1,
+        "progression": true,
+        "name": "Placeable_ZiplineBase"
+    },
+    {
+        "id": 47049,
+        "count": 1,
+        "progression": false,
+        "name": "Placeable_Firework"
+    },
+    {
+        "id": 47050,
+        "count": 1,
+        "progression": false,
+        "name": "Axe"
+    },
+    {
+        "id": 47051,
+        "count": 1,
+        "progression": false,
+        "name": "Binoculars"
+    },
+    {
+        "id": 47052,
+        "count": 1,
+        "progression": false,
+        "name": "FishingRod_Metal"
+    },
+    {
+        "id": 47053,
+        "count": 1,
+        "progression": false,
+        "name": "Hook_Scrap"
+    },
+    {
+        "id": 47054,
+        "count": 1,
+        "progression": false,
+        "name": "MetalDetector"
+    },
+    {
+        "id": 47055,
+        "count": 1,
+        "progression": false,
+        "name": "Shear"
+    },
+    {
+        "id": 47056,
+        "count": 1,
+        "progression": false,
+        "name": "Shovel"
+    },
+    {
+        "id": 47057,
+        "count": 1,
+        "progression": false,
+        "name": "SweepNet"
+    },
+    {
+        "id": 47058,
+        "count": 1,
+        "progression": false,
+        "name": "Bow"
+    },
+    {
+        "id": 47059,
+        "count": 1,
+        "progression": false,
+        "name": "Arrow_Stone"
+    },
+    {
+        "id": 47060,
+        "count": 1,
+        "progression": false,
+        "name": "Arrow_Metal"
+    },
+    {
+        "id": 47061,
+        "count": 1,
+        "progression": false,
+        "name": "Spear_Scrap"
+    },
+    {
+        "id": 47062,
+        "count": 1,
+        "progression": false,
+        "name": "Machete"
+    },
+    {
+        "id": 47063,
+        "count": 1,
+        "progression": false,
+        "name": "NetGun"
+    },
+    {
+        "id": 47064,
+        "count": 1,
+        "progression": false,
+        "name": "NetCanister"
+    },
+    {
+        "id": 47065,
+        "count": 1,
+        "progression": true,
+        "name": "RadioTowerRadioTranscription"
+    }
 ]
