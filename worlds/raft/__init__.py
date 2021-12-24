@@ -12,7 +12,6 @@ from .Options import options
 from BaseClasses import Region, RegionType, Entrance, Location, MultiWorld, Item
 from ..AutoWorld import World
 
-
 class RaftWorld(World):
     """
     Raft is a flooded world exploration game. You're stranded on a small raft in the middle of the
@@ -25,7 +24,7 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    data_version = 7
+    data_version = 8
 
     def generate_basic(self):
         # Generate item pool

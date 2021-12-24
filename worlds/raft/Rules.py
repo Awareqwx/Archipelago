@@ -13,14 +13,23 @@ class RaftLogic(LogicMixin):
     def can_craft_hinge(self, player):
         return self.can_smelt_items(player) and self.has("Hinge", player)
 
+    def can_craft_battery(self, player):
+        return self.can_smelt_items(player) and self.has("Battery", player)
+
     def can_craft_circuitBoard(self, player):
         return self.can_smelt_items(player) and self.has("CircuitBoard", player)
+
+    def can_craft_reciever(self, player):
+        return self.can_craft_circuitBoard(player) and self.can_craft_hinge(player) and self.has("Placeable_Reciever", player)
 
     def can_craft_plasticBottle(self, player):
         return self.can_smelt_items(player) and self.has("PlasticBottle_Empty", player)
 
     def can_craft_shears(self, player):
         return self.can_smelt_items(player) and self.can_craft_hinge(player) and self.has("Shear", player)
+
+    def can_craft_birdNest(self, player):
+        return self.has("Placeable_BirdsNest", player)
 
     def can_get_dirt(self, player):
         return self.has("Shovel", player)
@@ -34,9 +43,8 @@ class RaftLogic(LogicMixin):
         return self.can_craft_bolt(player) and self.can_craft_hinge(player)
 
     def can_navigate(self, player): # Sail is added by default and not considered in Archipelago
-        return (self.can_smelt_items(player) and self.has_game_basics(player)
-            and self.has("Battery", player) and self.has("CircuitBoard", player)
-            and self.has("Placeable_Reciever", player) and self.has("Placeable_Reciever_Antenna", player))
+        return (self.can_craft_battery(player)
+            and self.can_craft_reciever(player) and self.has("Placeable_Reciever_Antenna", player))
 
     def can_drive(self, player): # The player can go wherever they want with the engine
         return (self.can_smelt_items(player) and self.has_game_basics(player)
@@ -98,12 +106,12 @@ def set_rules(world, player):
         "Rope": lambda state: True,
         "Nail": lambda state: True,
         "Scrap": lambda state: True,
-        "Leather": lambda state: True, # Wiki has conflicting information on whether Large Islands before Radio Tower has been visited; pretty sure they can
         "SeaVine": lambda state: True,
         "Brick_Dry": lambda state: True,
-        "Feather": lambda state: True,
+        "Leather": lambda state: True, # Conflicting info on whetherwe need state.can_navigate(player) instead
         "Thatch": lambda state: True, # Palm Leaf
         "Placeable_GiantClam": lambda state: True,
+        "Feather": lambda state: state.can_craft_birdNest(player), # Maybe add config for this since you technically don't need bird nest
         "MetalIngot": lambda state: state.can_smelt_items(player),
         "CopperIngot": lambda state: state.can_smelt_items(player),
         "VineGoo": lambda state: state.can_smelt_items(player),
@@ -132,9 +140,9 @@ def set_rules(world, player):
     for location in location_table:
         locFromWorld = world.get_location(location["name"], player)
         if "requiresAccessToItems" in location:
-            def ruleLambda(state):
+            def ruleLambda(state, location=location):
                 canAccess = regionChecks[location["region"]](state)
-                for item in locFromWorld["requiresAccessToItems"]:
+                for item in location["requiresAccessToItems"]:
                     if not itemChecks[item](state):
                         canAccess = False
                         break
