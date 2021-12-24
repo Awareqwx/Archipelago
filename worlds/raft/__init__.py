@@ -24,7 +24,7 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    data_version = 8
+    data_version = 9
 
     def generate_basic(self):
         # Generate item pool

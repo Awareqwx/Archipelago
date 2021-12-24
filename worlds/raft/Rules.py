@@ -5,7 +5,7 @@ from ..AutoWorld import LogicMixin
 
 class RaftLogic(LogicMixin):
     def can_smelt_items(self, player):
-        return self.has("Placeable_CookingStand_Smelter", player)
+        return self.has("Smelter", player)
 
     def can_craft_bolt(self, player):
         return self.can_smelt_items(player) and self.has("Bolt", player)
@@ -17,38 +17,60 @@ class RaftLogic(LogicMixin):
         return self.can_smelt_items(player) and self.has("Battery", player)
 
     def can_craft_circuitBoard(self, player):
-        return self.can_smelt_items(player) and self.has("CircuitBoard", player)
+        return self.can_smelt_items(player) and self.has("Circuit board", player)
 
     def can_craft_reciever(self, player):
-        return self.can_craft_circuitBoard(player) and self.can_craft_hinge(player) and self.has("Placeable_Reciever", player)
+        return self.can_craft_circuitBoard(player) and self.can_craft_hinge(player) and self.has("Receiver", player)
+
+    def can_craft_antenna(self, player):
+        return self.can_craft_circuitBoard(player) and self.can_craft_bolt(player) and self.has("Antenna", player)
 
     def can_craft_plasticBottle(self, player):
-        return self.can_smelt_items(player) and self.has("PlasticBottle_Empty", player)
+        return self.can_smelt_items(player) and self.has("Empty bottle", player)
 
     def can_craft_shears(self, player):
         return self.can_smelt_items(player) and self.can_craft_hinge(player) and self.has("Shear", player)
 
     def can_craft_birdNest(self, player):
-        return self.has("Placeable_BirdsNest", player)
+        return self.has("Birds nest", player)
+
+    def can_craft_engine(self, player):
+        return self.can_smelt_items(player) and self.can_craft_circuitBoard(player) and self.has("Engine", player)
+
+    def can_craft_steeringWheel(self, player):
+        return (self.can_smelt_items(player) and self.can_craft_bolt(player)
+            and self.can_craft_hinge(player) and self.has("Steering Wheel", player))
+
+    def can_craft_machete(self, player):
+        return self.can_smelt_items(player) and self.can_craft_bolt(player) and self.has("Machete", player)
+
+    def can_craft_ziplineTool(self, player):
+        return self.can_craft_hinge(player) and self.can_craft_bolt(player) and self.has("Zipline tool", player)
 
     def can_get_dirt(self, player):
-        return self.has("Shovel", player)
+        return self.can_smelt_items(player) and self.can_craft_bolt(player) and self.has("Shovel", player)
+
+    def can_craft_grassPlot(self, player):
+        return self.can_get_dirt(player) and self.has("Grass plot", player)
+
+    def can_craft_netLauncher(self, player):
+        return self.can_smelt_items(player) and self.can_craft_bolt(player) and self.has("Net launcher", player)
+
+    def can_craft_netCanister(self, player):
+        return self.can_smelt_items(player) and self.has("Net canister", player)
 
     def can_capture_animals(self, player):
-        return (self.can_smelt_items(player) and self.can_craft_bolt(player) # Required for crafting
-            and self.has("NetCanister", player) and self.has("NetGun", player)
-            and self.has("Placeable_Cropplot_Grass", player) and self.can_get_dirt(player))
+        return (self.can_craft_netLauncher(player) and self.can_craft_netCanister(player)
+            and self.can_craft_grassPlot(player))
     
     def has_game_basics(self, player):
         return self.can_craft_bolt(player) and self.can_craft_hinge(player)
 
     def can_navigate(self, player): # Sail is added by default and not considered in Archipelago
-        return (self.can_craft_battery(player)
-            and self.can_craft_reciever(player) and self.has("Placeable_Reciever_Antenna", player))
+        return self.can_craft_battery(player) and self.can_craft_reciever(player) and self.can_craft_antenna(player)
 
     def can_drive(self, player): # The player can go wherever they want with the engine
-        return (self.can_smelt_items(player) and self.has_game_basics(player)
-            and self.has("Placeable_MotorWheel", player) and self.has("Placeable_SteeringWheel", player))
+        return self.can_craft_engine(player) and self.can_craft_steeringWheel(player)
 
     def can_access_radio_tower(self, player):
         # Technically the player doesn't need things like the sail to reach the Radio Tower,
@@ -68,13 +90,13 @@ class RaftLogic(LogicMixin):
         return self.can_complete_vasagatan(player) and self.can_drive(player) and self.has("NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa", player)
 
     def can_complete_balboa_island(self, player):
-        return self.can_access_balboa_island(player) and self.has("Machete", player)
+        return self.can_access_balboa_island(player) and self.can_craft_machete(player)
 
     def can_access_caravan_island(self, player):
         return self.can_complete_balboa_island(player) and self.can_drive(player) # Coordinates are given from Relay Station quest
 
     def can_complete_caravan_island(self, player):
-        return self.can_access_caravan_island(player) and self.has("ZiplineTool", player)
+        return self.can_access_caravan_island(player) and self.can_craft_ziplineTool(player)
 
     def can_access_tangaroa(self, player):
         return self.can_complete_caravan_island(player) and self.can_drive(player) and self.has("NoteBookNote_Index43_Landmark_CaravanIsland_FrequencyToTangaroa", player)

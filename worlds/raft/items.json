@@ -9,55 +9,55 @@
         "id": 47002,
         "count": 1,
         "progression": false,
-        "name": "Equipment_LeatherHelmet"
+        "name": "Leather helmet"
     },
     {
         "id": 47003,
         "count": 1,
         "progression": false,
-        "name": "Equipment_LeatherChest"
+        "name": "Leather body armor"
     },
     {
         "id": 47004,
         "count": 1,
         "progression": false,
-        "name": "Equipment_LeatherLegs"
+        "name": "Leather greaves"
     },
     {
         "id": 47005,
         "count": 1,
         "progression": false,
-        "name": "Flipper"
+        "name": "Flippers"
     },
     {
         "id": 47006,
         "count": 1,
         "progression": false,
-        "name": "HeadLight"
+        "name": "Head light"
     },
     {
         "id": 47007,
         "count": 1,
         "progression": false,
-        "name": "OxygenBottle"
+        "name": "Oxygen bottle"
     },
     {
         "id": 47008,
         "count": 1,
         "progression": true,
-        "name": "ZiplineTool"
+        "name": "Zipline tool"
     },
     {
         "id": 47009,
         "count": 1,
         "progression": false,
-        "name": "PlasticBottle_Empty"
+        "name": "Empty bottle"
     },
     {
         "id": 47010,
         "count": 1,
         "progression": false,
-        "name": "Claybowl_Empty"
+        "name": "Clay bowl"
     },
     {
         "id": 47011,
@@ -69,73 +69,73 @@
         "id": 47012,
         "count": 1,
         "progression": false,
-        "name": "HealingSalve"
+        "name": "Healing salve"
     },
     {
         "id": 47013,
         "count": 1,
         "progression": false,
-        "name": "HealingSalve_Good"
+        "name": "Good healing salve"
     },
     {
         "id": 47014,
         "count": 1,
         "progression": false,
-        "name": "Placeable_CookingPot"
+        "name": "Cookingpot"
     },
     {
         "id": 47015,
         "count": 1,
         "progression": false,
-        "name": "Placeable_CookingStand_Food_Two"
+        "name": "Advanced grill"
     },
     {
         "id": 47016,
         "count": 1,
         "progression": false,
-        "name": "Placeable_CookingStand_Purifier_Two"
+        "name": "Advanced purifier"
     },
     {
         "id": 47017,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Electric_Purifier"
+        "name": "Electric purifier"
     },
     {
         "id": 47018,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Cropplot_Medium"
+        "name": "Medium crop plot"
     },
     {
         "id": 47019,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Cropplot_Large"
+        "name": "Large crop plot"
     },
     {
         "id": 47020,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Cropplot_Grass"
+        "name": "Grass plot"
     },
     {
         "id": 47021,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Scarecrow"
+        "name": "Scarecrow"
     },
     {
         "id": 47022,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Sprinkler"
+        "name": "Sprinkler"
     },
     {
         "id": 47023,
         "count": 1,
         "progression": false,
-        "name": "Jar_Honey"
+        "name": "Honey"
     },
     {
         "id": 47024,
@@ -153,7 +153,7 @@
         "id": 47026,
         "count": 1,
         "progression": true,
-        "name": "CircuitBoard"
+        "name": "Circuit board"
     },
     {
         "id": 47027,
@@ -165,139 +165,139 @@
         "id": 47028,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Anchor_Stationary"
+        "name": "Stationary anchor"
     },
     {
         "id": 47029,
         "count": 1,
         "progression": false,
-        "name": "Placeable_EngineControls"
+        "name": "Engine controls"
     },
     {
         "id": 47030,
         "count": 1,
         "progression": true,
-        "name": "Placeable_MotorWheel"
+        "name": "Engine"
     },
     {
         "id": 47031,
         "count": 1,
         "progression": true,
-        "name": "Placeable_Reciever"
+        "name": "Receiver"
     },
     {
         "id": 47032,
         "count": 1,
         "progression": true,
-        "name": "Placeable_Reciever_Antenna"
+        "name": "Antenna"
     },
     {
         "id": 47033,
         "count": 1,
         "progression": true,
-        "name": "Placeable_SteeringWheel"
+        "name": "Steering Wheel"
     },
     {
         "id": 47034,
         "count": 1,
         "progression": false,
-        "name": "Placeable_BatteryCharger"
+        "name": "Battery charger"
     },
     {
         "id": 47035,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Bed_Hammock"
+        "name": "Hammock"
     },
     {
         "id": 47036,
         "count": 1,
         "progression": false,
-        "name": "Placeable_BeeHive"
+        "name": "Beehive"
     },
     {
         "id": 47037,
         "count": 1,
         "progression": false,
-        "name": "Placeable_BiofuelExtractor"
+        "name": "Biofuel refiner"
     },
     {
         "id": 47038,
         "count": 1,
         "progression": false,
-        "name": "Placeable_BirdsNest"
+        "name": "Birds nest"
     },
     {
         "id": 47039,
         "count": 1,
         "progression": true,
-        "name": "Placeable_CookingStand_Smelter"
+        "name": "Smelter"
     },
     {
         "id": 47040,
         "count": 1,
         "progression": false,
-        "name": "Placeable_FuelTank"
+        "name": "Fuel tank"
     },
     {
         "id": 47041,
         "count": 1,
         "progression": false,
-        "name": "Placeable_WaterTank"
+        "name": "Water tank"
     },
     {
         "id": 47042,
         "count": 1,
         "progression": false,
-        "name": "Placeable_ItemNet"
+        "name": "Simple collection net"
     },
     {
         "id": 47043,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Pipe_Fuel"
+        "name": "Fuel pipe"
     },
     {
         "id": 47044,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Pipe_Water"
+        "name": "Water pipe"
     },
     {
         "id": 47045,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Storage_Medium"
+        "name": "Storage"
     },
     {
         "id": 47046,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Storage_Large"
+        "name": "Large Storage"
     },
     {
         "id": 47047,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Trashcan"
+        "name": "Trashcan"
     },
     {
         "id": 47048,
         "count": 1,
         "progression": false,
-        "name": "Placeable_ZiplineBase"
+        "name": "Zipline"
     },
     {
         "id": 47049,
         "count": 1,
         "progression": false,
-        "name": "Placeable_Firework"
+        "name": "Firework"
     },
     {
         "id": 47050,
         "count": 1,
         "progression": false,
-        "name": "Axe"
+        "name": "Metal axe"
     },
     {
         "id": 47051,
@@ -309,19 +309,19 @@
         "id": 47052,
         "count": 1,
         "progression": false,
-        "name": "FishingRod_Metal"
+        "name": "Metal fishing rod"
     },
     {
         "id": 47053,
         "count": 1,
         "progression": false,
-        "name": "Hook_Scrap"
+        "name": "Scrap hook"
     },
     {
         "id": 47054,
         "count": 1,
         "progression": false,
-        "name": "MetalDetector"
+        "name": "Metal detector"
     },
     {
         "id": 47055,
@@ -339,31 +339,31 @@
         "id": 47057,
         "count": 1,
         "progression": false,
-        "name": "SweepNet"
+        "name": "Sweep net"
     },
     {
         "id": 47058,
         "count": 1,
         "progression": false,
-        "name": "Bow"
+        "name": "Basic bow"
     },
     {
         "id": 47059,
         "count": 1,
         "progression": false,
-        "name": "Arrow_Stone"
+        "name": "Stone arrow"
     },
     {
         "id": 47060,
         "count": 1,
         "progression": false,
-        "name": "Arrow_Metal"
+        "name": "Metal arrow"
     },
     {
         "id": 47061,
         "count": 1,
         "progression": false,
-        "name": "Spear_Scrap"
+        "name": "Metal Spear"
     },
     {
         "id": 47062,
@@ -375,13 +375,13 @@
         "id": 47063,
         "count": 1,
         "progression": false,
-        "name": "NetGun"
+        "name": "Net launcher"
     },
     {
         "id": 47064,
         "count": 1,
         "progression": false,
-        "name": "NetCanister"
+        "name": "Net canister"
     },
     {
         "id": 47065,
