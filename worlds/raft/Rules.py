@@ -3,6 +3,14 @@ from .Locations import location_table
 from .Regions import regionMap
 from ..AutoWorld import LogicMixin
 
+# TODOs
+# - Maybe put large island unlockables behind Receiver
+# -- This will make getting them more consistent
+# - Blueprint fuel pipe on Balboa didn't trigger Archipelago sendable ("Error finding ID for location Blueprint_Pipe_Fuel")
+# -- Same with Blueprint_Fueltank
+# -- All blueprints :(
+# - Blueprint_Firework from doll after explosive barrel on Caravan Island doesn't disappear when picked up
+
 class RaftLogic(LogicMixin):
     def can_smelt_items(self, player):
         return self.has("Smelter", player)
@@ -27,6 +35,9 @@ class RaftLogic(LogicMixin):
 
     def can_craft_plasticBottle(self, player):
         return self.can_smelt_items(player) and self.has("Empty bottle", player)
+
+    def can_fire_bow(self, player):
+        return self.has("Basic bow", player) and self.has("Stone arrow", player)
 
     def can_craft_shears(self, player):
         return self.can_smelt_items(player) and self.can_craft_hinge(player) and self.has("Shear", player)
@@ -62,9 +73,6 @@ class RaftLogic(LogicMixin):
     def can_capture_animals(self, player):
         return (self.can_craft_netLauncher(player) and self.can_craft_netCanister(player)
             and self.can_craft_grassPlot(player))
-    
-    def has_game_basics(self, player):
-        return self.can_craft_bolt(player) and self.can_craft_hinge(player)
 
     def can_navigate(self, player): # Sail is added by default and not considered in Archipelago
         return self.can_craft_battery(player) and self.can_craft_reciever(player) and self.can_craft_antenna(player)
@@ -81,16 +89,16 @@ class RaftLogic(LogicMixin):
         return self.can_access_radio_tower(player)
 
     def can_access_vasagatan(self, player):
-        return self.can_complete_radio_tower(player) and self.can_navigate(player) and self.has("NoteBookNote_Index2_Post-it", player)
+        return self.can_complete_radio_tower(player) and self.can_navigate(player) and self.has("Vasagatan Frequency", player)
 
     def can_complete_vasagatan(self, player):
         return self.can_access_vasagatan(player)
 
     def can_access_balboa_island(self, player):
-        return self.can_complete_vasagatan(player) and self.can_drive(player) and self.has("NoteBookNote_Index17_Vasagatan_PostItNote_FrequencyToBalboa", player)
+        return self.can_complete_vasagatan(player) and self.can_drive(player) and self.has("Balboa Island Frequency", player)
 
     def can_complete_balboa_island(self, player):
-        return self.can_access_balboa_island(player) and self.can_craft_machete(player)
+        return self.can_access_balboa_island(player) and self.can_craft_machete(player) and self.can_fire_bow(player)
 
     def can_access_caravan_island(self, player):
         return self.can_complete_balboa_island(player) and self.can_drive(player) # Coordinates are given from Relay Station quest
@@ -99,7 +107,7 @@ class RaftLogic(LogicMixin):
         return self.can_access_caravan_island(player) and self.can_craft_ziplineTool(player)
 
     def can_access_tangaroa(self, player):
-        return self.can_complete_caravan_island(player) and self.can_drive(player) and self.has("NoteBookNote_Index43_Landmark_CaravanIsland_FrequencyToTangaroa", player)
+        return self.can_complete_caravan_island(player) and self.can_drive(player) and self.has("Tangaroa Frequency", player)
 
     def can_complete_tangaroa(self, player):
         return self.can_access_tangaroa(player)
@@ -110,15 +118,10 @@ def set_rules(world, player):
         "Raft": lambda state: True,
         "ResearchTable": lambda state: True,
         "RadioTower": lambda state: state.can_access_radio_tower(player), # All can_access functions have state as implicit parameter for function
-        "RadioTowerCompletion": lambda state: state.can_complete_radio_tower(player),
         "Vasagatan": lambda state: state.can_access_vasagatan(player),
-        "VasagatanCompletion": lambda state: state.can_complete_vasagatan(player),
         "BalboaIsland": lambda state: state.can_access_balboa_island(player),
-        "BalboaIslandCompletion": lambda state: state.can_complete_balboa_island(player),
         "CaravanIsland": lambda state: state.can_access_caravan_island(player),
-        "CaravanIslandCompletion": lambda state: state.can_complete_caravan_island(player),
-        "Tangaroa": lambda state: state.can_access_tangaroa(player),
-        "TangaroaCompletion": lambda state: state.can_complete_tangaroa(player)
+        "Tangaroa": lambda state: state.can_access_tangaroa(player)
     }
     itemChecks = {
         "Plank": lambda state: True,
@@ -130,7 +133,7 @@ def set_rules(world, player):
         "Scrap": lambda state: True,
         "SeaVine": lambda state: True,
         "Brick_Dry": lambda state: True,
-        "Leather": lambda state: True, # Conflicting info on whetherwe need state.can_navigate(player) instead
+        "Leather": lambda state: True, # Conflicting info on whetherwe need state.can_navigate(player) instead, personal testing indicates this is correct
         "Thatch": lambda state: True, # Palm Leaf
         "Placeable_GiantClam": lambda state: True,
         "Feather": lambda state: state.can_craft_birdNest(player), # Maybe add config for this since you technically don't need bird nest
@@ -148,13 +151,16 @@ def set_rules(world, player):
         "HoneyComb": lambda state: state.can_access_balboa_island(player),
         "Jar_Bee": lambda state: state.can_access_balboa_island(player) and state.can_smelt_items(player),
         "Dirt": lambda state: state.can_get_dirt(player),
-        "Egg": lambda state: state.can_capture_animals(player)
+        "Egg": lambda state: state.can_capture_animals(player),
+        # Specific items for story island location checks
+        "Machete": lambda state: state.can_craft_machete(player),
+        "BowAndArrow": lambda state: state.can_fire_bow(player),
+        "Zipline tool": lambda state: state.can_craft_ziplineTool(player)
     }
 
     # Location rules
     for region in regionMap:
         if region != "Menu":
-            # TODO Add item requirements (eg Caravan Island requires zipline for some, but not all, checks)
             for exitRegion in world.get_region(region, player).exits:
                 set_rule(world.get_entrance(exitRegion.name, player), regionChecks[region])
      
@@ -175,5 +181,3 @@ def set_rules(world, player):
 
     # Victory location
     world.completion_condition[player] = lambda state: state.has('Victory', player)
-
-    # Crafting Table requirements

@@ -1,14 +1,9 @@
 {
 	"Raft": ["RadioTower", "ResearchTable"],
 	"ResearchTable": [],
-	"RadioTower": ["RadioTowerCompletion"],
-	"RadioTowerCompletion": ["Vasagatan"],
-	"Vasagatan": ["VasagatanCompletion"],
-	"VasagatanCompletion": ["BalboaIsland"],
-	"BalboaIsland": ["BalboaIslandCompletion"],
-	"BalboaIslandCompletion": ["CaravanIsland"],
-	"CaravanIsland": ["CaravanIslandCompletion"],
-	"CaravanIslandCompletion": ["Tangaroa"],
-	"Tangaroa": ["TangaroaCompletion"],
-	"TangaroaCompletion": []
+	"RadioTower": ["Vasagatan"],
+	"Vasagatan": ["BalboaIsland"],
+	"BalboaIsland": ["CaravanIsland"],
+	"CaravanIsland": ["Tangaroa"],
+	"Tangaroa": []
 }
