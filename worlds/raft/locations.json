@@ -826,11 +826,16 @@
     },
     {
         "id": 48115,
+        "name": "Relay Station quest",
+        "region": "BalboaIsland"
+    },
+    {
+        "id": 48116,
         "name": "Battery Charger quest",
         "region": "CaravanIsland"
     },
     {
-        "id": 48116,
+        "id": 48117,
         "name": "Zipline quest",
         "region": "CaravanIsland"
     }
