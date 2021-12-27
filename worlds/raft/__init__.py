@@ -50,7 +50,7 @@ class RaftWorld(World):
             item_name_to_id["Resource Pack: " + str(i) + " " + resourcePack[0]] = lastItemId
     
 
-    data_version = 11
+    data_version = 12
 
     def generate_basic(self):
         # Generate item pool
