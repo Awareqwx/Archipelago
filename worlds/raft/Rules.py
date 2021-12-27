@@ -11,6 +11,12 @@ from ..AutoWorld import LogicMixin
 # -- All blueprints :(
 # - Blueprint_Firework from doll after explosive barrel on Caravan Island doesn't disappear when picked up
 
+# Make chatMessage command case-insensitive (maybe all commands?)
+# Alex sent 4 Thatch -- chat on everyone said Thatch, server said Thatch; I saw SeaVine, I received SeaVine
+# Frequencies not being found
+# Progressive-metal 2 didn't award metal detector?
+# Add Caravan Island coordinates item
+
 class RaftLogic(LogicMixin):
     def paddleboard_mode_enabled(self, player):
         return self.world.paddleboard_mode[player].value
@@ -106,7 +112,7 @@ class RaftLogic(LogicMixin):
         return self.can_access_balboa_island(player) and self.can_craft_machete(player) and self.can_fire_bow(player)
 
     def can_access_caravan_island(self, player):
-        return self.can_complete_balboa_island(player) and (self.can_drive(player) or self.paddleboard_mode_enabled(player))
+        return self.can_complete_balboa_island(player) and (self.can_drive(player) or self.paddleboard_mode_enabled(player)) and self.has("Caravan Island Frequency", player)
 
     def can_complete_caravan_island(self, player):
         return self.can_access_caravan_island(player) and self.can_craft_ziplineTool(player)
