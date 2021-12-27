@@ -1,7 +1,7 @@
 [
     {
         "id": 48001,
-        "name": "Medium trophy board",
+        "name": "Large trophy board",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
@@ -10,7 +10,7 @@
     },
     {
         "id": 48002,
-        "name": "Small trophy board",
+        "name": "Medium trophy board",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
@@ -19,11 +19,10 @@
     },
     {
         "id": 48003,
-        "name": "Simple collection net",
+        "name": "Small trophy board",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
-            "Rope",
             "Nail"
         ]
     },
@@ -47,61 +46,6 @@
     },
     {
         "id": 48006,
-        "name": "Smelter",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Brick_Dry",
-            "Scrap",
-            "Nail"
-        ]
-    },
-    {
-        "id": 48007,
-        "name": "Hammock",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Thatch",
-            "Feather",
-            "Nail"
-        ]
-    },
-    {
-        "id": 48008,
-        "name": "Scarecrow",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Thatch",
-            "Nail",
-            "Plastic"
-        ]
-    },
-    {
-        "id": 48009,
-        "name": "Large crop plot",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Rope",
-            "Nail",
-            "Hinge"
-        ]
-    },
-    {
-        "id": 48010,
-        "name": "Advanced grill",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "MetalIngot",
-            "Rope",
-            "Nail"
-        ]
-    },
-    {
-        "id": 48011,
         "name": "Metal arrow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -111,7 +55,7 @@
         ]
     },
     {
-        "id": 48012,
+        "id": 48007,
         "name": "Stone arrow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -121,7 +65,7 @@
         ]
     },
     {
-        "id": 48013,
+        "id": 48008,
         "name": "Shovel",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -131,7 +75,17 @@
         ]
     },
     {
-        "id": 48014,
+        "id": 48009,
+        "name": "Simple collection net",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Rope",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48010,
         "name": "Birds nest",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -141,7 +95,7 @@
         ]
     },
     {
-        "id": 48015,
+        "id": 48011,
         "name": "Paint brush",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -151,7 +105,7 @@
         ]
     },
     {
-        "id": 48016,
+        "id": 48012,
         "name": "Grass plot",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -161,7 +115,7 @@
         ]
     },
     {
-        "id": 48017,
+        "id": 48013,
         "name": "Advanced purifier",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -171,7 +125,7 @@
         ]
     },
     {
-        "id": 48018,
+        "id": 48014,
         "name": "Bucket",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -181,7 +135,7 @@
         ]
     },
     {
-        "id": 48019,
+        "id": 48015,
         "name": "Metal Spear",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -192,7 +146,7 @@
         ]
     },
     {
-        "id": 48020,
+        "id": 48016,
         "name": "Basic bow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -203,7 +157,7 @@
         ]
     },
     {
-        "id": 48021,
+        "id": 48017,
         "name": "Sweep net",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -214,7 +168,7 @@
         ]
     },
     {
-        "id": 48022,
+        "id": 48018,
         "name": "Scrap hook",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -225,7 +179,7 @@
         ]
     },
     {
-        "id": 48023,
+        "id": 48019,
         "name": "Metal axe",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -236,7 +190,7 @@
         ]
     },
     {
-        "id": 48024,
+        "id": 48020,
         "name": "Storage",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -247,7 +201,29 @@
         ]
     },
     {
-        "id": 48025,
+        "id": 48021,
+        "name": "Smelter",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Brick_Dry",
+            "Scrap",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48022,
+        "name": "Hammock",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Thatch",
+            "Feather",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48023,
         "name": "Paint mill",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -258,7 +234,7 @@
         ]
     },
     {
-        "id": 48026,
+        "id": 48024,
         "name": "Stationary anchor",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -269,7 +245,40 @@
         ]
     },
     {
+        "id": 48025,
+        "name": "Scarecrow",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Thatch",
+            "Nail",
+            "Plastic"
+        ]
+    },
+    {
+        "id": 48026,
+        "name": "Large crop plot",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Rope",
+            "Nail",
+            "Hinge"
+        ]
+    },
+    {
         "id": 48027,
+        "name": "Advanced grill",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "MetalIngot",
+            "Rope",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48028,
         "name": "Beehive",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -281,7 +290,7 @@
         ]
     },
     {
-        "id": 48028,
+        "id": 48029,
         "name": "Cookingpot",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -293,7 +302,7 @@
         ]
     },
     {
-        "id": 48029,
+        "id": 48030,
         "name": "Net canister",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -303,7 +312,7 @@
         ]
     },
     {
-        "id": 48030,
+        "id": 48031,
         "name": "Net launcher",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -314,7 +323,7 @@
         ]
     },
     {
-        "id": 48031,
+        "id": 48032,
         "name": "Shear",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -324,7 +333,7 @@
         ]
     },
     {
-        "id": 48032,
+        "id": 48033,
         "name": "Metal fishing rod",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -334,7 +343,7 @@
         ]
     },
     {
-        "id": 48033,
+        "id": 48034,
         "name": "Binoculars",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -345,7 +354,7 @@
         ]
     },
     {
-        "id": 48034,
+        "id": 48035,
         "name": "Hinge",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -353,7 +362,7 @@
         ]
     },
     {
-        "id": 48035,
+        "id": 48036,
         "name": "Circuit board",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -363,7 +372,7 @@
         ]
     },
     {
-        "id": 48036,
+        "id": 48037,
         "name": "Bolt",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -371,7 +380,7 @@
         ]
     },
     {
-        "id": 48037,
+        "id": 48038,
         "name": "Battery",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -381,7 +390,7 @@
         ]
     },
     {
-        "id": 48038,
+        "id": 48039,
         "name": "Honey",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -390,7 +399,7 @@
         ]
     },
     {
-        "id": 48039,
+        "id": 48040,
         "name": "Sprinkler",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -401,7 +410,7 @@
         ]
     },
     {
-        "id": 48040,
+        "id": 48041,
         "name": "Good healing salve",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -411,7 +420,7 @@
         ]
     },
     {
-        "id": 48041,
+        "id": 48042,
         "name": "Healing salve",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -420,7 +429,7 @@
         ]
     },
     {
-        "id": 48042,
+        "id": 48043,
         "name": "Clay bowl",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -428,7 +437,7 @@
         ]
     },
     {
-        "id": 48043,
+        "id": 48044,
         "name": "Empty bottle",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -437,7 +446,7 @@
         ]
     },
     {
-        "id": 48044,
+        "id": 48045,
         "name": "Oxygen bottle",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -448,7 +457,7 @@
         ]
     },
     {
-        "id": 48045,
+        "id": 48046,
         "name": "Flippers",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -459,7 +468,7 @@
         ]
     },
     {
-        "id": 48046,
+        "id": 48047,
         "name": "Leather greaves",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -468,7 +477,7 @@
         ]
     },
     {
-        "id": 48047,
+        "id": 48048,
         "name": "Leather body armor",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -477,7 +486,7 @@
         ]
     },
     {
-        "id": 48048,
+        "id": 48049,
         "name": "Leather helmet",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -486,22 +495,13 @@
         ]
     },
     {
-        "id": 48049,
+        "id": 48050,
         "name": "Backpack",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Leather",
             "Rope",
             "Wool"
-        ]
-    },
-    {
-        "id": 48050,
-        "name": "Large trophy board",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Nail"
         ]
     },
     {
