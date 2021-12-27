@@ -1,23 +1,35 @@
-from Options import Range
+from Options import Range, Toggle, DefaultOnToggle
 
-class ResearchCostMultiplier(Range):
-    """The amount of each research item required in the Research Table
-	   to research a given technology"""
-    displayname = "Research Cost Multiplier"
+class MinimumResourcePackAmount(Range):
+    """The minimum amount of resources available in a resource pack"""
+    displayname = "Minimum resource pack amount"
     range_start = 1
-    range_end = 10
+    range_end = 15
     default = 1
 
-class ResourcePackMultiplier(Range):
-    """This will multiply the amount of resources obtained from random
-       resource drops"""
-    displayname = "Resource Pack Multipler"
+class MaximumResourcePackAmount(Range):
+    """The maximum amount of resources available in a resource pack"""
+    displayname = "Maximum resource pack amount"
     range_start = 1
-    range_end = 5
-    default = 1
+    range_end = 15
+    default = 5
 
+class ProgressiveItems(DefaultOnToggle):
+    """Makes some items, like the Bow and Arrow, progressive rather than raw unlocks."""
+    displayname = "Progressive items"
+
+class ProgressiveFrequencies(DefaultOnToggle):
+    """Makes story island frequencies progressive, which generally forces more linear gameplay."""
+    displayname = "Progressive frequencies"
+
+class PaddleboardMode(Toggle):
+    """Sets all story islands to in logic without an Engine or Steering Wheel. May require lots of paddling. Not recommended."""
+    displayname = "Paddleboard Mode"
 
 options = {
-    "research_cost_multiplier": ResearchCostMultiplier,
-    "resource_pack_multiplier": ResourcePackMultiplier
+    "minimum_resource_pack_amount": MinimumResourcePackAmount,
+    "maximum_resource_pack_amount": MaximumResourcePackAmount,
+    "progressive_items": ProgressiveItems,
+    "progressive_frequencies": ProgressiveFrequencies,
+    "paddleboard_mode": PaddleboardMode
 }

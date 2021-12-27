@@ -13,6 +13,9 @@ from .Options import options
 
 from BaseClasses import Region, RegionType, Entrance, Location, MultiWorld, Item
 from ..AutoWorld import World
+    
+def createResourcePackName(amount: int, itemName: str) -> Item:
+    return "Resource Pack: " + str(amount) + " " + itemName
 
 class RaftWorld(World):
     """
@@ -30,28 +33,20 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    possible_resource_packs = [ #TODO: Figure out a more dynamic way of setting these
-            ("Plank", 1, 5),
-            ("Plastic", 1, 5),
-            ("Clay", 1, 5),
-            ("Stone", 1, 5),
-            ("Scrap", 1, 5),
-            ("SeaVine", 1, 5),
-            ("Thatch", 1, 5),
-            ("Sand", 1, 5),
-            ("Beet", 1, 5),
-            ("Rock", 1, 5),
-            ("Potato", 1, 5)
-        ]
-    for resourcePack in possible_resource_packs:
-        for i in range(resourcePack[1], resourcePack[2] + 1):
+    resourcePackItems = ["Plank", "Plastic", "Clay", "Stone", "Scrap", "SeaVine", "Thatch", "Sand", "Beet", "Rock", "Potato"]
+    for packItem in resourcePackItems:
+        for i in range(1, 15):
+            rpName = createResourcePackName(i, packItem)
             lastItemId += 1
-            item_name_to_id["Resource Pack: " + str(i) + " " + resourcePack[0]] = lastItemId
-    
+            item_name_to_id[rpName] = lastItemId
 
     data_version = 12
 
     def generate_basic(self):
+        minRPSpecified = self.world.minimum_resource_pack_amount[self.player].value
+        maxRPSpecified = self.world.maximum_resource_pack_amount[self.player].value
+        minimumResourcePackAmount = min(minRPSpecified, maxRPSpecified)
+        maximumResourcePackAmount = max(minRPSpecified, maxRPSpecified)
         # Generate item pool
         pool = []
         extras = len(location_table) - len(item_table)
@@ -62,8 +57,9 @@ class RaftWorld(World):
             pool.append(raft_item)
 
         while extras > 0:
-            pack_seed = self.possible_resource_packs[random.randrange(0, len(self.possible_resource_packs))] #TODO: Make this work with options that aren't 1
-            pack = self.create_item("Resource Pack: " + str(random.randrange(pack_seed[1] * self.world.resource_pack_multiplier[self.player].value, (pack_seed[2] * self.world.resource_pack_multiplier[self.player].value) + 1, self.world.resource_pack_multiplier[self.player].value)) + " " + pack_seed[0])
+            packItemAmount = random.randint(minimumResourcePackAmount, maximumResourcePackAmount)
+            packItemName = self.resourcePackItems[random.randrange(0, len(self.resourcePackItems))]
+            pack = self.create_resourcePack(packItemAmount, packItemName)
             pool.append(pack)
             extras -= 1
 
@@ -80,12 +76,14 @@ class RaftWorld(World):
         return slot_data
 
     def create_item(self, name: str) -> Item:
-        if len(name) >= 14 and name[0:14] == "Resource Pack:": #TODO: Make this less evil and hacky
-            return RaftItem(name, False, self.item_name_to_id[name], player=self.player)
         item = lookup_name_to_item[name]
         if name in lookup_item_to_progressive:
             name = lookup_item_to_progressive[name]
         return RaftItem(name, item["progression"], self.item_name_to_id[name], player=self.player)
+    
+    def create_resourcePack(self, amount: int, itemName: str) -> Item:
+        rpName = createResourcePackName(amount, itemName)
+        return RaftItem(rpName, False, self.item_name_to_id[rpName], player=self.player)
     
     def collect_item(self, state, item, remove=False):
         if item.name in progressive_item_list:
@@ -109,7 +107,6 @@ class RaftWorld(World):
         self.world.get_location("Tangaroa Next Frequency", self.player).place_locked_item(
             RaftItem("Victory", True, None, player=self.player))
 
-
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None):
     ret = Region(name, RegionType.Generic, name, player)
     ret.world = world
@@ -123,7 +120,6 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
             ret.exits.append(Entrance(player, getConnectionName(name, exit), ret))
 
     return ret
-
 
 class RaftLocation(Location):
     game = "Raft"

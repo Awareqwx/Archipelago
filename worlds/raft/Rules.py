@@ -12,6 +12,9 @@ from ..AutoWorld import LogicMixin
 # - Blueprint_Firework from doll after explosive barrel on Caravan Island doesn't disappear when picked up
 
 class RaftLogic(LogicMixin):
+    def paddleboard_mode_enabled(self, player):
+        return self.world.paddleboard_mode[player].value
+
     def can_smelt_items(self, player):
         return self.has("Smelter", player)
 
@@ -95,19 +98,21 @@ class RaftLogic(LogicMixin):
         return self.can_access_vasagatan(player)
 
     def can_access_balboa_island(self, player):
-        return self.can_complete_vasagatan(player) and self.can_drive(player) and self.has("Balboa Island Frequency", player)
+        return (self.can_complete_vasagatan(player)
+            and (self.can_drive(player) or self.paddleboard_mode_enabled(player))
+            and self.has("Balboa Island Frequency", player))
 
     def can_complete_balboa_island(self, player):
         return self.can_access_balboa_island(player) and self.can_craft_machete(player) and self.can_fire_bow(player)
 
     def can_access_caravan_island(self, player):
-        return self.can_complete_balboa_island(player) and self.can_drive(player) # Coordinates are given from Relay Station quest
+        return self.can_complete_balboa_island(player) and (self.can_drive(player) or self.paddleboard_mode_enabled(player))
 
     def can_complete_caravan_island(self, player):
         return self.can_access_caravan_island(player) and self.can_craft_ziplineTool(player)
 
     def can_access_tangaroa(self, player):
-        return self.can_complete_caravan_island(player) and self.can_drive(player) and self.has("Tangaroa Frequency", player)
+        return self.can_complete_caravan_island(player) and (self.can_drive(player) or self.paddleboard_mode_enabled(player)) and self.has("Tangaroa Frequency", player)
 
     def can_complete_tangaroa(self, player):
         return self.can_access_tangaroa(player)
@@ -180,4 +185,4 @@ def set_rules(world, player):
             set_rule(locFromWorld, regionChecks[location["region"]])
 
     # Victory location
-    world.completion_condition[player] = lambda state: state.has('Victory', player)
+    world.completion_condition[player] = lambda state: state.has("Victory", player)

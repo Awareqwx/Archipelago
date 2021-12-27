@@ -19,5 +19,4 @@ for item in item_table:
         non_advancement_item_names.add(item_name)
 
 lookup_id_to_name[None] = "Victory"
-
 lookup_name_to_id = {name: id for id, name in lookup_id_to_name.items()}
