@@ -9,17 +9,16 @@ from ..AutoWorld import LogicMixin
 # - Blueprint fuel pipe on Balboa didn't trigger Archipelago sendable ("Error finding ID for location Blueprint_Pipe_Fuel")
 # -- Same with Blueprint_Fueltank
 # -- All blueprints :(
-# - Blueprint_Firework from doll after explosive barrel on Caravan Island doesn't disappear when picked up
 
 # Make chatMessage command case-insensitive (maybe all commands?)
-# Alex sent 4 Thatch -- chat on everyone said Thatch, server said Thatch; I saw SeaVine, I received SeaVine
-# Frequencies not being found
 # Progressive-metal 2 didn't award metal detector?
-# Add Caravan Island coordinates item
 
 class RaftLogic(LogicMixin):
     def paddleboard_mode_enabled(self, player):
         return self.world.paddleboard_mode[player].value
+    
+    def big_islands_available(self, player):
+        return self.world.big_island_early_crafting[player].value or self.can_access_radio_tower(player)
 
     def can_smelt_items(self, player):
         return self.has("Smelter", player)
@@ -144,14 +143,14 @@ def set_rules(world, player):
         "Scrap": lambda state: True,
         "SeaVine": lambda state: True,
         "Brick_Dry": lambda state: True,
-        "Leather": lambda state: True, # Conflicting info on whetherwe need state.can_navigate(player) instead, personal testing indicates this is correct
         "Thatch": lambda state: True, # Palm Leaf
         "Placeable_GiantClam": lambda state: True,
-        "Feather": lambda state: state.can_craft_birdNest(player), # Maybe add config for this since you technically don't need bird nest
+        "Leather": lambda state: state.big_islands_available(player),
+        "Feather": lambda state: state.big_islands_available(player) or state.can_craft_birdNest(player),
         "MetalIngot": lambda state: state.can_smelt_items(player),
         "CopperIngot": lambda state: state.can_smelt_items(player),
         "VineGoo": lambda state: state.can_smelt_items(player),
-        "ExplosivePowder": lambda state: state.can_smelt_items(player),
+        "ExplosivePowder": lambda state: state.big_islands_available(player) and state.can_smelt_items(player),
         "Glass": lambda state: state.can_smelt_items(player),
         "Bolt": lambda state: state.can_craft_bolt(player),
         "Hinge": lambda state: state.can_craft_hinge(player),

@@ -18,5 +18,9 @@
     "Metal detector": "progressive-metals",
     "Basic bow": "progressive-bow",
     "Stone arrow": "progressive-bow",
-    "Metal arrow": "progressive-bow"
+    "Metal arrow": "progressive-bow",
+    "Vasagatan Frequency": "progressive-frequency",
+    "Balboa Island Frequency": "progressive-frequency",
+    "Caravan Island Frequency": "progressive-frequency",
+    "Tangaroa Frequency": "progressive-frequency"
 }

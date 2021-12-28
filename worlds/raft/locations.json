@@ -1,320 +1,185 @@
 [
     {
         "id": 48001,
-        "name": "Backpack",
+        "name": "Net canister",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Leather",
-            "Rope",
-            "Wool"
+            "ExplosivePowder",
+            "Stone",
+            "Rope"
         ]
     },
     {
         "id": 48002,
-        "name": "Leather helmet",
+        "name": "Net launcher",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Leather",
-            "Wool"
+            "Scrap",
+            "Plastic",
+            "MetalIngot",
+            "Bolt"
         ]
     },
     {
         "id": 48003,
-        "name": "Leather body armor",
+        "name": "Metal Spear",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Leather",
-            "Wool"
+            "Plank",
+            "Rope",
+            "MetalIngot",
+            "Bolt"
         ]
     },
     {
         "id": 48004,
-        "name": "Leather greaves",
+        "name": "Metal arrow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Leather",
-            "Wool"
+            "Plank",
+            "MetalIngot",
+            "Feather"
         ]
     },
     {
         "id": 48005,
-        "name": "Flippers",
+        "name": "Stone arrow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plastic",
-            "SeaVine",
-            "VineGoo",
-            "Rope"
+            "Plank",
+            "Stone",
+            "Plastic"
         ]
     },
     {
         "id": 48006,
-        "name": "Oxygen bottle",
+        "name": "Basic bow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plastic",
+            "Plank",
             "Rope",
-            "PlasticBottle_Empty",
-            "VineGoo"
-        ]
-    },
-    {
-        "id": 48007,
-        "name": "Empty bottle",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plastic",
-            "VineGoo"
-        ]
-    },
-    {
-        "id": 48008,
-        "name": "Clay bowl",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Clay"
-        ]
-    },
-    {
-        "id": 48009,
-        "name": "Bucket",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Scrap",
-            "Rope"
-        ]
-    },
-    {
-        "id": 48010,
-        "name": "Healing salve",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Egg",
-            "Clay"
-        ]
-    },
-    {
-        "id": 48011,
-        "name": "Good healing salve",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Egg",
-            "Clay",
-            "HoneyComb"
-        ]
-    },
-    {
-        "id": 48012,
-        "name": "Cookingpot",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Plastic",
-            "MetalIngot",
             "VineGoo",
             "Bolt"
         ]
     },
     {
-        "id": 48013,
-        "name": "Advanced grill",
+        "id": 48007,
+        "name": "Sweep net",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
-            "MetalIngot",
             "Rope",
-            "Nail"
+            "VineGoo",
+            "Bolt"
         ]
     },
     {
-        "id": 48014,
-        "name": "Advanced purifier",
+        "id": 48008,
+        "name": "Shovel",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plank",
-            "Plastic",
-            "Glass"
+            "MetalIngot",
+            "Bolt",
+            "Plank"
         ]
     },
     {
-        "id": 48015,
-        "name": "Medium crop plot",
+        "id": 48009,
+        "name": "Shear",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plank",
+            "MetalIngot",
+            "Hinge",
             "Scrap"
         ]
     },
     {
-        "id": 48016,
-        "name": "Large crop plot",
+        "id": 48010,
+        "name": "Scrap hook",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plank",
+            "Scrap",
             "Rope",
-            "Nail",
-            "Hinge"
-        ]
-    },
-    {
-        "id": 48017,
-        "name": "Grass plot",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Dirt",
             "Plank",
-            "Plastic"
+            "Bolt"
         ]
     },
     {
-        "id": 48018,
-        "name": "Scarecrow",
+        "id": 48011,
+        "name": "Metal fishing rod",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plank",
-            "Thatch",
-            "Nail",
-            "Plastic"
-        ]
-    },
-    {
-        "id": 48019,
-        "name": "Sprinkler",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plastic",
             "Scrap",
             "Bolt",
-            "CircuitBoard"
-        ]
-    },
-    {
-        "id": 48020,
-        "name": "Honey",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "HoneyComb",
-            "Glass"
-        ]
-    },
-    {
-        "id": 48021,
-        "name": "Battery",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "CopperIngot",
-            "Plastic",
-            "Scrap"
-        ]
-    },
-    {
-        "id": 48022,
-        "name": "Bolt",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "MetalIngot"
-        ]
-    },
-    {
-        "id": 48023,
-        "name": "Circuit board",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plastic",
-            "CopperIngot",
-            "VineGoo"
-        ]
-    },
-    {
-        "id": 48024,
-        "name": "Hinge",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "MetalIngot"
-        ]
-    },
-    {
-        "id": 48025,
-        "name": "Stationary anchor",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Rope",
-            "MetalIngot",
-            "Hinge"
-        ]
-    },
-    {
-        "id": 48026,
-        "name": "Lantern",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Scrap"
-        ]
-    },
-    {
-        "id": 48027,
-        "name": "Paint brush",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Feather",
-            "Plank",
             "Rope"
         ]
     },
     {
-        "id": 48028,
-        "name": "Paint mill",
+        "id": 48012,
+        "name": "Binoculars",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "PlasticBottle_Empty",
+            "Bolt",
+            "Glass",
+            "Rope"
+        ]
+    },
+    {
+        "id": 48013,
+        "name": "Metal axe",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Rope",
+            "Scrap",
+            "Bolt"
+        ]
+    },
+    {
+        "id": 48014,
+        "name": "Storage",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
             "Scrap",
             "Rope",
-            "Stone"
+            "Hinge"
         ]
     },
     {
-        "id": 48029,
-        "name": "Small trophy board",
+        "id": 48015,
+        "name": "Simple collection net",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
+            "Rope",
             "Nail"
         ]
     },
     {
-        "id": 48030,
-        "name": "Medium trophy board",
+        "id": 48016,
+        "name": "Smelter",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
+            "Brick_Dry",
+            "Scrap",
             "Nail"
         ]
     },
     {
-        "id": 48031,
-        "name": "Large trophy board",
+        "id": 48017,
+        "name": "Birds nest",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Plank",
-            "Nail"
-        ]
-    },
-    {
-        "id": 48032,
-        "name": "Hammock",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
             "Thatch",
-            "Feather",
-            "Nail"
+            "Plank",
+            "Placeable_GiantClam"
         ]
     },
     {
-        "id": 48033,
+        "id": 48018,
         "name": "Beehive",
         "region": "ResearchTable",
         "requiresAccessToItems": [
@@ -326,182 +191,317 @@
         ]
     },
     {
-        "id": 48034,
-        "name": "Birds nest",
+        "id": 48019,
+        "name": "Hammock",
         "region": "ResearchTable",
         "requiresAccessToItems": [
+            "Plank",
             "Thatch",
-            "Plank",
-            "Placeable_GiantClam"
-        ]
-    },
-    {
-        "id": 48035,
-        "name": "Smelter",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Brick_Dry",
-            "Scrap",
+            "Feather",
             "Nail"
         ]
     },
     {
-        "id": 48036,
-        "name": "Simple collection net",
+        "id": 48020,
+        "name": "Large trophy board",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
-            "Rope",
             "Nail"
         ]
     },
     {
-        "id": 48037,
-        "name": "Storage",
+        "id": 48021,
+        "name": "Medium trophy board",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48022,
+        "name": "Small trophy board",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48023,
+        "name": "Paint mill",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
             "Scrap",
             "Rope",
-            "Hinge"
+            "Stone"
         ]
     },
     {
-        "id": 48038,
-        "name": "Metal axe",
+        "id": 48024,
+        "name": "Paint brush",
         "region": "ResearchTable",
         "requiresAccessToItems": [
+            "Feather",
             "Plank",
-            "Rope",
-            "Scrap",
-            "Bolt"
-        ]
-    },
-    {
-        "id": 48039,
-        "name": "Binoculars",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "PlasticBottle_Empty",
-            "Bolt",
-            "Glass",
             "Rope"
         ]
     },
     {
-        "id": 48040,
-        "name": "Metal fishing rod",
+        "id": 48025,
+        "name": "Lantern",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Scrap",
-            "Bolt",
-            "Rope"
-        ]
-    },
-    {
-        "id": 48041,
-        "name": "Scrap hook",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Scrap",
-            "Rope",
             "Plank",
-            "Bolt"
-        ]
-    },
-    {
-        "id": 48042,
-        "name": "Shear",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "MetalIngot",
-            "Hinge",
             "Scrap"
         ]
     },
     {
-        "id": 48043,
-        "name": "Shovel",
+        "id": 48026,
+        "name": "Stationary anchor",
         "region": "ResearchTable",
         "requiresAccessToItems": [
+            "Plank",
+            "Rope",
             "MetalIngot",
+            "Hinge"
+        ]
+    },
+    {
+        "id": 48027,
+        "name": "Hinge",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "MetalIngot"
+        ]
+    },
+    {
+        "id": 48028,
+        "name": "Circuit board",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plastic",
+            "CopperIngot",
+            "VineGoo"
+        ]
+    },
+    {
+        "id": 48029,
+        "name": "Bolt",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "MetalIngot"
+        ]
+    },
+    {
+        "id": 48030,
+        "name": "Battery",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "CopperIngot",
+            "Plastic",
+            "Scrap"
+        ]
+    },
+    {
+        "id": 48031,
+        "name": "Honey",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "HoneyComb",
+            "Glass"
+        ]
+    },
+    {
+        "id": 48032,
+        "name": "Sprinkler",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plastic",
+            "Scrap",
             "Bolt",
-            "Plank"
+            "CircuitBoard"
         ]
     },
     {
-        "id": 48044,
-        "name": "Sweep net",
+        "id": 48033,
+        "name": "Scarecrow",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
-            "Rope",
-            "VineGoo",
-            "Bolt"
-        ]
-    },
-    {
-        "id": 48045,
-        "name": "Basic bow",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Rope",
-            "VineGoo",
-            "Bolt"
-        ]
-    },
-    {
-        "id": 48046,
-        "name": "Stone arrow",
-        "region": "ResearchTable",
-        "requiresAccessToItems": [
-            "Plank",
-            "Stone",
+            "Thatch",
+            "Nail",
             "Plastic"
         ]
     },
     {
-        "id": 48047,
-        "name": "Metal arrow",
+        "id": 48034,
+        "name": "Grass plot",
         "region": "ResearchTable",
         "requiresAccessToItems": [
+            "Dirt",
             "Plank",
-            "MetalIngot",
-            "Feather"
+            "Plastic"
         ]
     },
     {
-        "id": 48048,
-        "name": "Metal Spear",
+        "id": 48035,
+        "name": "Large crop plot",
         "region": "ResearchTable",
         "requiresAccessToItems": [
             "Plank",
             "Rope",
+            "Nail",
+            "Hinge"
+        ]
+    },
+    {
+        "id": 48036,
+        "name": "Medium crop plot",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Scrap"
+        ]
+    },
+    {
+        "id": 48037,
+        "name": "Advanced purifier",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Plastic",
+            "Glass"
+        ]
+    },
+    {
+        "id": 48038,
+        "name": "Advanced grill",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
             "MetalIngot",
+            "Rope",
+            "Nail"
+        ]
+    },
+    {
+        "id": 48039,
+        "name": "Cookingpot",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Plastic",
+            "MetalIngot",
+            "VineGoo",
             "Bolt"
+        ]
+    },
+    {
+        "id": 48040,
+        "name": "Good healing salve",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Egg",
+            "Clay",
+            "HoneyComb"
+        ]
+    },
+    {
+        "id": 48041,
+        "name": "Healing salve",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Egg",
+            "Clay"
+        ]
+    },
+    {
+        "id": 48042,
+        "name": "Bucket",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plank",
+            "Scrap",
+            "Rope"
+        ]
+    },
+    {
+        "id": 48043,
+        "name": "Clay bowl",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Clay"
+        ]
+    },
+    {
+        "id": 48044,
+        "name": "Empty bottle",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plastic",
+            "VineGoo"
+        ]
+    },
+    {
+        "id": 48045,
+        "name": "Oxygen bottle",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plastic",
+            "Rope",
+            "PlasticBottle_Empty",
+            "VineGoo"
+        ]
+    },
+    {
+        "id": 48046,
+        "name": "Flippers",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Plastic",
+            "SeaVine",
+            "VineGoo",
+            "Rope"
+        ]
+    },
+    {
+        "id": 48047,
+        "name": "Leather greaves",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Leather",
+            "Wool"
+        ]
+    },
+    {
+        "id": 48048,
+        "name": "Leather body armor",
+        "region": "ResearchTable",
+        "requiresAccessToItems": [
+            "Leather",
+            "Wool"
         ]
     },
     {
         "id": 48049,
-        "name": "Net launcher",
+        "name": "Leather helmet",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "Scrap",
-            "Plastic",
-            "MetalIngot",
-            "Bolt"
+            "Leather",
+            "Wool"
         ]
     },
     {
         "id": 48050,
-        "name": "Net canister",
+        "name": "Backpack",
         "region": "ResearchTable",
         "requiresAccessToItems": [
-            "ExplosivePowder",
-            "Stone",
-            "Rope"
+            "Leather",
+            "Rope",
+            "Wool"
         ]
     },
     {
@@ -757,7 +757,10 @@
     {
         "id": 48097,
         "name": "Blueprint: Firework",
-        "region": "CaravanIsland"
+        "region": "CaravanIsland",
+        "requiresAccessToItems": [
+            "ExplosivePowder"
+        ]
     },
     {
         "id": 48098,
@@ -863,6 +866,9 @@
     {
         "id": 48117,
         "name": "Zipline quest",
-        "region": "CaravanIsland"
+        "region": "CaravanIsland",
+        "requiresAccessToItems": [
+            "ExplosivePowder"
+        ]
     }
 ]

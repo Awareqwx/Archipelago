@@ -1,4 +1,3 @@
-import logging
 import typing
 import random
 
@@ -49,19 +48,19 @@ class RaftWorld(World):
         maximumResourcePackAmount = max(minRPSpecified, maxRPSpecified)
         # Generate item pool
         pool = []
-        extras = len(location_table) - len(item_table)
-        if extras < 0:
-            extras = 0
         for item in item_table:
             raft_item = self.create_item(item["name"])
             pool.append(raft_item)
 
-        while extras > 0:
-            packItemAmount = random.randint(minimumResourcePackAmount, maximumResourcePackAmount)
-            packItemName = self.resourcePackItems[random.randrange(0, len(self.resourcePackItems))]
-            pack = self.create_resourcePack(packItemAmount, packItemName)
-            pool.append(pack)
-            extras -= 1
+        if (self.world.use_resource_packs[self.player].value):
+            unusedResourcePackNames = []
+            for packItem in self.resourcePackItems:
+                for i in range(minimumResourcePackAmount, maximumResourcePackAmount):
+                    unusedResourcePackNames.append(createResourcePackName(i, packItem))
+            extras = max(min(len(location_table) - len(item_table), len(unusedResourcePackNames)), 0)
+            for packItemName in random.sample(unusedResourcePackNames, k=extras):
+                pack = self.create_resourcePack(packItemName)
+                pool.append(pack)
 
         self.world.itempool += pool
 
@@ -77,12 +76,14 @@ class RaftWorld(World):
 
     def create_item(self, name: str) -> Item:
         item = lookup_name_to_item[name]
-        if name in lookup_item_to_progressive:
+        isFrequency = "Frequency" in name
+        shouldUseProgressive = ((isFrequency and self.world.progressive_frequencies[self.player].value)
+            or (not isFrequency and self.world.progressive_items[self.player].value))
+        if shouldUseProgressive and name in lookup_item_to_progressive:
             name = lookup_item_to_progressive[name]
         return RaftItem(name, item["progression"], self.item_name_to_id[name], player=self.player)
     
-    def create_resourcePack(self, amount: int, itemName: str) -> Item:
-        rpName = createResourcePackName(amount, itemName)
+    def create_resourcePack(self, rpName: str) -> Item:
         return RaftItem(rpName, False, self.item_name_to_id[rpName], player=self.player)
     
     def collect_item(self, state, item, remove=False):
