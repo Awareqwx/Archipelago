@@ -19,9 +19,9 @@ class MaximumResourcePackAmount(Range):
     default = 5
 
 class DuplicateItems(Choice):
-    """Adds duplicates of items to the item pool if the configured Resource Pack amount
-    doesn't have enough to do so. Note that there are not many progression items, and
-    selecting Progression may produce many duplicates."""
+    """Adds duplicates of items to the item pool. These will be selected alongside
+    Resource Packs (if configured). Note that there are not many progression items,
+    and selecting Progression may produce many of the same duplicate item."""
     displayname = "Duplicate items"
     option_off = 0
     option_progression = 1
