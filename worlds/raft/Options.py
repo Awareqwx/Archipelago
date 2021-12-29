@@ -49,9 +49,6 @@ class PaddleboardMode(Toggle):
     """Sets later story islands to in logic without an Engine or Steering Wheel. May require lots of paddling. Not recommended."""
     displayname = "Paddleboard Mode"
 
-# TODO:
-# - Fill extra slots with duplicate items: Non-progression, Progression, Any
-
 raft_options = {
     "use_resource_packs": UseResourcePacks,
     "minimum_resource_pack_amount": MinimumResourcePackAmount,

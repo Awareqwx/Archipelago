@@ -54,15 +54,35 @@ class RaftWorld(World):
             raft_item = self.create_item(item["name"])
             pool.append(raft_item)
 
+        extras = max(len(location_table) - len(item_table), 0)
         if (self.world.use_resource_packs[self.player].value):
             unusedResourcePackNames = []
             for packItem in resourcePackItems:
                 for i in range(minimumResourcePackAmount, maximumResourcePackAmount):
                     unusedResourcePackNames.append(createResourcePackName(i, packItem))
-            extras = max(min(len(location_table) - len(item_table), len(unusedResourcePackNames)), 0)
-            for packItemName in random.sample(unusedResourcePackNames, k=extras):
+            for packItemName in random.sample(unusedResourcePackNames, k=min(extras, len(unusedResourcePackNames))):
                 pack = self.create_resourcePack(packItemName)
                 pool.append(pack)
+                extras -= 1
+
+        if extras > 0 and self.world.duplicate_items[self.player].value != 0:
+            dupeItemPool = item_table.copy()
+            # Remove frequencies if necessary
+            if self.world.island_frequency_locations[self.player].value != 3: # Not completely random locations
+                dupeItemPool = (itm for itm in dupeItemPool if "Frequency" not in itm["name"])
+            
+            # Remove progression or non-progression items if necessary
+            if (self.world.duplicate_items[self.player].value == 1): # Progression only
+                dupeItemPool = (itm for itm in dupeItemPool if itm["progression"] == True)
+            elif (self.world.duplicate_items[self.player].value == 2): # Non-progression only
+                dupeItemPool = (itm for itm in dupeItemPool if itm["progression"] == False)
+            
+            dupeItemPool = list(dupeItemPool)
+            # Finally, add items as necessary
+            if len(dupeItemPool) > 0:
+                for item in random.choices(dupeItemPool, k=extras):
+                    raft_item = self.create_item(item["name"])
+                    pool.append(raft_item)
 
         self.world.itempool += pool
 
