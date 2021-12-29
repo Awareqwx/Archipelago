@@ -7,7 +7,7 @@ from .Progressives import lookup_item_to_progressive, progressive_item_list
 
 from .Regions import create_regions, getConnectionName
 from .Rules import set_rules
-from .Options import options
+from .Options import raft_options
 
 from BaseClasses import Region, RegionType, Entrance, Location, MultiWorld, Item
 from ..AutoWorld import World
@@ -31,7 +31,7 @@ class RaftWorld(World):
         lastItemId += 1
         item_name_to_id[progressiveItemName] = lastItemId
     location_name_to_id = locations_lookup_name_to_id
-    options = options
+    options = raft_options
 
     # Generate resource pack items
     for packItem in resourcePackItems:
@@ -79,7 +79,7 @@ class RaftWorld(World):
     def create_item(self, name: str) -> Item:
         item = lookup_name_to_item[name]
         isFrequency = "Frequency" in name
-        shouldUseProgressive = ((isFrequency and self.world.progressive_frequencies[self.player].value)
+        shouldUseProgressive = ((isFrequency and self.world.island_frequency_locations[self.player].value == 2)
             or (not isFrequency and self.world.progressive_items[self.player].value))
         if shouldUseProgressive and name in lookup_item_to_progressive:
             name = lookup_item_to_progressive[name]
@@ -106,9 +106,30 @@ class RaftWorld(World):
         return max((0, 2, 0), super(RaftWorld, self).get_required_client_version())
     
     def pre_fill(self):
+        if self.world.island_frequency_locations[self.player] == 0:
+            self.setLocationItem("Radio Tower Frequency to Vasagatan", "Vasagatan Frequency")
+            self.setLocationItem("Vasagatan Frequency to Balboa", "Balboa Island Frequency")
+            self.setLocationItem("Relay Station quest", "Caravan Island Frequency")
+            self.setLocationItem("Caravan Island Frequency to Tangaroa", "Tangaroa Frequency")
+        elif self.world.island_frequency_locations[self.player] == 1:
+            self.setLocationItemFromRegion("RadioTower", "Vasagatan Frequency")
+            self.setLocationItemFromRegion("Vasagatan", "Balboa Island Frequency")
+            self.setLocationItemFromRegion("BalboaIsland", "Caravan Island Frequency")
+            self.setLocationItemFromRegion("CaravanIsland", "Tangaroa Frequency")
         # Victory item
         self.world.get_location("Tangaroa Next Frequency", self.player).place_locked_item(
             RaftItem("Victory", True, None, player=self.player))
+    
+    def setLocationItem(self, location: str, itemName: str):
+        itemToUse = next(filter(lambda itm: itm.name == itemName, self.world.itempool))
+        self.world.itempool.remove(itemToUse)
+        self.world.get_location(location, self.player).place_locked_item(itemToUse)
+    
+    def setLocationItemFromRegion(self, region: str, itemName: str):
+        itemToUse = next(filter(lambda itm: itm.name == itemName, self.world.itempool))
+        self.world.itempool.remove(itemToUse)
+        location = random.choice(list(loc for loc in location_table if loc["region"] == region))
+        self.world.get_location(location["name"], self.player).place_locked_item(itemToUse)
 
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None):
     ret = Region(name, RegionType.Generic, name, player)
