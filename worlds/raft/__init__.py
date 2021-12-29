@@ -32,9 +32,9 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    resourcePackItems = ["Plank", "Plastic", "Clay", "Stone", "Scrap", "SeaVine", "Thatch", "Sand", "Beet", "Rock", "Potato"]
+    resourcePackItems = ["Plank", "Plastic", "Clay", "Stone", "Scrap", "SeaVine", "Thatch", "Sand", "Raw_Beet", "Raw_Potato"]
     for packItem in resourcePackItems:
-        for i in range(1, 15):
+        for i in range(1, 16): # 1-15
             rpName = createResourcePackName(i, packItem)
             lastItemId += 1
             item_name_to_id[rpName] = lastItemId
