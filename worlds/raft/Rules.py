@@ -3,16 +3,6 @@ from .Locations import location_table
 from .Regions import regionMap
 from ..AutoWorld import LogicMixin
 
-# TODOs
-# - Maybe put large island unlockables behind Receiver
-# -- This will make getting them more consistent
-# - Blueprint fuel pipe on Balboa didn't trigger Archipelago sendable ("Error finding ID for location Blueprint_Pipe_Fuel")
-# -- Same with Blueprint_Fueltank
-# -- All blueprints :(
-
-# Make chatMessage command case-insensitive (maybe all commands?)
-# Progressive-metal 2 didn't award metal detector?
-
 class RaftLogic(LogicMixin):
     def paddleboard_mode_enabled(self, player):
         return self.world.paddleboard_mode[player].value
@@ -89,8 +79,6 @@ class RaftLogic(LogicMixin):
         return self.can_craft_engine(player) and self.can_craft_steeringWheel(player)
 
     def can_access_radio_tower(self, player):
-        # Technically the player doesn't need things like the sail to reach the Radio Tower,
-        # but paddling there is not very efficient or engaging gameplay.
         return self.can_navigate(player)
 
     def can_complete_radio_tower(self, player):
@@ -123,7 +111,6 @@ class RaftLogic(LogicMixin):
         return self.can_access_tangaroa(player)
 
 def set_rules(world, player):
-    # Map region to check to see if we can access it
     regionChecks = {
         "Raft": lambda state: True,
         "ResearchTable": lambda state: True,
@@ -168,26 +155,26 @@ def set_rules(world, player):
         "Zipline tool": lambda state: state.can_craft_ziplineTool(player)
     }
 
-    # Location rules
+    # Region access rules
     for region in regionMap:
         if region != "Menu":
             for exitRegion in world.get_region(region, player).exits:
                 set_rule(world.get_entrance(exitRegion.name, player), regionChecks[region])
      
-    # Process locations
+    # Location access rules
     for location in location_table:
         locFromWorld = world.get_location(location["name"], player)
-        if "requiresAccessToItems" in location:
-            def ruleLambda(state, location=location):
+        if "requiresAccessToItems" in location: # Specific item access required
+            def fullLocationCheck(state, location=location):
                 canAccess = regionChecks[location["region"]](state)
                 for item in location["requiresAccessToItems"]:
                     if not itemChecks[item](state):
                         canAccess = False
                         break
                 return canAccess
-            set_rule(locFromWorld, ruleLambda)
-        else:
+            set_rule(locFromWorld, fullLocationCheck)
+        else: # Only region access required
             set_rule(locFromWorld, regionChecks[location["region"]])
 
-    # Victory location
+    # Victory requirement
     world.completion_condition[player] = lambda state: state.has("Victory", player)
