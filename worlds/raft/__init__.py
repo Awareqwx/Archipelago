@@ -2,8 +2,7 @@ import typing
 import random
 
 from .Locations import location_table, lookup_name_to_id as locations_lookup_name_to_id
-from .Items import item_table, lookup_name_to_item, advancement_item_names
-from .Items import lookup_name_to_id as items_lookup_name_to_id
+from .Items import item_table, lookup_name_to_item, resourcepack_items as resourcePackItems, lookup_name_to_id as items_lookup_name_to_id
 from .Progressives import lookup_item_to_progressive, progressive_item_list
 
 from .Regions import create_regions, getConnectionName
@@ -26,15 +25,18 @@ class RaftWorld(World):
 
     item_name_to_id = items_lookup_name_to_id.copy()
     lastItemId = max(filter(lambda val: val is not None, item_name_to_id.values()))
+
+    # Generate progressive items
     for progressiveItemName in progressive_item_list.keys():
         lastItemId += 1
         item_name_to_id[progressiveItemName] = lastItemId
     location_name_to_id = locations_lookup_name_to_id
     options = options
 
-    resourcePackItems = ["Plank", "Plastic", "Clay", "Stone", "Scrap", "SeaVine", "Thatch", "Sand", "Raw_Beet", "Raw_Potato"]
+    # Generate resource pack items
     for packItem in resourcePackItems:
         for i in range(1, 16): # 1-15
+            print(packItem + str(i))
             rpName = createResourcePackName(i, packItem)
             lastItemId += 1
             item_name_to_id[rpName] = lastItemId
@@ -54,7 +56,7 @@ class RaftWorld(World):
 
         if (self.world.use_resource_packs[self.player].value):
             unusedResourcePackNames = []
-            for packItem in self.resourcePackItems:
+            for packItem in resourcePackItems:
                 for i in range(minimumResourcePackAmount, maximumResourcePackAmount):
                     unusedResourcePackNames.append(createResourcePackName(i, packItem))
             extras = max(min(len(location_table) - len(item_table), len(unusedResourcePackNames)), 0)
