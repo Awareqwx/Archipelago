@@ -26,7 +26,7 @@ class RaftWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     options = raft_options
 
-    data_version = 12
+    data_version = 1
 
     def generate_basic(self):
         minRPSpecified = self.world.minimum_resource_pack_amount[self.player].value
