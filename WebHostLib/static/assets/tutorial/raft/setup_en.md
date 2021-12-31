@@ -32,7 +32,17 @@ Restart Raft and try again. These should be ephemeral errors.
 
 ### RML says to start Raft through Steam
 
-If this happens, then RML is configured to only inject into an existing instance of Raft, rather than try and start a new one. You can either click "Play" after Raft has loaded into the main menu, or you can uncheck the box next to the "Disable Automatic Game Start" setting in the Settings menu.
+If this happens, then RML is configured to only inject into an existing instance of Raft, rather than try and start a new one.
+You can either:
+* Click "Play" after Raft has loaded into the main menu
+* Uncheck the box next to the "Disable Automatic Game Start" setting in the Settings menu then click Play.
+
+### RML doesn't do anything when I click Play
+
+If this happens, then RML is configured to only start a new instance of Raft, then inject into that specific instance. This also means that RML has detected an instance of Raft is already running, and will not start a new one.
+You can either:
+* Close the existing instance of Raft then click Play
+* Check the box next to the "Disable Automatic Game Start" setting in the Settings menu then click Play.
     
 ## Joining a MultiWorld Game
 
@@ -47,10 +57,10 @@ If this happens, then RML is configured to only inject into an existing instance
     - If your username or password starts with a quotation mark, surround the value with an additional set of quotation marks (eg the value *"myP@s$w0rD* would be entered as *""myP@s$w0rD"*).
 
 4. Start a new game or load an existing one.
-    - Raftipelago save games are marked as *incompatible* with
-    - Do not use an existing game that was not created with Raftipelago. It will work, but if anything is unlocked, it will be automatically registered with Archipelago once the world is loaded. This is irreversible.
+    - Raftipelago save games are marked as *incompatible* with vanilla Raft. This means when Raftipelago is not loaded, saves made with Raftipelago will show as corrupt/unselectable.
+    - Avoid using an existing game that was not created with your current run of Raftipelago (either vanilla or a different Raftipelago run). It will work, but if anything is unlocked, it will be automatically registered with Archipelago once the world is loaded. This is irreversible.
 
-5. You can disconnect by typing */disconnect confirmDisconnect* into the console and hitting Enter.
+5. You can disconnect from an Archipelago server by typing */disconnect confirmDisconnect* into the console and hitting Enter.
 
 ## Game Troubleshooting
 
