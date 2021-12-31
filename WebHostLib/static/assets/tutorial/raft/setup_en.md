@@ -33,6 +33,7 @@ Restart Raft and try again. These should be ephemeral errors.
 ### RML says to start Raft through Steam
 
 If this happens, then RML is configured to only inject into an existing instance of Raft, rather than try and start a new one.
+
 You can either:
 - Click "Play" after Raft has loaded into the main menu
 - Uncheck the box next to the "Disable Automatic Game Start" setting in the Settings menu then click Play.
@@ -40,6 +41,7 @@ You can either:
 ### RML doesn't do anything when I click Play
 
 If this happens, then RML is configured to only start a new instance of Raft, then inject into that specific instance. This also means that RML has detected an instance of Raft is already running, and will not start a new one.
+
 You can either:
 - Close the existing instance of Raft then click Play
 - Check the box next to the "Disable Automatic Game Start" setting in the Settings menu then click Play.
