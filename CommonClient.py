@@ -118,6 +118,7 @@ class CommonContext():
     game = None
     ui = None
     keep_alive_task = None
+    items_handling: typing.Optional[int] = None
 
     def __init__(self, server_address, password):
         # server state
@@ -247,9 +248,9 @@ class CommonContext():
 
     async def send_connect(self, **kwargs):
         payload = {
-            "cmd": 'Connect',
+            'cmd': 'Connect',
             'password': self.password, 'name': self.auth, 'version': Utils.version_tuple,
-            'tags': self.tags,
+            'tags': self.tags, 'items_handling': self.items_handling,
             'uuid': Utils.get_unique_identifier(), 'game': self.game
         }
         if kwargs:
@@ -464,6 +465,8 @@ async def process_server_cmd(ctx: CommonContext, args: dict):
             raise Exception('Player slot already in use for that team')
         elif 'IncompatibleVersion' in errors:
             raise Exception('Server reported your client version as incompatible')
+        elif 'InvalidItemsHandling' in errors:
+            raise Exception('The item handling flags requested by the client are not supported')
         # last to check, recoverable problem
         elif 'InvalidPassword' in errors:
             logger.error('Invalid password')
@@ -587,8 +590,9 @@ if __name__ == '__main__':
     # Text Mode to use !hint and such with games that have no text entry
 
     class TextContext(CommonContext):
-        tags = {"AP", "IgnoreGame"}
+        tags = {"AP", "IgnoreGame", "TextOnly"}
         game = "Archipelago"
+        items_handling = 0  # don't receive any NetworkItems
 
         async def server_auth(self, password_requested: bool = False):
             if password_requested and not self.password:
