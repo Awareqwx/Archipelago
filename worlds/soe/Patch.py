@@ -1,11 +1,33 @@
-import bsdiff4
-import yaml
+import os
 from typing import Optional
+
 import Utils
+from worlds.Files import APDeltaPatch
 
 
 USHASH = '6e9c94511d04fac6e0a1e582c170be3a'
-current_patch_version = 2
+
+
+class SoEDeltaPatch(APDeltaPatch):
+    hash = USHASH
+    game = "Secret of Evermore"
+    patch_file_ending = ".apsoe"
+
+    @classmethod
+    def get_source_data(cls) -> bytes:
+        with open(get_base_rom_path(), "rb") as stream:
+            return read_rom(stream)
+
+
+def get_base_rom_path(file_name: Optional[str] = None) -> str:
+    options = Utils.get_options()
+    if not file_name:
+        file_name = options["soe_options"]["rom_file"]
+    if not file_name:
+        raise ValueError("Missing soe_options -> rom_file from host.yaml")
+    if not os.path.exists(file_name):
+        file_name = Utils.user_path(file_name)
+    return file_name
 
 
 def read_rom(stream, strip_header=True) -> bytes:
@@ -16,42 +38,7 @@ def read_rom(stream, strip_header=True) -> bytes:
     return data
 
 
-def generate_yaml(patch: bytes, metadata: Optional[dict] = None) -> bytes:
-    patch = yaml.dump({"meta": metadata,
-                       "patch": patch,
-                       "game": "Secret of Evermore",
-                       # minimum version of patch system expected for patching to be successful
-                       "compatible_version": 1,
-                       "version": current_patch_version,
-                       "base_checksum": USHASH})
-    return patch.encode(encoding="utf-8-sig")
-
-
-def generate_patch(vanilla_file, randomized_file, metadata: Optional[dict] = None) -> bytes:
-    with open(vanilla_file, "rb") as f:
-        vanilla = read_rom(f)
-    with open(randomized_file, "rb") as f:
-        randomized = read_rom(f)
-    if metadata is None:
-        metadata = {}
-    patch = bsdiff4.diff(vanilla, randomized)
-    return generate_yaml(patch, metadata)
-
-
 if __name__ == '__main__':
-    import argparse
-    import pathlib
-    import lzma
-    parser = argparse.ArgumentParser(description='Apply patch to Secret of Evermore.')
-    parser.add_argument('patch', type=pathlib.Path, help='path to .absoe file')
-    args = parser.parse_args()
-    with open(args.patch, "rb") as f:
-        data = Utils.parse_yaml(lzma.decompress(f.read()).decode("utf-8-sig"))
-    if data['game'] != 'Secret of Evermore':
-        raise RuntimeError('Patch is not for Secret of Evermore')
-    with open(Utils.get_options()['soe_options']['rom_file'], 'rb') as f:
-        vanilla_data = read_rom(f)
-    patched_data = bsdiff4.patch(vanilla_data, data["patch"])
-    with open(args.patch.parent / (args.patch.stem + '.sfc'), 'wb') as f:
-        f.write(patched_data)
-
+    import sys
+    print('Please use ../../Patch.py', file=sys.stderr)
+    sys.exit(1)

@@ -1,5 +1,5 @@
 html{
-    background-image: url('../static/backgrounds/grass/grass-0007-large.png');
+    background-image: url('../static/backgrounds/grass.png');
     background-repeat: repeat;
     background-size: 650px 650px;
     scroll-padding-top: 90px;
@@ -45,7 +45,6 @@ html{
 }
 
 #weighted-settings p.setting-description{
-    font-weight: bold;
     margin: 0 0 1rem;
 }
 
@@ -64,7 +63,16 @@ html{
     width: 100%;
 }
 
+#weighted-settings table th, #weighted-settings table td{
+    border: none;
+}
+
+#weighted-settings table td{
+    padding: 5px;
+}
+
 #weighted-settings table .td-left{
+    font-family: LexendDeca-Regular, sans-serif;
     padding-right: 1rem;
     width: 200px;
 }
@@ -149,41 +157,29 @@ html{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-#weighted-settings .hints-div{
+#weighted-settings .hints-div, #weighted-settings .locations-div{
     margin-top: 2rem;
 }
 
-#weighted-settings .hints-div h3{
+#weighted-settings .hints-div h3, #weighted-settings .locations-div h3{
     margin-bottom: 0.5rem;
 }
 
-#weighted-settings .hints-div .hints-container{
+#weighted-settings .hints-container, #weighted-settings .locations-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#weighted-settings .hints-wrapper, #weighted-settings .locations-wrapper{
+    width: calc(50% - 0.5rem);
     font-weight: bold;
 }
 
-#weighted-settings .hints-div .hints-wrapper{
-    width: 32.5%;
-}
-
-#weighted-settings .hints-div .hints-wrapper .hint-div{
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    user-select: none;
-    -moz-user-select: none;
-}
-
-#weighted-settings .hints-div .hints-wrapper .hint-div:hover{
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-#weighted-settings .hints-div .hints-wrapper .hint-div label{
-    flex-grow: 1;
-    padding: 0.125rem 0.5rem;
-    cursor: pointer;
+#weighted-settings .hints-wrapper .simple-list, #weighted-settings .locations-wrapper .simple-list{
+    margin-top: 0.25rem;
+    height: 300px;
+    font-weight: normal;
 }
 
 #weighted-settings #weighted-settings-button-row{
@@ -233,13 +229,14 @@ html{
     width: 100%;
     margin-bottom: 0.5rem;
     color: #ffe993;
-    text-transform: lowercase;
+    text-transform: none;
     text-shadow: 1px 1px 2px #000000;
 }
 
 #weighted-settings h3, #weighted-settings h4, #weighted-settings h5, #weighted-settings h6{
     color: #ffffff;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-transform: none;
 }
 
 #weighted-settings a{
@@ -269,6 +266,30 @@ html{
 #weighted-settings .game-options, #weighted-settings .rom-options{
     display: flex;
     flex-direction: column;
+}
+
+#weighted-settings .simple-list{
+    display: flex;
+    flex-direction: column;
+
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+#weighted-settings .simple-list .list-row label{
+    display: block;
+    width: calc(100% - 0.5rem);
+    padding: 0.0625rem 0.25rem;
+}
+
+#weighted-settings .simple-list .list-row label:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#weighted-settings .simple-list .list-row label input[type=checkbox]{
+    margin-right: 0.5rem;
 }
 
 #weighted-settings .invisible{

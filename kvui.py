@@ -1,14 +1,18 @@
 import os
 import logging
 import typing
-import asyncio
 
 os.environ["KIVY_NO_CONSOLELOG"] = "1"
 os.environ["KIVY_NO_FILELOG"] = "1"
 os.environ["KIVY_NO_ARGS"] = "1"
 os.environ["KIVY_LOG_ENABLE"] = "0"
 
-from kivy.base import Config
+import Utils
+if Utils.is_frozen():
+    os.environ["KIVY_DATA_DIR"] = Utils.local_path("data")
+
+from kivy.config import Config
+
 Config.set("input", "mouse", "mouse,disable_multitouch")
 Config.set('kivy', 'exit_on_escape', '0')
 Config.set('graphics', 'multisamples', '0')  # multisamples crash old intel drivers
@@ -17,11 +21,15 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
 from kivy.core.text.markup import MarkupLabel
-from kivy.base import ExceptionHandler, ExceptionManager, Clock
+from kivy.base import ExceptionHandler, ExceptionManager
+from kivy.clock import Clock
 from kivy.factory import Factory
 from kivy.properties import BooleanProperty, ObjectProperty
+from kivy.metrics import dp
+from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.layout import Layout
 from kivy.uix.textinput import TextInput
 from kivy.uix.recycleview import RecycleView
 from kivy.uix.tabbedpanel import TabbedPanel, TabbedPanelItem
@@ -35,9 +43,14 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
+from kivy.animation import Animation
+from kivy.uix.popup import Popup
 
-import Utils
-from NetUtils import JSONtoTextParser, JSONMessagePart
+fade_in_animation = Animation(opacity=0, duration=0) + Animation(opacity=1, duration=0.25)
+
+
+from NetUtils import JSONtoTextParser, JSONMessagePart, SlotType
+from Utils import async_start
 
 if typing.TYPE_CHECKING:
     import CommonClient
@@ -49,7 +62,7 @@ else:
 
 # I was surprised to find this didn't already exist in kivy :(
 class HoverBehavior(object):
-    """from https://stackoverflow.com/a/605348110"""
+    """originally from https://stackoverflow.com/a/605348110"""
     hovered = BooleanProperty(False)
     border_point = ObjectProperty(None)
 
@@ -60,11 +73,11 @@ class HoverBehavior(object):
         Window.bind(on_cursor_leave=self.on_cursor_leave)
         super(HoverBehavior, self).__init__(**kwargs)
 
-    def on_mouse_pos(self, *args):
+    def on_mouse_pos(self, window, pos):
         if not self.get_root_window():
-            return  # do proceed if I'm not displayed <=> If have no parent
-        pos = args[1]
-        # Next line to_widget allow to compensate for relative layout
+            return  # Abort if not displayed
+
+        # to_widget translates window pos to within widget pos
         inside = self.collide_point(*self.to_widget(*pos))
         if self.hovered == inside:
             return  # We have already done what was needed
@@ -86,13 +99,21 @@ class HoverBehavior(object):
 Factory.register('HoverBehavior', HoverBehavior)
 
 
-class ServerToolTip(Label):
+class ToolTip(Label):
     pass
 
 
-class ServerLabel(HoverBehavior, Label):
+class ServerToolTip(ToolTip):
+    pass
+
+
+class HovererableLabel(HoverBehavior, Label):
+    pass
+
+
+class ServerLabel(HovererableLabel):
     def __init__(self, *args, **kwargs):
-        super(ServerLabel, self).__init__(*args, **kwargs)
+        super(HovererableLabel, self).__init__(*args, **kwargs)
         self.layout = FloatLayout()
         self.popuplabel = ServerToolTip(text="Test")
         self.layout.add_widget(self.popuplabel)
@@ -100,9 +121,14 @@ class ServerLabel(HoverBehavior, Label):
     def on_enter(self):
         self.popuplabel.text = self.get_text()
         App.get_running_app().root.add_widget(self.layout)
+        fade_in_animation.start(self.layout)
 
     def on_leave(self):
         App.get_running_app().root.remove_widget(self.layout)
+
+    @property
+    def ctx(self) -> context_type:
+        return App.get_running_app().ctx
 
     def get_text(self):
         if self.ctx.server:
@@ -123,12 +149,14 @@ class ServerLabel(HoverBehavior, Label):
                     for permission_name, permission_data in ctx.permissions.items():
                         text += f"\n    {permission_name}: {permission_data}"
                 if ctx.hint_cost is not None and ctx.total_locations:
+                    min_cost = int(ctx.server_version >= (0, 3, 9))
                     text += f"\nA new !hint <itemname> costs {ctx.hint_cost}% of checks made. " \
-                            f"For you this means every {max(0, int(ctx.hint_cost * 0.01 * ctx.total_locations))} " \
-                            "location checks."
+                            f"For you this means every " \
+                            f"{max(min_cost, int(ctx.hint_cost * 0.01 * ctx.total_locations))} " \
+                            "location checks." \
+                            f"\nYou currently have {ctx.hint_points} points."
                 elif ctx.hint_cost == 0:
                     text += "\n!hint is free to use."
-
             else:
                 text += f"\nYou are not authenticated yet."
 
@@ -136,10 +164,6 @@ class ServerLabel(HoverBehavior, Label):
 
         else:
             return "No current server connection. \nPlease connect to an Archipelago server."
-
-    @property
-    def ctx(self) -> context_type:
-        return App.get_running_app().ctx
 
 
 class MainLayout(GridLayout):
@@ -155,16 +179,67 @@ class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
     """ Adds selection and focus behaviour to the view. """
 
 
-class SelectableLabel(RecycleDataViewBehavior, Label):
+class SelectableLabel(RecycleDataViewBehavior, HovererableLabel):
     """ Add selection support to the Label """
     index = None
     selected = BooleanProperty(False)
+    tooltip = None
 
     def refresh_view_attrs(self, rv, index, data):
         """ Catch and handle the view changes """
         self.index = index
         return super(SelectableLabel, self).refresh_view_attrs(
             rv, index, data)
+
+    def create_tooltip(self, text, x, y):
+        text = text.replace("<br>", "\n").replace('&amp;', '&').replace('&bl;', '[').replace('&br;', ']')
+        if self.tooltip:
+            # update
+            self.tooltip.children[0].text = text
+        else:
+            self.tooltip = FloatLayout()
+            tooltip_label = ToolTip(text=text)
+            self.tooltip.add_widget(tooltip_label)
+            fade_in_animation.start(self.tooltip)
+            App.get_running_app().root.add_widget(self.tooltip)
+
+        # handle left-side boundary to not render off-screen
+        x = max(x, 3+self.tooltip.children[0].texture_size[0] / 2)
+
+        # position float layout
+        self.tooltip.x = x - self.tooltip.width / 2
+        self.tooltip.y = y - self.tooltip.height / 2 + 48
+
+    def remove_tooltip(self):
+        if self.tooltip:
+            App.get_running_app().root.remove_widget(self.tooltip)
+            self.tooltip = None
+
+    def on_mouse_pos(self, window, pos):
+        if not self.get_root_window():
+            return  # Abort if not displayed
+        super().on_mouse_pos(window, pos)
+        if self.refs and self.hovered:
+
+            tx, ty = self.to_widget(*pos, relative=True)
+            # Why TF is Y flipped *within* the texture?
+            ty = self.texture_size[1] - ty
+            hit = False
+            for uid, zones in self.refs.items():
+                for zone in zones:
+                    x, y, w, h = zone
+                    if x <= tx <= w and y <= ty <= h:
+                        self.create_tooltip(uid.split("|", 1)[1], *pos)
+                        hit = True
+                        break
+            if not hit:
+                self.remove_tooltip()
+
+    def on_enter(self):
+        pass
+
+    def on_leave(self):
+        self.remove_tooltip()
 
     def on_touch_down(self, touch):
         """ Add selection on touch down """
@@ -176,7 +251,7 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
             else:
                 # Not a fan of the following few lines, but they work.
                 temp = MarkupLabel(text=self.text).markup
-                text = "".join(part for part in temp if not part.startswith(("[color", "[/color]")))
+                text = "".join(part for part in temp if not part.startswith(("[color", "[/color]", "[ref=", "[/ref]")))
                 cmdinput = App.get_running_app().textinput
                 if not cmdinput.text and " did you mean " in text:
                     for question in ("Didn't find something that closely matches, did you mean ",
@@ -186,13 +261,40 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
                                                           "? (")
                             cmdinput.text = f"!{App.get_running_app().last_autofillable_command} {name}"
                             break
+                elif not cmdinput.text and text.startswith("Missing: "):
+                    cmdinput.text = text.replace("Missing: ", "!hint_location ")
 
-                Clipboard.copy(text)
+                Clipboard.copy(text.replace('&amp;', '&').replace('&bl;', '[').replace('&br;', ']'))
                 return self.parent.select_with_touch(self.index, touch)
 
     def apply_selection(self, rv, index, is_selected):
         """ Respond to the selection of items in the view. """
         self.selected = is_selected
+
+
+class ConnectBarTextInput(TextInput):
+    def insert_text(self, substring, from_undo=False):
+        s = substring.replace('\n', '').replace('\r', '')
+        return super(ConnectBarTextInput, self).insert_text(s, from_undo=from_undo)
+
+
+class MessageBox(Popup):
+    class MessageBoxLabel(Label):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+            self._label.refresh()
+            self.size = self._label.texture.size
+            if self.width + 50 > Window.width:
+                self.text_size[0] = Window.width - 50
+                self._label.refresh()
+                self.size = self._label.texture.size
+
+    def __init__(self, title, text, error=False, **kwargs):
+        label = MessageBox.MessageBoxLabel(text=text)
+        separator_color = [217 / 255, 129 / 255, 122 / 255, 1.] if error else [47 / 255., 167 / 255., 212 / 255, 1.]
+        super().__init__(title=title, content=label, size_hint=(None, None), width=max(100, int(label.width)+40),
+                         separator_color=separator_color, **kwargs)
+        self.height += max(0, label.height - 18)
 
 
 class GameManager(App):
@@ -201,6 +303,9 @@ class GameManager(App):
     ]
     base_title: str = "Archipelago Client"
     last_autofillable_command: str
+
+    main_area_container: GridLayout
+    """ subclasses can add more columns beside the tabs """
 
     def __init__(self, ctx: context_type):
         self.title = self.base_title
@@ -219,31 +324,41 @@ class GameManager(App):
             text = original_say(text)
             if text:
                 for command in autofillable_commands:
-                    if text.startswith("!"+command):
+                    if text.startswith("!" + command):
                         self.last_autofillable_command = command
                         break
             return text
+
         ctx.on_user_say = intercept_say
 
         super(GameManager, self).__init__()
 
-    def build(self):
+    @property
+    def tab_count(self):
+        if hasattr(self, "tabs"):
+            return max(1, len(self.tabs.tab_list))
+        return 1
+
+    def build(self) -> Layout:
         self.container = ContainerLayout()
 
         self.grid = MainLayout()
         self.grid.cols = 1
-        connect_layout = BoxLayout(orientation="horizontal", size_hint_y=None, height=30)
+        self.connect_layout = BoxLayout(orientation="horizontal", size_hint_y=None, height=dp(30))
         # top part
         server_label = ServerLabel()
-        connect_layout.add_widget(server_label)
-        self.server_connect_bar = TextInput(text="archipelago.gg", size_hint_y=None, height=30, multiline=False,
-                                            write_tab=False)
-        self.server_connect_bar.bind(on_text_validate=self.connect_button_action)
-        connect_layout.add_widget(self.server_connect_bar)
-        self.server_connect_button = Button(text="Connect", size=(100, 30), size_hint_y=None, size_hint_x=None)
+        self.connect_layout.add_widget(server_label)
+        self.server_connect_bar = ConnectBarTextInput(text=self.ctx.suggested_address or "archipelago.gg:", size_hint_y=None,
+                                                      height=dp(30), multiline=False, write_tab=False)
+        def connect_bar_validate(sender):
+            if not self.ctx.server:
+                self.connect_button_action(sender)
+        self.server_connect_bar.bind(on_text_validate=connect_bar_validate)
+        self.connect_layout.add_widget(self.server_connect_bar)
+        self.server_connect_button = Button(text="Connect", size=(dp(100), dp(30)), size_hint_y=None, size_hint_x=None)
         self.server_connect_button.bind(on_press=self.connect_button_action)
-        connect_layout.add_widget(self.server_connect_button)
-        self.grid.add_widget(connect_layout)
+        self.connect_layout.add_widget(self.server_connect_button)
+        self.grid.add_widget(self.connect_layout)
         self.progressbar = ProgressBar(size_hint_y=None, height=3)
         self.grid.add_widget(self.progressbar)
 
@@ -260,7 +375,10 @@ class GameManager(App):
             self.log_panels[display_name] = panel.content = UILog(bridge_logger)
             self.tabs.add_widget(panel)
 
-        self.grid.add_widget(self.tabs)
+        self.main_area_container = GridLayout(size_hint_y=1, rows=1)
+        self.main_area_container.add_widget(self.tabs)
+
+        self.grid.add_widget(self.main_area_container)
 
         if len(self.logging_pairs) == 1:
             # Hide Tab selection if only one tab
@@ -270,36 +388,43 @@ class GameManager(App):
             self.tabs.tab_height = 0
 
         # bottom part
-        bottom_layout = BoxLayout(orientation="horizontal", size_hint_y=None, height=30)
-        info_button = Button(height=30, text="Command:", size_hint_x=None)
+        bottom_layout = BoxLayout(orientation="horizontal", size_hint_y=None, height=dp(30))
+        info_button = Button(size=(dp(100), dp(30)), text="Command:", size_hint_x=None)
         info_button.bind(on_release=self.command_button_action)
         bottom_layout.add_widget(info_button)
-        self.textinput = TextInput(size_hint_y=None, height=30, multiline=False, write_tab=False)
+        self.textinput = TextInput(size_hint_y=None, height=dp(30), multiline=False, write_tab=False)
         self.textinput.bind(on_text_validate=self.on_message)
-
-        def text_focus(event):
-            """Needs to be set via delay, as unfocusing happens after on_message"""
-            self.textinput.focus = True
-
-        self.textinput.text_focus = text_focus
+        self.textinput.text_validate_unfocus = False
         bottom_layout.add_widget(self.textinput)
         self.grid.add_widget(bottom_layout)
         self.commandprocessor("/help")
         Clock.schedule_interval(self.update_texts, 1 / 30)
         self.container.add_widget(self.grid)
+
+        # If the address contains a port, select it; otherwise, select the host.
+        s = self.server_connect_bar.text
+        host_start = s.find("@") + 1
+        ipv6_end = s.find("]", host_start) + 1
+        port_start = s.find(":", ipv6_end if ipv6_end > 0 else host_start) + 1
+        self.server_connect_bar.focus = True
+        self.server_connect_bar.select_text(port_start if port_start > 0 else host_start, len(s))
+
         return self.container
 
     def update_texts(self, dt):
-        self.tabs.content.children[0].fix_heights()  # TODO: remove this when Kivy fixes this upstream
+        if hasattr(self.tabs.content.children[0], 'fix_heights'):
+            self.tabs.content.children[0].fix_heights()  # TODO: remove this when Kivy fixes this upstream
         if self.ctx.server:
             self.title = self.base_title + " " + Utils.__version__ + \
                          f" | Connected to: {self.ctx.server_address} " \
                          f"{'.'.join(str(e) for e in self.ctx.server_version)}"
             self.server_connect_button.text = "Disconnect"
+            self.server_connect_bar.readonly = True
             self.progressbar.max = len(self.ctx.checked_locations) + len(self.ctx.missing_locations)
             self.progressbar.value = len(self.ctx.checked_locations)
         else:
             self.server_connect_button.text = "Connect"
+            self.server_connect_bar.readonly = False
             self.title = self.base_title + " " + Utils.__version__
             self.progressbar.value = 0
 
@@ -312,10 +437,10 @@ class GameManager(App):
 
     def connect_button_action(self, button):
         if self.ctx.server:
-            self.ctx.server_address = None
-            asyncio.create_task(self.ctx.disconnect())
+            self.ctx.username = None
+            async_start(self.ctx.disconnect())
         else:
-            asyncio.create_task(self.ctx.connect(self.server_connect_bar.text.replace("/connect ", "")))
+            async_start(self.ctx.connect(self.server_connect_bar.text.replace("/connect ", "")))
 
     def on_stop(self):
         # "kill" input tasks
@@ -336,8 +461,6 @@ class GameManager(App):
             elif input_text:
                 self.commandprocessor(input_text)
 
-            Clock.schedule_once(textinput.text_focus)
-
         except Exception as e:
             logging.getLogger("Client").exception(e)
 
@@ -346,36 +469,29 @@ class GameManager(App):
         self.log_panels["Archipelago"].on_message_markup(text)
         self.log_panels["All"].on_message_markup(text)
 
+    def focus_textinput(self):
+        if hasattr(self, "textinput"):
+            self.textinput.focus = True
 
-class FactorioManager(GameManager):
-    logging_pairs = [
-        ("Client", "Archipelago"),
-        ("FactorioServer", "Factorio Server Log"),
-        ("FactorioWatcher", "Bridge Data Log"),
-    ]
-    base_title = "Archipelago Factorio Client"
+    def update_address_bar(self, text: str):
+        if hasattr(self, "server_connect_bar"):
+            self.server_connect_bar.text = text
+        else:
+            logging.getLogger("Client").info("Could not update address bar as the GUI is not yet initialized.")
 
+    def enable_energy_link(self):
+        if not hasattr(self, "energy_link_label"):
+            self.energy_link_label = Label(text="Energy Link: Standby",
+                                           size_hint_x=None, width=150)
+            self.connect_layout.add_widget(self.energy_link_label)
 
-class SNIManager(GameManager):
-    logging_pairs = [
-        ("Client", "Archipelago"),
-        ("SNES", "SNES"),
-    ]
-    base_title = "Archipelago SNI Client"
+    def set_new_energy_link_value(self):
+        if hasattr(self, "energy_link_label"):
+            self.energy_link_label.text = f"EL: {Utils.format_SI_prefix(self.ctx.current_energy_link_value)}J"
 
-
-class TextManager(GameManager):
-    logging_pairs = [
-        ("Client", "Archipelago")
-    ]
-    base_title = "Archipelago Text Client"
-
-
-class FF1Manager(GameManager):
-    logging_pairs = [
-        ("Client", "Archipelago")
-    ]
-    base_title = "Archipelago Final Fantasy 1 Client"
+    # default F1 keybind, opens a settings menu, that seems to break the layout engine once closed
+    def open_settings(self, *largs):
+        pass
 
 
 class LogtoUI(logging.Handler):
@@ -383,12 +499,23 @@ class LogtoUI(logging.Handler):
         super(LogtoUI, self).__init__(logging.INFO)
         self.on_log = on_log
 
+    @staticmethod
+    def format_compact(record: logging.LogRecord) -> str:
+        if isinstance(record.msg, Exception):
+            return str(record.msg)
+        return (f'{record.exc_info[1]}\n' if record.exc_info else '') + str(record.msg).split("\n")[0]
+
     def handle(self, record: logging.LogRecord) -> None:
-        self.on_log(self.format(record))
+        if getattr(record, 'skip_gui', False):
+            pass  # skip output
+        elif getattr(record, 'compact_gui', False):
+            self.on_log(self.format_compact(record))
+        else:
+            self.on_log(self.format(record))
 
 
 class UILog(RecycleView):
-    cols = 1
+    messages: typing.ClassVar[int]  # comes from kv file
 
     def __init__(self, *loggers_to_handle, **kwargs):
         super(UILog, self).__init__(**kwargs)
@@ -398,9 +525,15 @@ class UILog(RecycleView):
 
     def on_log(self, record: str) -> None:
         self.data.append({"text": escape_markup(record)})
+        self.clean_old()
 
     def on_message_markup(self, text):
         self.data.append({"text": text})
+        self.clean_old()
+
+    def clean_old(self):
+        if len(self.data) > self.messages:
+            self.data.pop(0)
 
     def fix_heights(self):
         """Workaround fix for divergent texture and layout heights"""
@@ -418,6 +551,47 @@ class E(ExceptionHandler):
 
 
 class KivyJSONtoTextParser(JSONtoTextParser):
+    # dummy class to absorb kvlang definitions
+    class TextColors(Widget):
+        pass
+
+    def __init__(self, *args, **kwargs):
+        # we grab the color definitions from the .kv file, then overwrite the JSONtoTextParser default entries
+        colors = self.TextColors()
+        color_codes = self.color_codes.copy()
+        for name, code in color_codes.items():
+            color_codes[name] = getattr(colors, name, code)
+        self.color_codes = color_codes
+        super().__init__(*args, **kwargs)
+
+    def __call__(self, *args, **kwargs):
+        self.ref_count = 0
+        return super(KivyJSONtoTextParser, self).__call__(*args, **kwargs)
+
+    def _handle_item_name(self, node: JSONMessagePart):
+        flags = node.get("flags", 0)
+        if flags & 0b001:  # advancement
+            itemtype = "progression"
+        elif flags & 0b010:  # useful
+            itemtype = "useful"
+        elif flags & 0b100:  # trap
+            itemtype = "trap"
+        else:
+            itemtype = "normal"
+        node.setdefault("refs", []).append("Item Class: " + itemtype)
+        return super(KivyJSONtoTextParser, self)._handle_item_name(node)
+
+    def _handle_player_id(self, node: JSONMessagePart):
+        player = int(node["text"])
+        slot_info = self.ctx.slot_info.get(player, None)
+        if slot_info:
+            text = f"Game: {slot_info.game}<br>" \
+                   f"Type: {SlotType(slot_info.type).name}"
+            if slot_info.group_members:
+                text += f"<br>Members:<br> " + \
+                        '<br> '.join(self.ctx.player_names[player] for player in slot_info.group_members)
+            node.setdefault("refs", []).append(text)
+        return super(KivyJSONtoTextParser, self)._handle_player_id(node)
 
     def _handle_color(self, node: JSONMessagePart):
         colors = node["color"].split(";")
@@ -429,7 +603,18 @@ class KivyJSONtoTextParser(JSONtoTextParser):
                 return self._handle_text(node)
         return self._handle_text(node)
 
+    def _handle_text(self, node: JSONMessagePart):
+        for ref in node.get("refs", []):
+            node["text"] = f"[ref={self.ref_count}|{ref}]{node['text']}[/ref]"
+            self.ref_count += 1
+        return super(KivyJSONtoTextParser, self)._handle_text(node)
+
 
 ExceptionManager.add_handler(E())
 
 Builder.load_file(Utils.local_path("data", "client.kv"))
+user_file = Utils.user_path("data", "user.kv")
+if os.path.exists(user_file):
+    logging.info("Loading user.kv into builder.")
+    Builder.load_file(user_file)
+

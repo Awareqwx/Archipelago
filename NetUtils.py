@@ -6,7 +6,7 @@ from json import JSONEncoder, JSONDecoder
 
 import websockets
 
-from Utils import Version
+from Utils import ByValue, Version
 
 
 class JSONMessagePart(typing.TypedDict, total=False):
@@ -20,7 +20,7 @@ class JSONMessagePart(typing.TypedDict, total=False):
     flags: int
 
 
-class ClientStatus(enum.IntEnum):
+class ClientStatus(ByValue, enum.IntEnum):
     CLIENT_UNKNOWN = 0
     CLIENT_CONNECTED = 5
     CLIENT_READY = 10
@@ -28,22 +28,22 @@ class ClientStatus(enum.IntEnum):
     CLIENT_GOAL = 30
 
 
-class SlotType(enum.IntFlag):
+class SlotType(ByValue, enum.IntFlag):
     spectator = 0b00
     player = 0b01
     group = 0b10
 
     @property
     def always_goal(self) -> bool:
-        """Mark this slot has having reached its goal instantly."""
+        """Mark this slot as having reached its goal instantly."""
         return self.value != 0b01
 
 
-class Permission(enum.IntFlag):
+class Permission(ByValue, enum.IntFlag):
     disabled = 0b000  # 0, completely disables access
     enabled = 0b001  # 1, allows manual use
     goal = 0b010  # 2, allows manual use after goal completion
-    auto = 0b110  # 6, forces use after goal completion, only works for forfeit
+    auto = 0b110  # 6, forces use after goal completion, only works for release
     auto_enabled = 0b111  # 7, forces use after goal completion, allows manual use any time
 
     @staticmethod
@@ -71,6 +71,7 @@ class NetworkSlot(typing.NamedTuple):
     name: str
     game: str
     type: SlotType
+    group_members: typing.Union[typing.List[int], typing.Tuple] = ()  # only populated if type == group
 
 
 class NetworkItem(typing.NamedTuple):
@@ -85,7 +86,7 @@ def _scan_for_TypedTuples(obj: typing.Any) -> typing.Any:
         data = obj._asdict()
         data["class"] = obj.__class__.__name__
         return data
-    if isinstance(obj, (tuple, list, set)):
+    if isinstance(obj, (tuple, list, set, frozenset)):
         return tuple(_scan_for_TypedTuples(o) for o in obj)
     if isinstance(obj, dict):
         return {key: _scan_for_TypedTuples(value) for key, value in obj.items()}
@@ -95,10 +96,11 @@ def _scan_for_TypedTuples(obj: typing.Any) -> typing.Any:
 _encode = JSONEncoder(
     ensure_ascii=False,
     check_circular=False,
+    separators=(',', ':'),
 ).encode
 
 
-def encode(obj):
+def encode(obj: typing.Any) -> str:
     return _encode(_scan_for_TypedTuples(obj))
 
 
@@ -107,9 +109,11 @@ def get_any_version(data: dict) -> Version:
     return Version(int(data["major"]), int(data["minor"]), int(data["build"]))
 
 
-whitelist = {"NetworkPlayer": NetworkPlayer,
-             "NetworkItem": NetworkItem,
-             }
+allowlist = {
+    "NetworkPlayer": NetworkPlayer,
+    "NetworkItem": NetworkItem,
+    "NetworkSlot": NetworkSlot
+}
 
 custom_hooks = {
     "Version": get_any_version
@@ -121,7 +125,7 @@ def _object_hook(o: typing.Any) -> typing.Any:
         hook = custom_hooks.get(o.get("class", None), None)
         if hook:
             return hook(o)
-        cls = whitelist.get(o.get("class", None), None)
+        cls = allowlist.get(o.get("class", None), None)
         if cls:
             for key in tuple(o):
                 if key not in cls._fields:
@@ -232,7 +236,7 @@ class JSONtoTextParser(metaclass=HandlerMeta):
             node["color"] = 'cyan'
         elif flags & 0b001:  # advancement
             node["color"] = 'plum'
-        elif flags & 0b010:  # never_exclude
+        elif flags & 0b010:  # useful
             node["color"] = 'slateblue'
         elif flags & 0b100:  # trap
             node["color"] = 'salmon'
@@ -242,7 +246,7 @@ class JSONtoTextParser(metaclass=HandlerMeta):
 
     def _handle_item_id(self, node: JSONMessagePart):
         item_id = int(node["text"])
-        node["text"] = self.ctx.item_name_getter(item_id)
+        node["text"] = self.ctx.item_names[item_id]
         return self._handle_item_name(node)
 
     def _handle_location_name(self, node: JSONMessagePart):
@@ -251,7 +255,7 @@ class JSONtoTextParser(metaclass=HandlerMeta):
 
     def _handle_location_id(self, node: JSONMessagePart):
         item_id = int(node["text"])
-        node["text"] = self.ctx.location_name_getter(item_id)
+        node["text"] = self.ctx.location_names[item_id]
         return self._handle_location_name(node)
 
     def _handle_entrance_name(self, node: JSONMessagePart):
@@ -266,7 +270,7 @@ class RawJSONtoTextParser(JSONtoTextParser):
 
 color_codes = {'reset': 0, 'bold': 1, 'underline': 4, 'black': 30, 'red': 31, 'green': 32, 'yellow': 33, 'blue': 34,
                'magenta': 35, 'cyan': 36, 'white': 37, 'black_bg': 40, 'red_bg': 41, 'green_bg': 42, 'yellow_bg': 43,
-               'blue_bg': 44, 'purple_bg': 45, 'cyan_bg': 46, 'white_bg': 47}
+               'blue_bg': 44, 'magenta_bg': 45, 'cyan_bg': 46, 'white_bg': 47}
 
 
 def color_code(*args):

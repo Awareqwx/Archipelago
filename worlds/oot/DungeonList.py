@@ -87,8 +87,8 @@ dungeon_table = [
         'dungeon_item': 1,
     },
     {
-        'name': 'Gerudo Training Grounds',
-        'hint': 'the Gerudo Training Grounds',
+        'name': 'Gerudo Training Ground',
+        'hint': 'the Gerudo Training Ground',
         'font_color': 'Yellow',
         'boss_key':     0, 
         'small_key':    9,
@@ -122,7 +122,7 @@ def create_dungeons(ootworld):
         hint = dungeon_info['hint'] if 'hint' in dungeon_info else name
         font_color = dungeon_info['font_color'] if 'font_color' in dungeon_info else 'White'
         
-        if ootworld.logic_rules == 'glitchless':
+        if ootworld.logic_rules == 'glitchless' or ootworld.logic_rules == 'no_logic':  # ER + NL
             if not ootworld.dungeon_mq[name]:
                 dungeon_json = os.path.join(data_path('World'), name + '.json')
             else:
@@ -136,15 +136,15 @@ def create_dungeons(ootworld):
         
         ootworld.load_regions_from_json(dungeon_json)
 
-        boss_keys = [ootworld.create_item(f'Boss Key ({name})') for i in range(dungeon_info['boss_key'])]
-        if not ootworld.dungeon_mq[dungeon_info['name']]:
-            small_keys = [ootworld.create_item(f'Small Key ({name})') for i in range(dungeon_info['small_key'])]
-        else:
-            small_keys = [ootworld.create_item(f'Small Key ({name})') for i in range(dungeon_info['small_key_mq'])]
-        dungeon_items = [ootworld.create_item(f'Map ({name})'), ootworld.create_item(f'Compass ({name})')] * dungeon_info['dungeon_item']
-        if ootworld.shuffle_mapcompass in ['any_dungeon', 'overworld']:
-            for item in dungeon_items:
-                item.priority = True
+        # boss_keys = [ootworld.create_item(f'Boss Key ({name})') for i in range(dungeon_info['boss_key'])]
+        # if not ootworld.dungeon_mq[dungeon_info['name']]:
+        #     small_keys = [ootworld.create_item(f'Small Key ({name})') for i in range(dungeon_info['small_key'])]
+        # else:
+        #     small_keys = [ootworld.create_item(f'Small Key ({name})') for i in range(dungeon_info['small_key_mq'])]
+        # dungeon_items = [ootworld.create_item(f'Map ({name})'), ootworld.create_item(f'Compass ({name})')] * dungeon_info['dungeon_item']
+        # if ootworld.shuffle_mapcompass in ['any_dungeon', 'overworld']:
+        #     for item in dungeon_items:
+        #         item.priority = True
 
-        ootworld.dungeons.append(Dungeon(ootworld, name, hint, font_color, boss_keys, small_keys, dungeon_items))
+        ootworld.dungeons.append(Dungeon(ootworld, name, hint, font_color))
 

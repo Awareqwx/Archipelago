@@ -2,6 +2,7 @@
 {% import "macros.html" as macros %}
 {% block head %}
     <title>Multiworld {{ room.id|suuid }}</title>
+    {% if should_refresh %}<meta http-equiv="refresh" content="2">{% endif %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="styles/hostRoom.css") }}"/>
 {% endblock %}
 
@@ -10,31 +11,41 @@
     <div id="host-room">
         {% if room.owner == session["_id"] %}
             Room created from <a href="{{ url_for("view_seed", seed=room.seed.id) }}">Seed #{{ room.seed.id|suuid }}</a>
-            <br>
+            <br />
         {% endif %}
         {% if room.tracker %}
-            This room has a <a href="{{ url_for("getTracker", tracker=room.tracker) }}">Multiworld Tracker</a> enabled.
-            <br>
+            This room has a <a href="{{ url_for("get_multiworld_tracker", tracker=room.tracker) }}">Multiworld Tracker</a> enabled.
+            <br />
         {% endif %}
-        This room will be closed after {{ room.timeout//60//60 }} hours of inactivity. Should you wish to continue
-        later,
-        you can simply refresh this page and the server will be started again.<br>
-        {% if room.last_port %}
-            You can connect to this room by using '/connect {{ config['PATCH_TARGET'] }}:{{ room.last_port }}'
-            in the <a href="{{ url_for("tutorial_landing")}}">client</a>.<br>{% endif %}
+        The server for this room will be paused after {{ room.timeout//60//60 }} hours of inactivity.
+        Should you wish to continue later,
+        anyone can simply refresh this page and the server will resume.<br>
+        {% if room.last_port == -1 %}
+            There was an error hosting this Room. Another attempt will be made on refreshing this page.
+            The most likely failure reason is that the multiworld is too old to be loaded now.
+        {% elif room.last_port %}
+            You can connect to this room by using <span class="interactive"
+            data-tooltip="This means address/ip is {{ config['HOST_ADDRESS'] }} and port is {{ room.last_port }}.">
+            '/connect {{ config['HOST_ADDRESS'] }}:{{ room.last_port }}'
+            </span>
+            in the <a href="{{ url_for("tutorial_landing")}}">client</a>.<br>
+        {% endif %}
         {{ macros.list_patches_room(room) }}
         {% if room.owner == session["_id"] %}
-            <form method=post>
-                <div class="form-group">
-                    <label for="cmd"></label>
-                    <input class="form-control" type="text" id="cmd" name="cmd"
-                           placeholder="Server Command. /help to list them, list gets appended to log.">
-                </div>
-            </form>
-
-            Log:
+            <div style="display: flex; align-items: center;">
+                <form method=post style="flex-grow: 1; margin-right: 1em;">
+                    <div class="form-group">
+                        <label for="cmd"></label>
+                        <input class="form-control" type="text" id="cmd" name="cmd"
+                               placeholder="Server Command. /help to list them, list gets appended to log.">
+                    </div>
+                </form>
+                <a href="{{ url_for("display_log", room=room.id) }}">
+                    Open Log File...
+                </a>
+            </div>
         <div id="logger"></div>
-        <script>
+        <script type="application/ecmascript">
             let xmlhttp = new XMLHttpRequest();
             let url = '{{ url_for('display_log', room = room.id) }}';
 

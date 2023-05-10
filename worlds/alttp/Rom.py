@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import Utils
-from Patch import read_rom
+import worlds.Files
 
-JAP10HASH = '03a63945398191337e896e5771f77173'
-RANDOMIZERBASEHASH = '9952c2a3ec1b421e408df0d20c8f0c7f'
-ROM_PLAYER_LIMIT = 255
+LTTPJPN10HASH: str = "03a63945398191337e896e5771f77173"
+RANDOMIZERBASEHASH: str = "9952c2a3ec1b421e408df0d20c8f0c7f"
+ROM_PLAYER_LIMIT: int = 255
 
 import io
 import json
@@ -16,35 +16,38 @@ import random
 import struct
 import subprocess
 import threading
-import xxtea
 import concurrent.futures
 import bsdiff4
-from typing import Optional
+from typing import Optional, List
 
-from BaseClasses import CollectionState, Region, Location
-from worlds.alttp.Shops import ShopType, ShopPriceType
-from worlds.alttp.Dungeons import dungeon_music_addresses
-from worlds.alttp.Regions import location_table, old_location_address_to_new_location_address
-from worlds.alttp.Text import MultiByteTextMapper, text_addresses, Credits, TextTable
-from worlds.alttp.Text import Uncle_texts, Ganon1_texts, TavernMan_texts, Sahasrahla2_texts, Triforce_texts, \
+from BaseClasses import CollectionState, Region, Location, MultiWorld
+from Utils import local_path, user_path, int16_as_bytes, int32_as_bytes, snes_to_pc, is_frozen, parse_yaml, read_snes_rom
+
+from .Shops import ShopType, ShopPriceType
+from .Dungeons import dungeon_music_addresses
+from .Regions import old_location_address_to_new_location_address
+from .Text import MultiByteTextMapper, text_addresses, Credits, TextTable
+from .Text import Uncle_texts, Ganon1_texts, TavernMan_texts, Sahasrahla2_texts, Triforce_texts, \
     Blind_texts, \
     BombShop2_texts, junk_texts
-
-from worlds.alttp.Text import KingsReturn_texts, Sanctuary_texts, Kakariko_texts, Blacksmiths_texts, \
+from .Text import KingsReturn_texts, Sanctuary_texts, Kakariko_texts, Blacksmiths_texts, \
     DeathMountain_texts, \
     LostWoods_texts, WishingWell_texts, DesertPalace_texts, MountainTower_texts, LinksHouse_texts, Lumberjacks_texts, \
     SickKid_texts, FluteBoy_texts, Zora_texts, MagicShop_texts, Sahasrahla_names
-from Utils import local_path, int16_as_bytes, int32_as_bytes, snes_to_pc, is_frozen
-from worlds.alttp.Items import ItemFactory, item_table
-from worlds.alttp.EntranceShuffle import door_addresses
-from worlds.alttp.Options import smallkey_shuffle
-import Patch
+from .Items import ItemFactory, item_table, item_name_groups, progression_items
+from .EntranceShuffle import door_addresses
+from .Options import smallkey_shuffle
 
 try:
     from maseya import z3pr
     from maseya.z3pr.palette_randomizer import build_offset_collections
 except:
     z3pr = None
+
+try:
+    import xxtea
+except:
+    xxtea = None
 
 enemizer_logger = logging.getLogger("Enemizer")
 
@@ -57,13 +60,13 @@ class LocalRom(object):
         self.orig_buffer = None
 
         with open(file, 'rb') as stream:
-            self.buffer = read_rom(stream)
+            self.buffer = read_snes_rom(stream)
         if patch:
             self.patch_base_rom()
             self.orig_buffer = self.buffer.copy()
         if vanillaRom:
             with open(vanillaRom, 'rb') as vanillaStream:
-                self.orig_buffer = read_rom(vanillaStream)
+                self.orig_buffer = read_snes_rom(vanillaStream)
 
     def read_byte(self, address: int) -> int:
         return self.buffer[address]
@@ -84,7 +87,12 @@ class LocalRom(object):
             self.write_bytes(startaddress + i, bytearray(data))
 
     def encrypt(self, world, player):
-        local_random = world.slot_seeds[player]
+        global xxtea
+        if xxtea is None:
+            # cause crash to provide traceback
+            import xxtea
+
+        local_random = world.per_slot_randoms[player]
         key = bytes(local_random.getrandbits(8 * 16).to_bytes(16, 'big'))
         self.write_bytes(0x1800B0, bytearray(key))
         self.write_int16(0x180087, 1)
@@ -123,29 +131,24 @@ class LocalRom(object):
         return expected == buffermd5.hexdigest()
 
     def patch_base_rom(self):
-        if os.path.isfile(local_path('basepatch.sfc')):
-            with open(local_path('basepatch.sfc'), 'rb') as stream:
+        if os.path.isfile(user_path('basepatch.sfc')):
+            with open(user_path('basepatch.sfc'), 'rb') as stream:
                 buffer = bytearray(stream.read())
 
             if self.verify(buffer):
                 self.buffer = buffer
-                if not os.path.exists(local_path('data', 'basepatch.apbp')):
-                    Patch.create_patch_file(local_path('basepatch.sfc'))
                 return
 
-            if not os.path.isfile(local_path('data', 'basepatch.apbp')):
-                raise RuntimeError('Base patch unverified.  Unable to continue.')
+        with open(local_path("data", "basepatch.bsdiff4"), "rb") as f:
+            delta = f.read()
 
-        if os.path.isfile(local_path('data', 'basepatch.apbp')):
-            _, target, buffer = Patch.create_rom_bytes(local_path('data', 'basepatch.apbp'), ignore_version=True)
-            if self.verify(buffer):
-                self.buffer = bytearray(buffer)
-                with open(local_path('basepatch.sfc'), 'wb') as stream:
-                    stream.write(buffer)
-                return
-            raise RuntimeError('Base patch unverified.  Unable to continue.')
-
-        raise RuntimeError('Could not find Base Patch. Unable to continue.')
+        buffer = bsdiff4.patch(get_base_rom_bytes(), delta)
+        if self.verify(buffer):
+            self.buffer = bytearray(buffer)
+            with open(user_path('basepatch.sfc'), 'wb') as stream:
+                stream.write(buffer)
+            return
+        raise RuntimeError('Base patch unverified.  Unable to continue.')
 
     def write_crc(self):
         crc = (sum(self.buffer[:0x7FDC] + self.buffer[0x7FE0:]) + 0x01FE) & 0xFFFF
@@ -186,7 +189,7 @@ def check_enemizer(enemizercli):
         # some time may have passed since the lock was acquired, as such a quick re-check doesn't hurt
         if getattr(check_enemizer, "done", None):
             return
-
+        wanted_version = (7, 1, 0)
         # version info is saved on the lib, for some reason
         library_info = os.path.join(os.path.dirname(enemizercli), "EnemizerCLI.Core.deps.json")
         with open(library_info) as f:
@@ -197,10 +200,11 @@ def check_enemizer(enemizercli):
                 version = lib.split("/")[-1]
                 version = tuple(int(element) for element in version.split("."))
                 enemizer_logger.debug(f"Found Enemizer version {version}")
-                if version < (6, 4, 0):
+                if version < wanted_version:
                     raise Exception(
-                        f"Enemizer found at {enemizercli} is outdated ({info}), please update your Enemizer. "
-                        f"Such as https://github.com/Ijwu/Enemizer/releases")
+                        f"Enemizer found at {enemizercli} is outdated ({version}) < ({wanted_version}), "
+                        f"please update your Enemizer. "
+                        f"Such as from https://github.com/Ijwu/Enemizer/releases")
                 break
         else:
             raise Exception(f"Could not find Enemizer library version information in {library_info}")
@@ -380,7 +384,7 @@ def patch_enemizer(world, player: int, rom: LocalRom, enemizercli, output_direct
 
     max_enemizer_tries = 5
     for i in range(max_enemizer_tries):
-        enemizer_seed = str(world.slot_seeds[player].randint(0, 999999999))
+        enemizer_seed = str(world.per_slot_randoms[player].randint(0, 999999999))
         enemizer_command = [os.path.abspath(enemizercli),
                             '--rom', randopatch_path,
                             '--seed', enemizer_seed,
@@ -410,7 +414,7 @@ def patch_enemizer(world, player: int, rom: LocalRom, enemizercli, output_direct
             continue
 
         for j in range(i + 1, max_enemizer_tries):
-            world.slot_seeds[player].randint(0, 999999999)
+            world.per_slot_randoms[player].randint(0, 999999999)
             # Sacrifice all remaining random numbers that would have been used for unused enemizer tries.
             # This allows for future enemizer bug fixes to NOT affect the rest of the seed's randomness
         break
@@ -497,7 +501,7 @@ def _populate_sprite_table():
                     logging.debug(f"Spritefile {file} could not be loaded as a valid sprite.")
 
             with concurrent.futures.ThreadPoolExecutor() as pool:
-                for dir in [local_path('data', 'sprites', 'alttpr'), local_path('data', 'sprites', 'custom')]:
+                for dir in [user_path('data', 'sprites', 'alttpr'), user_path('data', 'sprites', 'custom')]:
                     for file in os.listdir(dir):
                         pool.submit(load_sprite_from_file, os.path.join(dir, file))
 
@@ -543,25 +547,29 @@ class Sprite():
 
     def get_vanilla_sprite_data(self):
         file_name = get_base_rom_path()
-        base_rom_bytes = bytes(read_rom(open(file_name, "rb")))
+        base_rom_bytes = bytes(read_snes_rom(open(file_name, "rb")))
         Sprite.sprite = base_rom_bytes[0x80000:0x87000]
         Sprite.palette = base_rom_bytes[0xDD308:0xDD380]
         Sprite.glove_palette = base_rom_bytes[0xDEDF5:0xDEDF9]
         Sprite.base_data = Sprite.sprite + Sprite.palette + Sprite.glove_palette
 
     def from_ap_sprite(self, filedata):
-        filedata = filedata.decode("utf-8-sig")
-        import yaml
-        obj = yaml.safe_load(filedata)
-        if obj["min_format_version"] > 1:
-            raise Exception("Sprite file requires an updated reader.")
-        self.author_name = obj["author"]
-        self.name = obj["name"]
-        if obj["data"]:  # skip patching for vanilla content
-            data = bsdiff4.patch(Sprite.base_data, obj["data"])
-            self.sprite = data[:self.sprite_size]
-            self.palette = data[self.sprite_size:self.palette_size]
-            self.glove_palette = data[self.sprite_size + self.palette_size:]
+        # noinspection PyBroadException
+        try:
+            obj = parse_yaml(filedata.decode("utf-8-sig"))
+            if obj["min_format_version"] > 1:
+                raise Exception("Sprite file requires an updated reader.")
+            self.author_name = obj["author"]
+            self.name = obj["name"]
+            if obj["data"]:  # skip patching for vanilla content
+                data = bsdiff4.patch(Sprite.base_data, obj["data"])
+                self.sprite = data[:self.sprite_size]
+                self.palette = data[self.sprite_size:self.palette_size]
+                self.glove_palette = data[self.sprite_size + self.palette_size:]
+        except Exception:
+            logger = logging.getLogger("apsprite")
+            logger.exception("Error parsing apsprite file")
+            self.valid = False
 
     @property
     def author_game_display(self) -> str:
@@ -658,7 +666,7 @@ class Sprite():
 
     @staticmethod
     def parse_zspr(filedata, expected_kind):
-        logger = logging.getLogger('ZSPR')
+        logger = logging.getLogger("ZSPR")
         headerstr = "<4xBHHIHIHH6x"
         headersize = struct.calcsize(headerstr)
         if len(filedata) < headersize:
@@ -666,7 +674,7 @@ class Sprite():
         version, csum, icsum, sprite_offset, sprite_size, palette_offset, palette_size, kind = struct.unpack_from(
             headerstr, filedata)
         if version not in [1]:
-            logger.error('Error parsing ZSPR file: Version %g not supported', version)
+            logger.error("Error parsing ZSPR file: Version %g not supported", version)
             return None
         if kind != expected_kind:
             return None
@@ -675,36 +683,42 @@ class Sprite():
         stream.seek(headersize)
 
         def read_utf16le(stream):
-            "Decodes a null-terminated UTF-16_LE string of unknown size from a stream"
+            """Decodes a null-terminated UTF-16_LE string of unknown size from a stream"""
             raw = bytearray()
             while True:
                 char = stream.read(2)
-                if char in [b'', b'\x00\x00']:
+                if char in [b"", b"\x00\x00"]:
                     break
                 raw += char
-            return raw.decode('utf-16_le')
+            return raw.decode("utf-16_le")
 
-        sprite_name = read_utf16le(stream)
-        author_name = read_utf16le(stream)
-        author_credits_name = stream.read().split(b"\x00", 1)[0].decode()
+        # noinspection PyBroadException
+        try:
+            sprite_name = read_utf16le(stream)
+            author_name = read_utf16le(stream)
+            author_credits_name = stream.read().split(b"\x00", 1)[0].decode()
 
-        # Ignoring the Author Rom name for the time being.
+            # Ignoring the Author Rom name for the time being.
 
-        real_csum = sum(filedata) % 0x10000
-        if real_csum != csum or real_csum ^ 0xFFFF != icsum:
-            logger.warning('ZSPR file has incorrect checksum. It may be corrupted.')
+            real_csum = sum(filedata) % 0x10000
+            if real_csum != csum or real_csum ^ 0xFFFF != icsum:
+                logger.warning("ZSPR file has incorrect checksum. It may be corrupted.")
 
-        sprite = filedata[sprite_offset:sprite_offset + sprite_size]
-        palette = filedata[palette_offset:palette_offset + palette_size]
+            sprite = filedata[sprite_offset:sprite_offset + sprite_size]
+            palette = filedata[palette_offset:palette_offset + palette_size]
 
-        if len(sprite) != sprite_size or len(palette) != palette_size:
-            logger.error('Error parsing ZSPR file: Unexpected end of file')
+            if len(sprite) != sprite_size or len(palette) != palette_size:
+                logger.error("Error parsing ZSPR file: Unexpected end of file")
+                return None
+
+            return sprite, palette, sprite_name, author_name, author_credits_name
+
+        except Exception:
+            logger.exception("Error parsing ZSPR file")
             return None
 
-        return (sprite, palette, sprite_name, author_name, author_credits_name)
-
     def decode_palette(self):
-        "Returns the palettes as an array of arrays of 15 colors"
+        """Returns the palettes as an array of arrays of 15 colors"""
 
         def array_chunk(arr, size):
             return list(zip(*[iter(arr)] * size))
@@ -751,8 +765,8 @@ def get_nonnative_item_sprite(item: str) -> int:
     # https://discord.com/channels/731205301247803413/827141303330406408/852102450822905886
 
 
-def patch_rom(world, rom, player, enemized):
-    local_random = world.slot_seeds[player]
+def patch_rom(world: MultiWorld, rom: LocalRom, player: int, enemized: bool):
+    local_random = world.per_slot_randoms[player]
 
     # patch items
 
@@ -781,11 +795,11 @@ def patch_rom(world, rom, player, enemized):
                             itemid = 0x33
                         elif location.item.compass:
                             itemid = 0x25
-                if world.worlds[player].remote_items:  # remote items does not currently work
-                    itemid = list(location_table.keys()).index(location.name) + 1
-                    assert itemid < 0x100
-                    rom.write_byte(location.player_address, 0xFF)
-                elif location.item.player != player:
+                # if world.worlds[player].remote_items:  # remote items does not currently work
+                #     itemid = list(location_table.keys()).index(location.name) + 1
+                #     assert itemid < 0x100
+                #     rom.write_byte(location.player_address, 0xFF)
+                if location.item.player != player:
                     if location.player_address is not None:
                         rom.write_byte(location.player_address, min(location.item.player, ROM_PLAYER_LIMIT))
                     else:
@@ -873,7 +887,7 @@ def patch_rom(world, rom, player, enemized):
         return 0x53 + int(num), 0x79 + int(num)
 
     credits_total = 216
-    if world.retro[player]:  # Old man cave and Take any caves will count towards collection rate.
+    if world.retro_caves[player]:  # Old man cave and Take any caves will count towards collection rate.
         credits_total += 5
     if world.shop_item_slots[player]:  # Potion shop only counts towards collection rate if included in the shuffle.
         credits_total += 30 if 'w' in world.shop_shuffle[player] else 27
@@ -1018,17 +1032,15 @@ def patch_rom(world, rom, player, enemized):
     # Set overflow items for progressive equipment
     rom.write_bytes(0x180090,
                     [difficulty.progressive_sword_limit if not world.swordless[player] else 0,
-                     overflow_replacement,
-                     difficulty.progressive_shield_limit, overflow_replacement,
-                     difficulty.progressive_armor_limit, overflow_replacement,
-                     difficulty.progressive_bottle_limit, overflow_replacement])
-
-    # Work around for json patch ordering issues - write bow limit separately so that it is replaced in the patch
-    rom.write_bytes(0x180098, [difficulty.progressive_bow_limit, overflow_replacement])
+                     item_table[difficulty.basicsword[-1]].item_code,
+                     difficulty.progressive_shield_limit, item_table[difficulty.basicshield[-1]].item_code,
+                     difficulty.progressive_armor_limit, item_table[difficulty.basicarmor[-1]].item_code,
+                     difficulty.progressive_bottle_limit, overflow_replacement,
+                     difficulty.progressive_bow_limit, item_table[difficulty.basicbow[-1]].item_code])
 
     if difficulty.progressive_bow_limit < 2 and (
             world.swordless[player] or world.logic[player] == 'noglitches'):
-        rom.write_bytes(0x180098, [2, overflow_replacement])
+        rom.write_bytes(0x180098, [2, item_table["Silver Bow"].item_code])
         rom.write_byte(0x180181, 0x01)  # Make silver arrows work only on ganon
         rom.write_byte(0x180182, 0x00)  # Don't auto equip silvers on pickup
 
@@ -1039,7 +1051,7 @@ def patch_rom(world, rom, player, enemized):
         prize_replacements[0xE0] = 0xDF  # Fairy -> heart
         prize_replacements[0xE3] = 0xD8  # Big magic -> small magic
 
-    if world.retro[player]:
+    if world.retro_bow[player]:
         prize_replacements[0xE1] = 0xDA  # 5 Arrows -> Blue Rupee
         prize_replacements[0xE2] = 0xDB  # 10 Arrows -> Red Rupee
 
@@ -1132,7 +1144,7 @@ def patch_rom(world, rom, player, enemized):
         0x12, 0x01, 0x35, 0xFF,  # lamp -> 5 rupees
         0x51, 0x06, 0x52, 0xFF,  # 6 +5 bomb upgrades -> +10 bomb upgrade
         0x53, 0x06, 0x54, 0xFF,  # 6 +5 arrow upgrades -> +10 arrow upgrade
-        0x58, 0x01, 0x36 if world.retro[player] else 0x43, 0xFF,  # silver arrows -> single arrow (red 20 in retro mode)
+        0x58, 0x01, 0x36 if world.retro_bow[player] else 0x43, 0xFF,  # silver arrows -> single arrow (red 20 in retro mode)
         0x3E, difficulty.boss_heart_container_limit, 0x47, 0xff,  # boss heart -> green 20
         0x17, difficulty.heart_piece_limit, 0x47, 0xff,  # piece of heart -> green 20
         0xFF, 0xFF, 0xFF, 0xFF,  # end of table sentinel
@@ -1235,8 +1247,8 @@ def patch_rom(world, rom, player, enemized):
     # assorted fixes
     rom.write_byte(0x1800A2, 0x01 if world.fix_fake_world[
         player] else 0x00)  # Toggle whether to be in real/fake dark world when dying in a DW dungeon before killing aga1
-    rom.write_byte(0x180169,
-                   0x01 if world.lock_aga_door_in_escape else 0x00)  # Lock or unlock aga tower door during escape sequence.
+    # Lock or unlock aga tower door during escape sequence.
+    rom.write_byte(0x180169, 0x00)
     if world.mode[player] == 'inverted':
         rom.write_byte(0x180169, 0x02)  # lock aga/ganon tower door with crystals in inverted
     rom.write_byte(0x180171,
@@ -1248,7 +1260,7 @@ def patch_rom(world, rom, player, enemized):
     rom.write_bytes(0x50563, [0x3F, 0x14])  # disable below ganon chest
     rom.write_byte(0x50599, 0x00)  # disable below ganon chest
     rom.write_bytes(0xE9A5, [0x7E, 0x00, 0x24])  # disable below ganon chest
-    rom.write_byte(0x18008B, 0x01 if world.open_pyramid[player] else 0x00)  # pre-open Pyramid Hole
+    rom.write_byte(0x18008B, 0x01 if world.open_pyramid[player].to_bool(world, player) else 0x00)  # pre-open Pyramid Hole
     rom.write_byte(0x18008C, 0x01 if world.crystals_needed_for_gt[
                                          player] == 0 else 0x00)  # GT pre-opened if crystal requirement is 0
     rom.write_byte(0xF5D73, 0xF0)  # bees are catchable
@@ -1272,12 +1284,12 @@ def patch_rom(world, rom, player, enemized):
     if startingstate.has('Silver Bow', player):
         equip[0x340] = 1
         equip[0x38E] |= 0x60
-        if not world.retro[player]:
+        if not world.retro_bow[player]:
             equip[0x38E] |= 0x80
     elif startingstate.has('Bow', player):
         equip[0x340] = 1
         equip[0x38E] |= 0x20  # progressive flag to get the correct hint in all cases
-        if not world.retro[player]:
+        if not world.retro_bow[player]:
             equip[0x38E] |= 0x80
     if startingstate.has('Silver Arrows', player):
         equip[0x38E] |= 0x40
@@ -1415,7 +1427,7 @@ def patch_rom(world, rom, player, enemized):
         elif item.name in bombs:
             equip[0x343] += bombs[item.name]
         elif item.name in arrows:
-            if world.retro[player]:
+            if world.retro_bow[player]:
                 equip[0x38E] |= 0x80
                 equip[0x377] = 1
             else:
@@ -1529,7 +1541,7 @@ def patch_rom(world, rom, player, enemized):
         "Skull Woods": 0x0080,
         "Swamp Palace": 0x0400,
         "Ice Palace": 0x0040,
-        "Misery Mire'": 0x0100,
+        "Misery Mire": 0x0100,
         "Turtle Rock": 0x0008,
     }
 
@@ -1549,18 +1561,18 @@ def patch_rom(world, rom, player, enemized):
 
     rom.write_byte(0x180172, 0x01 if world.smallkey_shuffle[
                                          player] == smallkey_shuffle.option_universal else 0x00)  # universal keys
-    rom.write_byte(0x18637E, 0x01 if world.retro[player] else 0x00)  # Skip quiver in item shops once bought
-    rom.write_byte(0x180175, 0x01 if world.retro[player] else 0x00)  # rupee bow
-    rom.write_byte(0x180176, 0x0A if world.retro[player] else 0x00)  # wood arrow cost
-    rom.write_byte(0x180178, 0x32 if world.retro[player] else 0x00)  # silver arrow cost
-    rom.write_byte(0x301FC, 0xDA if world.retro[player] else 0xE1)  # rupees replace arrows under pots
-    rom.write_byte(0x30052, 0xDB if world.retro[player] else 0xE2)  # replace arrows in fish prize from bottle merchant
-    rom.write_bytes(0xECB4E, [0xA9, 0x00, 0xEA, 0xEA] if world.retro[player] else [0xAF, 0x77, 0xF3,
+    rom.write_byte(0x18637E, 0x01 if world.retro_bow[player] else 0x00)  # Skip quiver in item shops once bought
+    rom.write_byte(0x180175, 0x01 if world.retro_bow[player] else 0x00)  # rupee bow
+    rom.write_byte(0x180176, 0x0A if world.retro_bow[player] else 0x00)  # wood arrow cost
+    rom.write_byte(0x180178, 0x32 if world.retro_bow[player] else 0x00)  # silver arrow cost
+    rom.write_byte(0x301FC, 0xDA if world.retro_bow[player] else 0xE1)  # rupees replace arrows under pots
+    rom.write_byte(0x30052, 0xDB if world.retro_bow[player] else 0xE2)  # replace arrows in fish prize from bottle merchant
+    rom.write_bytes(0xECB4E, [0xA9, 0x00, 0xEA, 0xEA] if world.retro_bow[player] else [0xAF, 0x77, 0xF3,
                                                                                    0x7E])  # Thief steals rupees instead of arrows
-    rom.write_bytes(0xF0D96, [0xA9, 0x00, 0xEA, 0xEA] if world.retro[player] else [0xAF, 0x77, 0xF3,
+    rom.write_bytes(0xF0D96, [0xA9, 0x00, 0xEA, 0xEA] if world.retro_bow[player] else [0xAF, 0x77, 0xF3,
                                                                                    0x7E])  # Pikit steals rupees instead of arrows
     rom.write_bytes(0xEDA5,
-                    [0x35, 0x41] if world.retro[player] else [0x43, 0x44])  # Chest game gives rupees instead of arrows
+                    [0x35, 0x41] if world.retro_bow[player] else [0x43, 0x44])  # Chest game gives rupees instead of arrows
     digging_game_rng = local_random.randint(1, 30)  # set rng for digging game
     rom.write_byte(0x180020, digging_game_rng)
     rom.write_byte(0xEFD95, digging_game_rng)
@@ -1634,7 +1646,7 @@ def patch_rom(world, rom, player, enemized):
         rom.write_byte(0xFEE41, 0x2A)  # preopen bombable exit
 
     if world.tile_shuffle[player]:
-        tile_set = TileSet.get_random_tile_set(world.slot_seeds[player])
+        tile_set = TileSet.get_random_tile_set(world.per_slot_randoms[player])
         rom.write_byte(0x4BA21, tile_set.get_speed())
         rom.write_byte(0x4BA1D, tile_set.get_len())
         rom.write_bytes(0x4BA2A, tile_set.get_bytes())
@@ -1642,20 +1654,20 @@ def patch_rom(world, rom, player, enemized):
     write_strings(rom, world, player)
 
     # remote items flag, does not currently work
-    rom.write_byte(0x18637C, int(world.worlds[player].remote_items))
+    rom.write_byte(0x18637C, 0)
 
     # set rom name
     # 21 bytes
     from Main import __version__
-    # TODO: Adjust Enemizer to accept AP and AD
-    rom.name = bytearray(f'BM{__version__.replace(".", "")[0:3]}_{player}_{world.seed:11}\0', 'utf8')[:21]
+    rom.name = bytearray(f'AP{__version__.replace(".", "")[0:3]}_{player}_{world.seed:11}\0', 'utf8')[:21]
     rom.name.extend([0] * (21 - len(rom.name)))
     rom.write_bytes(0x7FC0, rom.name)
 
     # set player names
-    for p in range(1, min(world.players, ROM_PLAYER_LIMIT) + 1):
+    encoded_players = world.players + len(world.groups)
+    for p in range(1, min(encoded_players, ROM_PLAYER_LIMIT) + 1):
         rom.write_bytes(0x195FFC + ((p - 1) * 32), hud_format_text(world.player_name[p]))
-    if world.players > ROM_PLAYER_LIMIT:
+    if encoded_players > ROM_PLAYER_LIMIT:
         rom.write_bytes(0x195FFC + ((ROM_PLAYER_LIMIT - 1) * 32), hud_format_text("Archipelago"))
 
     # Write title screen Code
@@ -1678,7 +1690,7 @@ def patch_race_rom(rom, world, player):
     rom.encrypt(world, player)
 
 
-def get_price_data(price: int, price_type: int) -> bytes:
+def get_price_data(price: int, price_type: int) -> List[int]:
     if price_type != ShopPriceType.Rupees:
         # Set special price flag 0x8000
         # Then set the type of price we're setting 0x7F00 (this starts from Hearts, not Rupees, subtract 1)
@@ -1724,11 +1736,11 @@ def write_custom_shops(rom, world, player):
             price_data = get_price_data(item['price'], item["price_type"])
             replacement_price_data = get_price_data(item['replacement_price'], item['replacement_price_type'])
             slot = 0 if shop.type == ShopType.TakeAny else index
-            if not item['item'] in item_table:  # item not native to ALTTP
+            if item['player'] and world.game[item['player']] != "A Link to the Past":  # item not native to ALTTP
                 item_code = get_nonnative_item_sprite(item['item'])
             else:
                 item_code = ItemFactory(item['item'], player).code
-                if item['item'] == 'Single Arrow' and item['player'] == 0 and world.retro[player]:
+                if item['item'] == 'Single Arrow' and item['player'] == 0 and world.retro_bow[player]:
                     rom.write_byte(0x186500 + shop.sram_offset + slot, arrow_mask)
 
             item_data = [shop_id, item_code] + price_data + \
@@ -1741,7 +1753,7 @@ def write_custom_shops(rom, world, player):
     items_data.extend([0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF])
     rom.write_bytes(0x184900, items_data)
 
-    if world.retro[player]:
+    if world.retro_bow[player]:
         retro_shop_slots.append(0xFF)
         rom.write_bytes(0x186540, retro_shop_slots)
 
@@ -1763,11 +1775,60 @@ def hud_format_text(text):
         output += b'\x7f\x00'
     return output[:32]
 
+def apply_oof_sfx(rom, oof: str):
+    with open(oof, 'rb') as stream:
+        oof_bytes = bytearray(stream.read())
 
-def apply_rom_settings(rom, beep, color, quickswap, menuspeed, music: bool, sprite: str, palettes_options,
+    oof_len_bytes = len(oof_bytes).to_bytes(2, byteorder='little')
+
+    # Credit to kan for this method, and Nyx for initial C# implementation
+    # this is ported from, with both of their permission for use by AP
+    # Original C# implementation:
+    # https://github.com/Nyx-Edelstein/The-Unachievable-Ideal-of-Chibi-Elf-Grunting-Noises-When-They-Get-Punched-A-Z3-Rom-Patcher
+
+    # Jump execution from the SPC load routine to new code
+    rom.write_bytes(0x8CF, [0x5C, 0x00, 0x80, 0x25])
+
+    # Change the pointer for instrument 9 in SPC memory to point to the new data we'll be inserting:
+    rom.write_bytes(0x1A006C, [0x88, 0x31, 0x00, 0x00])
+
+    # Insert a sigil so we can branch on it later
+    # We will recover the value it overwrites after we're done with insertion
+    rom.write_bytes(0x1AD38C, [0xBE, 0xBE])
+
+    # Change the "oof" sound effect to use instrument 9:
+    rom.write_byte(0x1A9C4E, 0x09)
+
+    # Correct the pitch shift value:
+    rom.write_byte(0x1A9C51, 0xB6)
+
+    # Modify parameters of instrument 9
+    # (I don't actually understand this part, they're just magic values to me)
+    rom.write_bytes(0x1A9CAE, [0x7F, 0x7F, 0x00, 0x10, 0x1A, 0x00, 0x00, 0x7F, 0x01])
+
+    # Hook from SPC load routine:
+    #  * Check for the read of the sigil
+    #  * Once we find it, change the SPC load routine's data pointer to read from the location containing the new sample
+    #  * Note: XXXX in the string below is a placeholder for the number of bytes in the .brr sample (little endian)
+    #  * Another sigil "$EBEB" is inserted at the end of the data
+    #  * When the second sigil is read, we know we're done inserting our data so we can change the data pointer back
+    #  * Effect: The new data gets loaded into SPC memory without having to relocate the SPC load routine
+    # Slight variation from VT-compatible algorithm: We need to change the data pointer to $00 00 35 and load 538E into Y to pick back up where we left off
+    rom.write_bytes(0x128000, [0xB7, 0x00, 0xC8, 0xC8, 0xC9, 0xBE, 0xBE, 0xF0, 0x09, 0xC9, 0xEB, 0xEB, 0xF0, 0x1B, 0x5C, 0xD3, 0x88, 0x00, 0xA2, oof_len_bytes[0], oof_len_bytes[1], 0xA9, 0x80, 0x25, 0x85, 0x01, 0xA9, 0x3A, 0x80, 0x85, 0x00, 0xA0, 0x00, 0x00, 0xA9, 0x88, 0x31, 0x5C, 0xD8, 0x88, 0x00, 0xA9, 0x80, 0x35, 0x64, 0x00, 0x85, 0x01, 0xA2, 0x00, 0x00, 0xA0, 0x8E, 0x53, 0x5C, 0xD4, 0x88, 0x00])
+
+    # The new sample data
+    # (We need to insert the second sigil at the end)
+    rom.write_bytes(0x12803A, oof_bytes)
+    rom.write_bytes(0x12803A + len(oof_bytes), [0xEB, 0xEB])
+	
+	#Enemizer patch: prevent Enemizer from overwriting $3188 in SPC memory with an unused sound effect ("WHAT")
+    rom.write_bytes(0x13000D, [0x00, 0x00, 0x00, 0x08])
+	
+
+def apply_rom_settings(rom, beep, color, quickswap, menuspeed, music: bool, sprite: str, oof: str, palettes_options,
                        world=None, player=1, allow_random_on_event=False, reduceflashing=False,
-                       triforcehud: str = None, deathlink: bool = False):
-    local_random = random if not world else world.slot_seeds[player]
+                       triforcehud: str = None, deathlink: bool = False, allowcollect: bool = False):
+    local_random = random if not world else world.per_slot_randoms[player]
     disable_music: bool = not music
     # enable instant item menu
     if menuspeed == 'instant':
@@ -1900,10 +1961,16 @@ def apply_rom_settings(rom, beep, color, quickswap, menuspeed, music: bool, spri
         elif palettes_options['dungeon'] == 'random':
             randomize_uw_palettes(rom, local_random)
 
-    rom.write_byte(0x18008D, int(deathlink))
+    rom.write_byte(0x18008D, (0b00000001 if deathlink else 0) |
+                   #          0b00000010 is already used for death_link_allow_survive in super metroid.
+                             (0b00000100 if allowcollect else 0))
 
     apply_random_sprite_on_event(rom, sprite, local_random, allow_random_on_event,
                                  world.sprite_pool[player] if world else [])
+
+    if oof is not None:
+        apply_oof_sfx(rom, oof)
+
     if isinstance(rom, LocalRom):
         rom.write_crc()
 
@@ -2090,7 +2157,9 @@ def write_string_to_rom(rom, target, string):
 
 
 def write_strings(rom, world, player):
-    local_random = world.slot_seeds[player]
+    from . import ALTTPWorld
+    local_random = world.per_slot_randoms[player]
+    w: ALTTPWorld = world.worlds[player]
 
     tt = TextTable()
     tt.removeUnwantedText()
@@ -2119,16 +2188,19 @@ def write_strings(rom, world, player):
                 hint += f" for {world.player_name[dest.player]}"
         return hint
 
-    # For hints, first we write hints about entrances, some from the inconvenient list others from all reasonable entrances.
-    if world.hints[player]:
+    if world.scams[player].gives_king_zora_hint:
         # Zora hint
         zora_location = world.get_location("King Zora", player)
         tt['zora_tells_cost'] = f"You got 500 rupees to buy {hint_text(zora_location.item)}" \
                                 f"\n  ≥ Duh\n    Oh carp\n{{CHOICE}}"
+    if world.scams[player].gives_bottle_merchant_hint:
         # Bottle Vendor hint
         vendor_location = world.get_location("Bottle Merchant", player)
         tt['bottle_vendor_choice'] = f"I gots {hint_text(vendor_location.item)}\nYous gots 100 rupees?" \
                                      f"\n  ≥ I want\n    no way!\n{{CHOICE}}"
+
+    # First we write hints about entrances, some from the inconvenient list others from all reasonable entrances.
+    if world.hints[player]:
         if world.hints[player].value >= 2:
             if world.hints[player] == "full":
                 tt['sign_north_of_links_house'] = '> Randomizer The telepathic tiles have hints!'
@@ -2271,21 +2343,21 @@ def write_strings(rom, world, player):
                     this_hint = location + ' contains ' + hint_text(world.get_location(location, player).item) + '.'
                     tt[hint_locations.pop(0)] = this_hint
 
-            # Lastly we write hints to show where certain interesting items are. It is done the way it is to re-use the silver code and also to give one hint per each type of item regardless of how many exist. This supports many settings well.
+            # Lastly we write hints to show where certain interesting items are.
             items_to_hint = RelevantItems.copy()
-            if world.smallkey_shuffle[player]:
-                items_to_hint.extend(SmallKeys)
-            if world.bigkey_shuffle[player]:
-                items_to_hint.extend(BigKeys)
-            local_random.shuffle(items_to_hint)
+            if world.smallkey_shuffle[player].hints_useful:
+                items_to_hint |= item_name_groups["Small Keys"]
+            if world.bigkey_shuffle[player].hints_useful:
+                items_to_hint |= item_name_groups["Big Keys"]
+
             if world.hints[player] == "full":
-                hint_count = len(hint_locations) # fill all remaining hint locations with Item hints.
+                hint_count = len(hint_locations)  # fill all remaining hint locations with Item hints.
             else:
                 hint_count = 5 if world.shuffle[player] not in ['vanilla', 'dungeonssimple', 'dungeonsfull',
                                                                 'dungeonscrossed'] else 8
             hint_count = min(hint_count, len(items_to_hint), len(hint_locations))
             if hint_count:
-                locations = world.find_items_in_locations(set(items_to_hint), player)
+                locations = world.find_items_in_locations(items_to_hint, player, True)
                 local_random.shuffle(locations)
                 for x in range(min(hint_count, len(locations))):
                     this_location = locations.pop()
@@ -2302,7 +2374,7 @@ def write_strings(rom, world, player):
 
     # We still need the older hints of course. Those are done here.
 
-    silverarrows = world.find_item_locations('Silver Bow', player)
+    silverarrows = world.find_item_locations('Silver Bow', player, True)
     local_random.shuffle(silverarrows)
     silverarrow_hint = (
             ' %s?' % hint_text(silverarrows[0]).replace('Ganon\'s', 'my')) if silverarrows else '?\nI think not!'
@@ -2310,13 +2382,13 @@ def write_strings(rom, world, player):
     tt['ganon_phase_3_no_silvers_alt'] = 'Did you find the silver arrows%s' % silverarrow_hint
     if world.worlds[player].has_progressive_bows and (world.difficulty_requirements[player].progressive_bow_limit >= 2 or (
             world.swordless[player] or world.logic[player] == 'noglitches')):
-        prog_bow_locs = world.find_item_locations('Progressive Bow', player)
-        world.slot_seeds[player].shuffle(prog_bow_locs)
+        prog_bow_locs = world.find_item_locations('Progressive Bow', player, True)
+        world.per_slot_randoms[player].shuffle(prog_bow_locs)
         found_bow = False
         found_bow_alt = False
         while prog_bow_locs and not (found_bow and found_bow_alt):
             bow_loc = prog_bow_locs.pop()
-            if bow_loc.item.code == 0x65:
+            if bow_loc.item.code == 0x65 or (found_bow and not prog_bow_locs):
                 found_bow_alt = True
                 target = 'ganon_phase_3_no_silvers'
             else:
@@ -2416,7 +2488,8 @@ def write_strings(rom, world, player):
     pedestal_text = 'Some Hot Air' if pedestalitem is None else hint_text(pedestalitem,
                                                                           True) if pedestalitem.pedestal_hint_text is not None else 'Unknown Item'
     tt['mastersword_pedestal_translated'] = pedestal_text
-    pedestal_credit_text = 'and the Hot Air' if pedestalitem is None else pedestalitem.pedestal_credit_text if pedestalitem.pedestal_credit_text is not None else 'and the Unknown Item'
+    pedestal_credit_text = 'and the Hot Air' if pedestalitem is None else \
+        w.pedestal_credit_texts.get(pedestalitem.code, 'and the Unknown Item')
 
     etheritem = world.get_location('Ether Tablet', player).item
     ether_text = 'Some Hot Air' if etheritem is None else hint_text(etheritem,
@@ -2444,20 +2517,24 @@ def write_strings(rom, world, player):
     credits = Credits()
 
     sickkiditem = world.get_location('Sick Kid', player).item
-    sickkiditem_text = local_random.choice(
-        SickKid_texts) if sickkiditem is None or sickkiditem.sickkid_credit_text is None else sickkiditem.sickkid_credit_text
+    sickkiditem_text = local_random.choice(SickKid_texts) \
+        if sickkiditem is None or sickkiditem.code not in w.sickkid_credit_texts \
+        else w.sickkid_credit_texts[sickkiditem.code]
 
     zoraitem = world.get_location('King Zora', player).item
-    zoraitem_text = local_random.choice(
-        Zora_texts) if zoraitem is None or zoraitem.zora_credit_text is None else zoraitem.zora_credit_text
+    zoraitem_text = local_random.choice(Zora_texts) \
+        if zoraitem is None or zoraitem.code not in w.zora_credit_texts \
+        else w.zora_credit_texts[zoraitem.code]
 
     magicshopitem = world.get_location('Potion Shop', player).item
-    magicshopitem_text = local_random.choice(
-        MagicShop_texts) if magicshopitem is None or magicshopitem.magicshop_credit_text is None else magicshopitem.magicshop_credit_text
+    magicshopitem_text = local_random.choice(MagicShop_texts) \
+        if magicshopitem is None or magicshopitem.code not in w.magicshop_credit_texts \
+        else w.magicshop_credit_texts[magicshopitem.code]
 
     fluteboyitem = world.get_location('Flute Spot', player).item
-    fluteboyitem_text = local_random.choice(
-        FluteBoy_texts) if fluteboyitem is None or fluteboyitem.fluteboy_credit_text is None else fluteboyitem.fluteboy_credit_text
+    fluteboyitem_text = local_random.choice(FluteBoy_texts) \
+        if fluteboyitem is None or fluteboyitem.code not in w.fluteboy_credit_texts \
+        else w.fluteboy_credit_texts[fluteboyitem.code]
 
     credits.update_credits_line('castle', 0, local_random.choice(KingsReturn_texts))
     credits.update_credits_line('sanctuary', 0, local_random.choice(Sanctuary_texts))
@@ -2873,88 +2950,10 @@ InconvenientLocations = ['Spike Cave',
 InconvenientVanillaLocations = ['Graveyard Cave',
                                 'Mimic Cave']
 
-RelevantItems = ['Bow',
-                 'Progressive Bow',
-                 'Book of Mudora',
-                 'Hammer',
-                 'Hookshot',
-                 'Magic Mirror',
-                 'Flute',
-                 'Pegasus Boots',
-                 'Power Glove',
-                 'Cape',
-                 'Mushroom',
-                 'Shovel',
-                 'Lamp',
-                 'Magic Powder',
-                 'Moon Pearl',
-                 'Cane of Somaria',
-                 'Fire Rod',
-                 'Flippers',
-                 'Ice Rod',
-                 'Titans Mitts',
-                 'Ether',
-                 'Bombos',
-                 'Quake',
-                 'Bottle',
-                 'Bottle (Red Potion)',
-                 'Bottle (Green Potion)',
-                 'Bottle (Blue Potion)',
-                 'Bottle (Fairy)',
-                 'Bottle (Bee)',
-                 'Bottle (Good Bee)',
-                 'Master Sword',
-                 'Tempered Sword',
-                 'Fighter Sword',
-                 'Golden Sword',
-                 'Progressive Sword',
-                 'Progressive Glove',
-                 'Master Sword',
-                 'Power Star',
-                 'Triforce Piece',
-                 'Single Arrow',
-                 'Blue Mail',
-                 'Red Mail',
-                 'Progressive Mail',
-                 'Blue Boomerang',
-                 'Red Boomerang',
-                 'Blue Shield',
-                 'Red Shield',
-                 'Mirror Shield',
-                 'Progressive Shield',
-                 'Bug Catching Net',
-                 'Cane of Byrna',
-                 'Magic Upgrade (1/2)',
-                 'Magic Upgrade (1/4)'
-                 ]
 
-SmallKeys = ['Small Key (Eastern Palace)',
-             'Small Key (Hyrule Castle)',
-             'Small Key (Desert Palace)',
-             'Small Key (Tower of Hera)',
-             'Small Key (Agahnims Tower)',
-             'Small Key (Palace of Darkness)',
-             'Small Key (Thieves Town)',
-             'Small Key (Swamp Palace)',
-             'Small Key (Skull Woods)',
-             'Small Key (Ice Palace)',
-             'Small Key (Misery Mire)',
-             'Small Key (Turtle Rock)',
-             'Small Key (Ganons Tower)',
-             ]
+RelevantItems = progression_items - {"Triforce", "Activated Flute"} - item_name_groups["Small Keys"] - item_name_groups["Big Keys"] \
+             | item_name_groups["Mails"] | item_name_groups["Shields"]
 
-BigKeys = ['Big Key (Eastern Palace)',
-           'Big Key (Desert Palace)',
-           'Big Key (Tower of Hera)',
-           'Big Key (Palace of Darkness)',
-           'Big Key (Thieves Town)',
-           'Big Key (Swamp Palace)',
-           'Big Key (Skull Woods)',
-           'Big Key (Ice Palace)',
-           'Big Key (Misery Mire)',
-           'Big Key (Turtle Rock)',
-           'Big Key (Ganons Tower)'
-           ]
 
 hash_alphabet = [
     "Bow", "Boomerang", "Hookshot", "Bomb", "Mushroom", "Powder", "Rod", "Pendant", "Bombos", "Ether", "Quake",
@@ -2963,16 +2962,26 @@ hash_alphabet = [
 ]
 
 
+class LttPDeltaPatch(worlds.Files.APDeltaPatch):
+    hash = LTTPJPN10HASH
+    game = "A Link to the Past"
+    patch_file_ending = ".aplttp"
+
+    @classmethod
+    def get_source_data(cls) -> bytes:
+        return get_base_rom_bytes()
+
+
 def get_base_rom_bytes(file_name: str = "") -> bytes:
     base_rom_bytes = getattr(get_base_rom_bytes, "base_rom_bytes", None)
     if not base_rom_bytes:
         file_name = get_base_rom_path(file_name)
-        base_rom_bytes = bytes(read_rom(open(file_name, "rb")))
+        base_rom_bytes = bytes(read_snes_rom(open(file_name, "rb")))
 
         basemd5 = hashlib.md5()
         basemd5.update(base_rom_bytes)
-        if JAP10HASH != basemd5.hexdigest():
-            raise Exception('Supplied Base Rom does not match known MD5 for JAP(1.0) release. '
+        if LTTPJPN10HASH != basemd5.hexdigest():
+            raise Exception('Supplied Base Rom does not match known MD5 for Japan(1.0) release. '
                             'Get the correct game and version, then dump it')
         get_base_rom_bytes.base_rom_bytes = base_rom_bytes
     return base_rom_bytes
@@ -2983,5 +2992,5 @@ def get_base_rom_path(file_name: str = "") -> str:
     if not file_name:
         file_name = options["lttp_options"]["rom_file"]
     if not os.path.exists(file_name):
-        file_name = Utils.local_path(file_name)
+        file_name = Utils.user_path(file_name)
     return file_name

@@ -1,6 +1,6 @@
 from datetime import datetime
 from uuid import UUID, uuid4
-from pony.orm import *
+from pony.orm import Database, PrimaryKey, Required, Set, Optional, buffer, LongStr
 
 db = Database()
 
@@ -12,7 +12,7 @@ STATE_ERROR = -1
 class Slot(db.Entity):
     id = PrimaryKey(int, auto=True)
     player_id = Required(int)
-    player_name = Required(str, 16)
+    player_name = Required(str)
     data = Optional(bytes, lazy=True)
     seed = Optional('Seed')
     game = Required(str)
@@ -27,8 +27,9 @@ class Room(db.Entity):
     seed = Required('Seed', index=True)
     multisave = Optional(buffer, lazy=True)
     show_spoiler = Required(int, default=0)  # 0 -> never, 1 -> after completion, -> 2 always
-    timeout = Required(int, default=lambda: 6 * 60 * 60)  # seconds since last activity to shutdown
+    timeout = Required(int, default=lambda: 2 * 60 * 60)  # seconds since last activity to shutdown
     tracker = Optional(UUID, index=True)
+    # Port special value -1 means the server errored out. Another attempt can be made with a page refresh
     last_port = Optional(int, default=lambda: 0)
 
 
@@ -55,3 +56,8 @@ class Generation(db.Entity):
     options = Required(buffer, lazy=True)
     meta = Required(LongStr, default=lambda: "{\"race\": false}")
     state = Required(int, default=0, index=True)
+
+
+class GameDataPackage(db.Entity):
+    checksum = PrimaryKey(str)
+    data = Required(bytes)

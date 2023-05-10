@@ -1,7 +1,9 @@
 # ToDo: With shuffle_ganon option, prevent gtower from linking to an exit only location through a 2 entrance cave.
 from collections import defaultdict
-from worlds.alttp.OverworldGlitchRules import overworld_glitch_connections
-from worlds.alttp.UnderworldGlitchRules import underworld_glitch_connections
+
+from .OverworldGlitchRules import overworld_glitch_connections
+from .UnderworldGlitchRules import underworld_glitch_connections
+
 
 def link_entrances(world, player):
     connect_two_way(world, 'Links House', 'Links House Exit', player) # unshuffled. For now
@@ -2242,7 +2244,7 @@ def crossed_shuffle_dungeons(world, player: int):
         connect_caves(world, dungeon_entrances, [], [('Hyrule Castle Exit (West)', 'Hyrule Castle Exit (East)')], player)
 
     connect_caves(world, dungeon_entrances, [], dungeon_exits, player)
-    assert not dungeon_exits # make sure all exits are accounted for
+    assert not dungeon_exits , "make sure all exits are accounted for"
 
 def inverted_crossed_shuffle_dungeons(world, player: int):
 
@@ -2293,7 +2295,7 @@ def inverted_crossed_shuffle_dungeons(world, player: int):
     connect_mandatory_exits(world, dungeon_entrances, dungeon_exits, lw_dungeon_entrances_must_exit, player)
 
     connect_caves(world, dungeon_entrances, [], dungeon_exits, player)
-    assert not dungeon_exits # make sure all exits are accounted for
+    assert not dungeon_exits, "make sure all exits are accounted for"
 
 def unbias_some_entrances(world, Dungeon_Exits, Cave_Exits, Old_Man_House, Cave_Three_Exits):
     def shuffle_lists_in_list(ls):
@@ -3834,14 +3836,21 @@ inverted_default_dungeon_connections = [('Desert Palace Entrance (South)', 'Dese
 
 # Regions that can be required to access entrances through rules, not paths
 indirect_connections = {
-    'Turtle Rock (Top)': 'Turtle Rock',
-    'East Dark World': 'Pyramid Fairy',
-    'Big Bomb Shop': 'Pyramid Fairy',
-    'Dark Desert': 'Pyramid Fairy',
-    'West Dark World': 'Pyramid Fairy',
-    'South Dark World': 'Pyramid Fairy',
-    'Light World': 'Pyramid Fairy',
-    'Old Man Cave': 'Old Man S&Q'
+    "Turtle Rock (Top)": "Turtle Rock",
+    "East Dark World": "Pyramid Fairy",
+    "Dark Desert": "Pyramid Fairy",
+    "West Dark World": "Pyramid Fairy",
+    "South Dark World": "Pyramid Fairy",
+    "Light World": "Pyramid Fairy",
+    "Old Man Cave": "Old Man S&Q"
+}
+
+indirect_connections_inverted = {
+    "Inverted Big Bomb Shop": "Pyramid Fairy",
+}
+
+indirect_connections_not_inverted = {
+    "Big Bomb Shop": "Pyramid Fairy",
 }
 
 # format:

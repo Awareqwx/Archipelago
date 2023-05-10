@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import json
 import time
 from asyncio import StreamReader, StreamWriter
@@ -6,17 +7,20 @@ from typing import List
 
 
 import Utils
-from CommonClient import CommonContext, server_loop, gui_enabled, console_loop, ClientCommandProcessor, logger, \
+from Utils import async_start
+from CommonClient import CommonContext, server_loop, gui_enabled, ClientCommandProcessor, logger, \
     get_base_parser
 
 SYSTEM_MESSAGE_ID = 0
 
-CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart ff1_connector.lua"
-CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure ff1_connector.lua is running"
-CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart ff1_connector.lua"
+CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart connector_ff1.lua"
+CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure connector_ff1.lua is running"
+CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart connector_ff1.lua"
 CONNECTION_TENTATIVE_STATUS = "Initial Connection Made"
 CONNECTION_CONNECTED_STATUS = "Connected"
 CONNECTION_INITIAL_STATUS = "Connection has not been initiated"
+
+DISPLAY_MSGS = True
 
 
 class FF1CommandProcessor(ClientCommandProcessor):
@@ -28,9 +32,16 @@ class FF1CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, FF1Context):
             logger.info(f"NES Status: {self.ctx.nes_status}")
 
+    def _cmd_toggle_msgs(self):
+        """Toggle displaying messages in bizhawk"""
+        global DISPLAY_MSGS
+        DISPLAY_MSGS = not DISPLAY_MSGS
+        logger.info(f"Messages are now {'enabled' if DISPLAY_MSGS  else 'disabled'}")
+
 
 class FF1Context(CommonContext):
     command_processor = FF1CommandProcessor
+    game = 'Final Fantasy'
     items_handling = 0b111  # full remote
 
     def __init__(self, server_address, password):
@@ -40,8 +51,8 @@ class FF1Context(CommonContext):
         self.messages = {}
         self.locations_array = None
         self.nes_status = CONNECTION_INITIAL_STATUS
-        self.game = 'Final Fantasy'
         self.awaiting_rom = False
+        self.display_msgs = True
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -54,43 +65,51 @@ class FF1Context(CommonContext):
         await self.send_connect()
 
     def _set_message(self, msg: str, msg_id: int):
-        self.messages[(time.time(), msg_id)] = msg
+        if DISPLAY_MSGS:
+            self.messages[time.time(), msg_id] = msg
 
     def on_package(self, cmd: str, args: dict):
         if cmd == 'Connected':
-            self.game = self.games.get(self.slot, None)
-            asyncio.create_task(parse_locations(self.locations_array, self, True))
+            async_start(parse_locations(self.locations_array, self, True))
         elif cmd == 'Print':
             msg = args['text']
             if ': !' not in msg:
                 self._set_message(msg, SYSTEM_MESSAGE_ID)
-        elif cmd == "ReceivedItems":
-            msg = f"Received {', '.join([self.item_name_getter(item.item) for item in args['items']])}"
-            self._set_message(msg, SYSTEM_MESSAGE_ID)
-        elif cmd == 'PrintJSON':
-            print_type = args['type']
-            item = args['item']
-            receiving_player_id = args['receiving']
-            receiving_player_name = self.player_names[receiving_player_id]
-            sending_player_id = item.player
-            sending_player_name = self.player_names[item.player]
-            if print_type == 'Hint':
-                msg = f"Hint: Your {self.item_name_getter(item.item)} is at" \
-                      f" {self.player_names[item.player]}'s {self.location_name_getter(item.location)}"
+
+    def on_print_json(self, args: dict):
+        if self.ui:
+            self.ui.print_json(copy.deepcopy(args["data"]))
+        else:
+            text = self.jsontotextparser(copy.deepcopy(args["data"]))
+            logger.info(text)
+        relevant = args.get("type", None) in {"Hint", "ItemSend"}
+        if relevant:
+            item = args["item"]
+            # goes to this world
+            if self.slot_concerns_self(args["receiving"]):
+                relevant = True
+            # found in this world
+            elif self.slot_concerns_self(item.player):
+                relevant = True
+            # not related
+            else:
+                relevant = False
+            if relevant:
+                item = args["item"]
+                msg = self.raw_text_parser(copy.deepcopy(args["data"]))
                 self._set_message(msg, item.item)
-            elif print_type == 'ItemSend' and receiving_player_id != self.slot:
-                if sending_player_id == self.slot:
-                    if receiving_player_id == self.slot:
-                        msg = f"You found your own {self.item_name_getter(item.item)}"
-                    else:
-                        msg = f"You sent {self.item_name_getter(item.item)} to {receiving_player_name}"
-                else:
-                    if receiving_player_id == sending_player_id:
-                        msg = f"{sending_player_name} found their {self.item_name_getter(item.item)}"
-                    else:
-                        msg = f"{sending_player_name} sent {self.item_name_getter(item.item)} to " \
-                              f"{receiving_player_name}"
-                self._set_message(msg, item.item)
+
+    def run_gui(self):
+        from kvui import GameManager
+
+        class FF1Manager(GameManager):
+            logging_pairs = [
+                ("Client", "Archipelago")
+            ]
+            base_title = "Archipelago Final Fantasy 1 Client"
+
+        self.ui = FF1Manager(self)
+        self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
 
 
 def get_payload(ctx: FF1Context):
@@ -129,13 +148,13 @@ async def parse_locations(locations_array: List[int], ctx: FF1Context, force: bo
                 index -= 0x200
                 flag = 0x02
 
-            # print(f"Location: {ctx.location_name_getter(location)}")
+            # print(f"Location: {ctx.location_names[location]}")
             # print(f"Index: {str(hex(index))}")
             # print(f"value: {locations_array[index] & flag != 0}")
             if locations_array[index] & flag != 0:
                 locations_checked.append(location)
         if locations_checked:
-            # print([ctx.location_name_getter(location) for location in locations_checked])
+            # print([ctx.location_names[location] for location in locations_checked])
             await ctx.send_msgs([
                 {"cmd": "LocationChecks",
                  "locations": locations_checked}
@@ -162,9 +181,12 @@ async def nes_sync_task(ctx: FF1Context):
                     # print(data_decoded)
                     if ctx.game is not None and 'locations' in data_decoded:
                         # Not just a keep alive ping, parse
-                        asyncio.create_task(parse_locations(data_decoded['locations'], ctx, False))
+                        async_start(parse_locations(data_decoded['locations'], ctx, False))
                     if not ctx.auth:
                         ctx.auth = ''.join([chr(i) for i in data_decoded['playerName'] if i != 0])
+                        if ctx.auth == '':
+                            logger.info("Invalid ROM detected. No player name built into the ROM. Please regenerate"
+                                        "the ROM using the same link but adding your slot name")
                         if ctx.awaiting_rom:
                             await ctx.server_auth(False)
                 except asyncio.TimeoutError:
@@ -215,18 +237,15 @@ if __name__ == '__main__':
     # Text Mode to use !hint and such with games that have no text entry
     Utils.init_logging("FF1Client")
 
+    options = Utils.get_options()
+    DISPLAY_MSGS = options["ffr_options"]["display_msgs"]
+
     async def main(args):
         ctx = FF1Context(args.connect, args.password)
         ctx.server_task = asyncio.create_task(server_loop(ctx), name="ServerLoop")
         if gui_enabled:
-            input_task = None
-            from kvui import FF1Manager
-            ctx.ui = FF1Manager(ctx)
-            ui_task = asyncio.create_task(ctx.ui.async_run(), name="UI")
-        else:
-            input_task = asyncio.create_task(console_loop(ctx), name="Input")
-            ui_task = None
-
+            ctx.run_gui()
+        ctx.run_cli()
         ctx.nes_sync_task = asyncio.create_task(nes_sync_task(ctx), name="NES Sync")
 
         await ctx.exit_event.wait()
@@ -237,20 +256,12 @@ if __name__ == '__main__':
         if ctx.nes_sync_task:
             await ctx.nes_sync_task
 
-        if ui_task:
-            await ui_task
-
-        if input_task:
-            input_task.cancel()
-
 
     import colorama
 
     parser = get_base_parser()
-    args, rest = parser.parse_known_args()
+    args = parser.parse_args()
     colorama.init()
 
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main(args))
-    loop.close()
+    asyncio.run(main(args))
     colorama.deinit()

@@ -4,15 +4,18 @@ from Options import OptionDict
 
 
 class Locations(OptionDict):
-    displayname = "locations"
+    """to roll settings go to https://finalfantasyrandomizer.com/"""
+    display_name = "locations"
 
 
 class Items(OptionDict):
-    displayname = "items"
+    """to roll settings go to https://finalfantasyrandomizer.com/"""
+    display_name = "items"
 
 
 class Rules(OptionDict):
-    displayname = "rules"
+    """to roll settings go to https://finalfantasyrandomizer.com/"""
+    display_name = "rules"
 
 
 ff1_options: Dict[str, OptionDict] = {
