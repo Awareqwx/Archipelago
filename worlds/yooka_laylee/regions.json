@@ -1,0 +1,14 @@
+{
+	"Hivory Towers": ["Tribalstack Tropics", "Glitterglaze Glacier", "Moodymaze Marsh", "Capital Cashino", "Galleon Galaxy", "Endgame"],
+	"Tribalstack Tropics": ["Expanded Tropics"],
+	"Expanded Tropics": [],
+	"Glitterglaze Glacier": ["Expanded Glacier"],
+	"Expanded Glacier": [],
+	"Moodymaze Marsh": ["Expanded Marsh"],
+	"Expanded Marsh": [],
+	"Capital Cashino": ["Expanded Cashino"],
+	"Expanded Cashino": [],
+	"Galleon Galaxy": ["Expanded Galaxy"],
+	"Expanded Galaxy": [],
+	"Endgame": []
+}

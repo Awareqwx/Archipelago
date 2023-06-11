@@ -1,0 +1,878 @@
+[
+    {
+      "id": 50501,
+      "name": "Help Blasto",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 50502,
+      "name": "Extinguish the Fire",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50503,
+      "name": "The Wrecked Crow's Nest",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 50504,
+      "name": "Entrance to Tribalstack Tropics Tome",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50505,
+      "name": "On Top of Capital B Statue",
+      "region": "Hivory Towers",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50506,
+      "name": "Fiery Pipe",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Reptile Rush"]
+    },
+    {
+      "id": 50507,
+      "name": "Catch the Pagie",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50508,
+      "name": "In the Arcade Machine",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Sonar 'Splosion"]
+    },
+    {
+      "id": 50509,
+      "name": "Slippery Slope",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 50510,
+      "name": "Pipe Climb",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 50511,
+      "name": "Behind the Steel Bars",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Camo Cloak"]
+    },
+    {
+      "id": 50512,
+      "name": "Underwater Challenge",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Buddy Bubble"]
+    },
+    {
+      "id": 50513,
+      "name": "In the Pipes",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50514,
+      "name": "Glass Maze",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Buddy Bubble"]
+    },
+    {
+      "id": 50515,
+      "name": "Domino Books",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Reptile Rush"]
+    },
+    {
+      "id": 50516,
+      "name": "Balloon Challenge",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50517,
+      "name": "Slide Challenge",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50518,
+      "name": "Across the Wind Turbines",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Reptile Rush"]
+    },
+    {
+      "id": 50519,
+      "name": "Through the Toxic Tunnel",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Sonar Shield"]
+    },
+    {
+      "id": 50520,
+      "name": "Novel Puzzle",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Lizard Lash"]
+    },
+    {
+      "id": 50536,
+      "name": "Assist Planker",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50537,
+      "name": "Rextro's Arcade (Kartos Carts)",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50538,
+      "name": "Rextro's Hi-Score (Kartos Carts)",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50541,
+      "name": "Pollinate Plant Bulbs",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Sonar Shot"]
+    },
+    {
+      "id": 50542,
+      "name": "Solve the Tribalstack Tile Puzzle",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 50544,
+      "name": "Locate the Knights of Hamalot in Tribalstack",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50545,
+      "name": "Rescue Clara Lost in Tribalstack",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50547,
+      "name": "Nimble Dry Canal Race",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 50549,
+      "name": "Reptile Roll Hoop Challenge",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Reptile Roll", "Buddy Slam"]
+    },
+    {
+      "id": 50551,
+      "name": "Assemble the Tribalstack Pagie Pieces",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50552,
+      "name": "Activate the Floating Platforms",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Sonar Shot"]
+    },
+    {
+      "id": 50553,
+      "name": "Duke's Temple Shootout",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Slurp Shot", "Buddy Slam"]
+    },
+    {
+      "id": 50558,
+      "name": "Collect the Underwater Pagie",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities":["Buddy Bubble", "Buddy Slam"]
+    },
+    {
+      "id": 50530,
+      "name": "Tribalstack Ghost Writers",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Update Me"]
+    },
+    {
+      "id": 50531,
+      "name": "Tribalstack Quills",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Reptile Roll", "Lizard Leap", "Glide"]
+    },
+    {
+      "id": 50539,
+      "name": "Tribalstack Kartos Challenge",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Update Me"]
+    },
+    {
+      "id": 50540,
+      "name": "Rampo",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 50543,
+      "name": "Assist Blastooie",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 50546,
+      "name": "Find Shovel Knight's Ruby",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50548,
+      "name": "Nimble Frozen Canal Race",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50550,
+      "name": "Repair the Broken Bridge",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Sonar Shot"]
+    },
+    {
+      "id": 50554,
+      "name": "Spew Water on Mr. Blowy",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50555,
+      "name": "Tribalstack Glide Hoop Challenge",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50556,
+      "name": "The Windy Challenge",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 50557,
+      "name": "Inside the Tribalstack Monument",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Camo Cloak"]
+    },
+    {
+      "id": 50560,
+      "name": "Glitterglaze Ghosts",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 50569,
+      "name": "Glitterglaze Kartos Challenge",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50570,
+      "name": "Frozen Path Torches",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 50571,
+      "name": "Pentagonal Peak",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Lizard Leap"]
+    },
+    {
+      "id": 50572,
+      "name": "Find the Snowmen's Clothing",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Slurp Shot", "Reptile Roll"]
+    },
+    {
+      "id": 50573,
+      "name": "Glitterglaze Glide Hoop Challenge",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50574,
+      "name": "Crystalline Cave Ice Puzzle",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Sonar Shot"]
+    },
+    {
+      "id": 50575,
+      "name": "Sculpt the Capital B Ice Sculpture",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Reptile Roll", "Glide"]
+    },
+    {
+      "id": 50576,
+      "name": "Glitterglaze Flying Hoop Challenge",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50584,
+      "name": "Traverse through Gloomy Gem Grotto",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 50585,
+      "name": "Jump over Dice Symbols Platforms",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50586,
+      "name": "Assist Tubbz",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Buddy Bubble", "Slurp Shot", "Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 50587,
+      "name": "Rescue Potty Mouth",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 50561,
+      "name": "Glitterglaze Quills",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap"]
+    },
+    {
+      "id": 50562,
+      "name": "Rextro's Arcade (Rextro's Glaciators)",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 50563,
+      "name": "Rextro's Hi-Score (Rextro's Glaciators)",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 50565,
+      "name": "Icymetric Palace - Frozen Pagie",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Reptile Roll", "Slurp State", "Slurp Shot"]
+    },
+    {
+      "id": 50566,
+      "name": "Icymetric Palace - Brreeeze Blok",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp Shot", "Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 50577,
+      "name": "Icymetric Palace - Pipes",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll"]
+    },
+    {
+      "id": 50578,
+      "name": "Icymetric Palace - Dark Room Quiz",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Sonar Shot", "Glide"]
+    },
+    {
+      "id": 50579,
+      "name": "Icymetric Palace - Sonar Shot the Statues",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Sonar Shot"]
+    },
+    {
+      "id": 50581,
+      "name": "Icymetric Palace - Camo Cloak Pagie",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Slurp Shot", "Buddy Slam", "Camo Cloak"]
+    },
+    {
+      "id": 50582,
+      "name": "Icymetric Palace - Burnie's Room",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Slurp Shot", "Buddy Slam"]
+    },
+    {
+      "id": 50583,
+      "name": "Icymetric Palace - Spikes Wall",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Lizard Leap"]
+    },
+    {
+      "id": 50588,
+      "name": "Icymetric Palace - Acid Path",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Slurp State", "Reptile Roll", "Slurp Shot"]
+    },
+    {
+      "id": 50595,
+      "name": "Swampy Station",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Reptile Rush"]
+    },
+    {
+      "id": 50597,
+      "name": "Rextro's Arcade (Bee Bop)",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Tongue Lash"]
+    },
+    {
+      "id": 50598,
+      "name": "Rextro's Hi-Score (Bee Bop)",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Tongue Lash"]
+    },
+    {
+      "id": 50600,
+      "name": "Moodymaze Kartos Challenge",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50601,
+      "name": "Rescue Dolly the Trolley",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam"]
+    },
+    {
+      "id": 50602,
+      "name": "Defeat Trev the Tenteyecle",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50603,
+      "name": "Complete Ollie the Trolley's Maze",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 50605,
+      "name": "Pumping Plant Puzzle",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50606,
+      "name": "Moodymaze Trapped Pagie",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Buddy Slam", "Glide"]
+    },
+    {
+      "id": 50608,
+      "name": "Underwater Pagie",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Buddy Slam", "Buddy Bubble"]
+    },
+    {
+      "id": 50609,
+      "name": "Barbed Vines",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam"]
+    },
+    {
+      "id": 50610,
+      "name": "Travel through the Murky Passage",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam", "Buddy Bubble"]
+    },
+    {
+      "id": 50612,
+      "name": "Scale the Tree",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash"]
+    },
+    {
+      "id": 50613,
+      "name": "Complete Jolly's Switch Mission",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam"]
+    },
+    {
+      "id": 50618,
+      "name": "Remove Fungus from Wally's Garden",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Sonar 'Splosion"]
+    },
+    {
+      "id": 50619,
+      "name": "Moodymaze Hanging Pagie",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Sonar 'Splosion", "Slurp Shot"]
+    },
+    {
+      "id": 50590,
+      "name": "Moodymaze Ghosts",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 50591,
+      "name": "Moodymaze Quills",
+      "region": "Expanded Marsh",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50604,
+      "name": "Moodymaze Timed Platform Challenge",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Reptile Roll", "Buddy Slam"]
+    },
+    {
+      "id": 50607,
+      "name": "Cage Match",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50611,
+      "name": "Hotswitch Hollow",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Buddy Bubble"]
+    },
+    {
+      "id": 50614,
+      "name": "Fire Platform Challenge",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Lizard Lash", "Slurp State", "Buddy Slam"]
+    },
+    {
+      "id": 50615,
+      "name": "Moodymaze Hoop Challenge",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Lizard Lash"]
+    },
+    {
+      "id": 50616,
+      "name": "Get Clara's Gem",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Sonar 'Splosion"]
+    },
+    {
+      "id": 50617,
+      "name": "Collect Planker's Seeds",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Lizard Lash"]
+    },
+    {
+      "id": 50620,
+      "name": "Cashino Ghosts",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Camo Cloak", "Reptile Rush", "Sonar Shot"]
+    },
+    {
+      "id": 50622,
+      "name": "Cashino Tokens - 1",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50623,
+      "name": "Cashino Tokens - 2",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50624,
+      "name": "Cashino Tokens - 3",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50625,
+      "name": "Cashino Tokens - 4",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50626,
+      "name": "Cashino Tokens - 5",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50627,
+      "name": "Rextro's Arcade (Hurdle Hijinx)",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Camo Cloak", "Tongue Lash", "Buddy Slam", "Glide"]
+    },
+    {
+      "id": 50628,
+      "name": "Rextro's Hi-Score (Hurdle Hijinx)",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Camo Cloak", "Tongue Lash", "Buddy Slam", "Glide"]
+    },
+    {
+      "id": 50629,
+      "name": "Cashino Kartos Challenge",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50630,
+      "name": "I.N.E.P.T. Boss Battle",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50633,
+      "name": "Cashino Tokens - 6",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50634,
+      "name": "Cashino Tokens - 7",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50635,
+      "name": "Cashino Tokens - 8",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50636,
+      "name": "Cashino Tokens - 9",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50637,
+      "name": "Cashino Tokens - 10",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50638,
+      "name": "Cashino Tokens - 11",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50639,
+      "name": "Cashino Tokens - 12",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50640,
+      "name": "Cashino Tokens - 13",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50641,
+      "name": "Cashino Tokens - 14",
+      "region": "Capital Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50621,
+      "name": "Cashino Quills",
+      "region": "Expanded Cashino",
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush"]
+    },
+    {
+      "id": 50642,
+      "name": "Cashino Tokens - 15",
+      "region": "Expanded Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50643,
+      "name": "Cashino Tokens - 16",
+      "region": "Expanded Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50644,
+      "name": "Cashino Tokens - 17",
+      "region": "Expanded Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50645,
+      "name": "Cashino Tokens - 18",
+      "region": "Expanded Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50646,
+      "name": "Cashino Tokens - 19",
+      "region": "Expanded Cashino",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50650,
+      "name": "Galaxy Ghosts",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush", "Flappy Flight", "Sonar Shield"]
+    },
+    {
+      "id": 50653,
+      "name": "The Lighthouse",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Sonar Shield"]
+    },
+    {
+      "id": 50664,
+      "name": "Lunar Lockup Pagie",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50667,
+      "name": "Cosmic Cavern Laser Challenge",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Sonar Shield", "Buddy Slam"]
+    },
+    {
+      "id": 50651,
+      "name": "Galaxy Quills",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush", "Flappy Flight", "Sonar Shield"]
+    },
+    {
+      "id": 50657,
+      "name": "Rextro's Arcade (UpNova)",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50658,
+      "name": "Rextro's Hi-Score (UpNova)",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50659,
+      "name": "Galaxy Kartos Challenge",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50660,
+      "name": "Defeat Planette",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50661,
+      "name": "The Space Rig",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50663,
+      "name": "Pressure Dome Swimming Challenge",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50665,
+      "name": "Complete Schell's Mission",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Reptile Rush", "Sonar Shield"]
+    },
+    {
+      "id": 50666,
+      "name": "Space Plumbing",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Buddy Slam", "Sonar Shield", "Reptile Roll"]
+    },
+    {
+      "id": 50668,
+      "name": "Velocity Terminal",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Buddy Slam", "Flappy Flight"]
+    },
+    {
+      "id": 50669,
+      "name": "Spacecog Station",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Glide"]
+    },
+    {
+      "id": 50670,
+      "name": "Black Hole in One",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50671,
+      "name": "Turn on the Captain's Lamp",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50672,
+      "name": "Pressure Dome Security Gauntlet",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight", "Sonar Shield", "Sonar 'Splosion"]
+    },
+    {
+      "id": 50673,
+      "name": "Melt Rusto's Ice Cube",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50674,
+      "name": "Test of Strength Switch",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Buddy Slam", "Slurp State", "Lizard Leap"]
+    },
+    {
+      "id": 50675,
+      "name": "Galaxy Knights Key",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Slurp Shot"]
+    },
+    {
+      "id": 50676,
+      "name": "Star Fishing Minigame",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50677,
+      "name": "Galaxy Pagie Piece",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+      "id": 50678,
+      "name": "Energy Ball Switch",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": []
+    },
+    {
+      "id": 50679,
+      "name": "Galaxy Nimble Race",
+      "region": "Expanded Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
+    },
+    {
+        "id": 50680,
+        "name": "Game Complete",
+        "region": "Endgame",
+        "requiresAbilities": []
+    }
+   ]
