@@ -46,8 +46,10 @@ class YookaWorld(World):
         # Generate item pool
         pool = []
         for item in item_table:
-            yooka_item = self.create_item(item["name"])
-            pool.append(yooka_item)
+            
+            for i in range(0, item["quantity"]):
+                yooka_item = self.create_item(item["name"])
+                pool.append(yooka_item)
 
         self.multiworld.itempool += pool
 
@@ -58,8 +60,6 @@ class YookaWorld(World):
         create_regions(self.multiworld, self.player)
     
     def get_pre_fill_items(self):
-        if self.multiworld.island_frequency_locations[self.player] in [0, 1, 2, 3]:
-            return [loc.item for loc in self.multiworld.get_filled_locations()]
         return []
 
     def create_item(self, name: str) -> Item:
