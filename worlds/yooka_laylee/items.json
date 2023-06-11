@@ -2,6 +2,7 @@
     {
         "id": 50000,
         "progression": true,
-        "name": "Pagie"
+        "name": "Pagie",
+        "quantity": 145
     }
 ]

@@ -73,6 +73,7 @@ def set_rules(world, player):
         "Sonar 'Splosion": lambda state: state.yooka_can_access_marsh(player),
         "Sonar Shield": lambda state: state.yooka_can_access_galaxy(player),
         "Sonar Shot": lambda state: state.yooka_can_access_tropics(player),
+        "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
     }
 
     # Region access rules

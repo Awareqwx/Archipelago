@@ -429,13 +429,13 @@
       "id": 50597,
       "name": "Rextro's Arcade (Bee Bop)",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Tongue Lash"]
+      "requiresAbilities": ["Lizard Lash"]
     },
     {
       "id": 50598,
       "name": "Rextro's Hi-Score (Bee Bop)",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Tongue Lash"]
+      "requiresAbilities": ["Lizard Lash"]
     },
     {
       "id": 50600,
@@ -609,13 +609,13 @@
       "id": 50627,
       "name": "Rextro's Arcade (Hurdle Hijinx)",
       "region": "Capital Cashino",
-      "requiresAbilities": ["Camo Cloak", "Tongue Lash", "Buddy Slam", "Glide"]
+      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"]
     },
     {
       "id": 50628,
       "name": "Rextro's Hi-Score (Hurdle Hijinx)",
       "region": "Capital Cashino",
-      "requiresAbilities": ["Camo Cloak", "Tongue Lash", "Buddy Slam", "Glide"]
+      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"]
     },
     {
       "id": 50629,
