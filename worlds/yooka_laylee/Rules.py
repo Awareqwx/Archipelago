@@ -85,17 +85,20 @@ def set_rules(world, player):
     # Location access rules
     for location in location_table:
         locFromWorld = world.get_location(location["name"], player)
-        if "requiresAbilities" in location: # Specific ability access required
-            def fullLocationCheck(state, location=location):
-                canAccess = regionChecks[location["region"]](state)
+        def fullLocationCheck(state, location=location):
+            canAccess = regionChecks[location["region"]](state)
+            if "requiresAbilities" in location:
                 for ability in location["requiresAbilities"]:
                     if not abilityChecks[ability](state):
                         canAccess = False
                         break
-                return canAccess
-            set_rule(locFromWorld, fullLocationCheck)
-        else: # Only region access required
-            set_rule(locFromWorld, regionChecks[location["region"]])
+            if "requiresItems" in location:
+                for item in location["requiresItems"]:
+                    if not state.has(player, item):
+                        canAccess = False
+                        break
+            return canAccess
+        set_rule(locFromWorld, fullLocationCheck)
 
     # Victory requirement
     world.completion_condition[player] = lambda state: state.has("Victory", player)

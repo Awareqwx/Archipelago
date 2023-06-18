@@ -26,8 +26,7 @@
     {
       "id": 50505,
       "name": "On Top of Capital B Statue",
-      "region": "Hivory Towers",
-      "requiresAbilities": []
+      "region": "Hivory Towers"
     },
     {
       "id": 50506,
@@ -129,19 +128,20 @@
       "id": 50537,
       "name": "Rextro's Arcade (Kartos Carts)",
       "region": "Tribalstack Tropics",
-      "requiresAbilities": []
+      "requiresItems": ["Tropics Play Coin"]
     },
     {
       "id": 50538,
       "name": "Rextro's Hi-Score (Kartos Carts)",
       "region": "Tribalstack Tropics",
-      "requiresAbilities": []
+      "requiresItems": ["Tropics Play Coin"]
     },
     {
       "id": 50541,
       "name": "Pollinate Plant Bulbs",
       "region": "Tribalstack Tropics",
-      "requiresAbilities": ["Sonar Shot"]
+      "requiresAbilities": ["Sonar Shot"],
+      "requiresItems": ["Tropics Mollycool"]
     },
     {
       "id": 50542,
@@ -158,8 +158,7 @@
     {
       "id": 50545,
       "name": "Rescue Clara Lost in Tribalstack",
-      "region": "Tribalstack Tropics",
-      "requiresAbilities": []
+      "region": "Tribalstack Tropics"
     },
     {
       "id": 50547,
@@ -176,8 +175,7 @@
     {
       "id": 50551,
       "name": "Assemble the Tribalstack Pagie Pieces",
-      "region": "Tribalstack Tropics",
-      "requiresAbilities": []
+      "region": "Tribalstack Tropics"
     },
     {
       "id": 50552,
@@ -278,8 +276,7 @@
     {
       "id": 50569,
       "name": "Glitterglaze Kartos Challenge",
-      "region": "Glitterglaze Glacier",
-      "requiresAbilities": []
+      "region": "Glitterglaze Glacier"
     },
     {
       "id": 50570,
@@ -297,7 +294,8 @@
       "id": 50572,
       "name": "Find the Snowmen's Clothing",
       "region": "Glitterglaze Glacier",
-      "requiresAbilities": ["Slurp Shot", "Reptile Roll"]
+      "requiresAbilities": ["Slurp Shot", "Reptile Roll"],
+      "requiresItems": ["Glacier Mollycool"]
     },
     {
       "id": 50573,
@@ -357,13 +355,15 @@
       "id": 50562,
       "name": "Rextro's Arcade (Rextro's Glaciators)",
       "region": "Expanded Glacier",
-      "requiresAbilities": ["Reptile Roll", "Slurp State"]
+      "requiresAbilities": ["Reptile Roll", "Slurp State"],
+      "requiresItems": ["Glacier Play Coin"]
     },
     {
       "id": 50563,
       "name": "Rextro's Hi-Score (Rextro's Glaciators)",
       "region": "Expanded Glacier",
-      "requiresAbilities": ["Reptile Roll", "Slurp State"]
+      "requiresAbilities": ["Reptile Roll", "Slurp State"],
+      "requiresItems": ["Glacier Play Coin"]
     },
     {
       "id": 50565,
@@ -429,31 +429,32 @@
       "id": 50597,
       "name": "Rextro's Arcade (Bee Bop)",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Lizard Lash"]
+      "requiresAbilities": ["Lizard Lash"],
+      "requiresItems": ["Marsh Play Coin"]
     },
     {
       "id": 50598,
       "name": "Rextro's Hi-Score (Bee Bop)",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Lizard Lash"]
+      "requiresAbilities": ["Lizard Lash"],
+      "requiresItems": ["Marsh Play Coin"]
     },
     {
       "id": 50600,
       "name": "Moodymaze Kartos Challenge",
-      "region": "Moodymaze Marsh",
-      "requiresAbilities": []
+      "region": "Moodymaze Marsh"
     },
     {
       "id": 50601,
       "name": "Rescue Dolly the Trolley",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Lizard Lash", "Buddy Slam"]
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam"],
+      "requiresItems": ["Marsh Mollycool"]
     },
     {
       "id": 50602,
       "name": "Defeat Trev the Tenteyecle",
-      "region": "Moodymaze Marsh",
-      "requiresAbilities": []
+      "region": "Moodymaze Marsh"
     },
     {
       "id": 50603,
@@ -464,8 +465,7 @@
     {
       "id": 50605,
       "name": "Pumping Plant Puzzle",
-      "region": "Moodymaze Marsh",
-      "requiresAbilities": []
+      "region": "Moodymaze Marsh"
     },
     {
       "id": 50606,
@@ -483,7 +483,8 @@
       "id": 50609,
       "name": "Barbed Vines",
       "region": "Moodymaze Marsh",
-      "requiresAbilities": ["Lizard Lash", "Buddy Slam"]
+      "requiresAbilities": ["Lizard Lash", "Buddy Slam"],
+      "requiresItems": ["Marsh Mollycool"]
     },
     {
       "id": 50610,
@@ -524,8 +525,7 @@
     {
       "id": 50591,
       "name": "Moodymaze Quills",
-      "region": "Expanded Marsh",
-      "requiresAbilities": []
+      "region": "Expanded Marsh"
     },
     {
       "id": 50604,
@@ -578,146 +578,134 @@
     {
       "id": 50622,
       "name": "Cashino Tokens - 1",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50623,
       "name": "Cashino Tokens - 2",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50624,
       "name": "Cashino Tokens - 3",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50625,
       "name": "Cashino Tokens - 4",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50626,
       "name": "Cashino Tokens - 5",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50627,
       "name": "Rextro's Arcade (Hurdle Hijinx)",
       "region": "Capital Cashino",
-      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"]
+      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"],
+      "requiresItems": ["Cashino Play Coin"]
     },
     {
       "id": 50628,
       "name": "Rextro's Hi-Score (Hurdle Hijinx)",
       "region": "Capital Cashino",
-      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"]
+      "requiresAbilities": ["Camo Cloak", "Lizard Lash", "Buddy Slam", "Glide"],
+      "requiresItems": ["Cashino Play Coin"]
     },
     {
       "id": 50629,
       "name": "Cashino Kartos Challenge",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50630,
       "name": "I.N.E.P.T. Boss Battle",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50633,
       "name": "Cashino Tokens - 6",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50634,
       "name": "Cashino Tokens - 7",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50635,
       "name": "Cashino Tokens - 8",
-      "region": "Capital Cashino",
-      "requiresAbilities": []
+      "region": "Capital Cashino"
     },
     {
       "id": 50636,
       "name": "Cashino Tokens - 9",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50637,
       "name": "Cashino Tokens - 10",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50638,
       "name": "Cashino Tokens - 11",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50639,
       "name": "Cashino Tokens - 12",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50640,
       "name": "Cashino Tokens - 13",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50641,
       "name": "Cashino Tokens - 14",
       "region": "Capital Cashino",
-      "requiresAbilities": []
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50621,
       "name": "Cashino Quills",
       "region": "Expanded Cashino",
-      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush"]
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush"],
+      "requiresItems": ["Cashino Mollycool"]
     },
     {
       "id": 50642,
       "name": "Cashino Tokens - 15",
-      "region": "Expanded Cashino",
-      "requiresAbilities": []
+      "region": "Expanded Cashino"
     },
     {
       "id": 50643,
       "name": "Cashino Tokens - 16",
-      "region": "Expanded Cashino",
-      "requiresAbilities": []
+      "region": "Expanded Cashino"
     },
     {
       "id": 50644,
       "name": "Cashino Tokens - 17",
-      "region": "Expanded Cashino",
-      "requiresAbilities": []
+      "region": "Expanded Cashino"
     },
     {
       "id": 50645,
       "name": "Cashino Tokens - 18",
-      "region": "Expanded Cashino",
-      "requiresAbilities": []
+      "region": "Expanded Cashino"
     },
     {
       "id": 50646,
       "name": "Cashino Tokens - 19",
-      "region": "Expanded Cashino",
-      "requiresAbilities": []
+      "region": "Expanded Cashino"
     },
     {
       "id": 50650,
@@ -735,7 +723,7 @@
       "id": 50664,
       "name": "Lunar Lockup Pagie",
       "region": "Galleon Galaxy",
-      "requiresAbilities": []
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
       "id": 50667,
@@ -747,19 +735,22 @@
       "id": 50651,
       "name": "Galaxy Quills",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush", "Flappy Flight", "Sonar Shield"]
+      "requiresAbilities": ["Reptile Roll", "Glide", "Sonar Shot", "Slurp Shot", "Buddy Slam", "Slurp State", "Lizard Leap", "Buddy Bubble", "Lizard Lash", "Sonar 'Splosion", "Camo Cloak", "Reptile Rush", "Flappy Flight", "Sonar Shield"],
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
       "id": 50657,
       "name": "Rextro's Arcade (UpNova)",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Flappy Flight"]
+      "requiresAbilities": ["Flappy Flight"],
+      "requiresItems": ["Galaxy Play Coin"]
     },
     {
       "id": 50658,
       "name": "Rextro's Hi-Score (UpNova)",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Flappy Flight"]
+      "requiresAbilities": ["Flappy Flight"],
+      "requiresItems": ["Galaxy Play Coin"]
     },
     {
       "id": 50659,
@@ -771,7 +762,8 @@
       "id": 50660,
       "name": "Defeat Planette",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Flappy Flight"]
+      "requiresAbilities": ["Flappy Flight"],
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
       "id": 50661,
@@ -782,8 +774,7 @@
     {
       "id": 50663,
       "name": "Pressure Dome Swimming Challenge",
-      "region": "Expanded Galaxy",
-      "requiresAbilities": []
+      "region": "Expanded Galaxy"
     },
     {
       "id": 50665,
@@ -819,7 +810,8 @@
       "id": 50671,
       "name": "Turn on the Captain's Lamp",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Slurp Shot"]
+      "requiresAbilities": ["Slurp Shot"],
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
       "id": 50672,
@@ -848,31 +840,170 @@
     {
       "id": 50676,
       "name": "Star Fishing Minigame",
-      "region": "Expanded Galaxy",
-      "requiresAbilities": []
+      "region": "Expanded Galaxy"
     },
     {
       "id": 50677,
       "name": "Galaxy Pagie Piece",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Flappy Flight"]
+      "requiresAbilities": ["Flappy Flight"],
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
       "id": 50678,
       "name": "Energy Ball Switch",
-      "region": "Expanded Galaxy",
-      "requiresAbilities": []
+      "region": "Expanded Galaxy"
     },
     {
       "id": 50679,
       "name": "Galaxy Nimble Race",
       "region": "Expanded Galaxy",
-      "requiresAbilities": ["Flappy Flight"]
+      "requiresAbilities": ["Flappy Flight"],
+      "requiresItems": ["Galaxy Mollycool"]
     },
     {
         "id": 50680,
         "name": "Game Complete",
-        "region": "Endgame",
-        "requiresAbilities": []
+        "region": "Endgame"
+    },
+
+
+
+    {
+      "id": 51000,
+      "name": "Shipwreck Creek Heath Booster",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 51001,
+      "name": "Tropics Heath Booster",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Reptile Roll"]
+    },
+    {
+      "id": 51002,
+      "name": "Glacier Heath Booster",
+      "region": "Expanded Glacier",
+      "requiresAbilities": ["Glide", "Slurp Shot", "Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 51003,
+      "name": "Marsh Heath Booster",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Buddy Bubble", "Sonar 'Splosion"]
+    },
+    {
+      "id": 51004,
+      "name": "Cashino Heath Booster",
+      "region": "Capital Cashino",
+      "requiresItems": ["Cashino Mollycool"]
+    },
+    {
+      "id": 51005,
+      "name": "Galaxy Heath Booster",
+      "region": "Expanded Galaxy"
+    },
+    {
+      "id": 51010,
+      "name": "Hivory Towers Energy Booster",
+      "region": "Hivory Towers",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 51011,
+      "name": "Tropics Energy Booster",
+      "region": "Expanded Tropics",
+      "requiresAbilities": ["Reptile Roll", "Slurp State"]
+    },
+    {
+      "id": 51012,
+      "name": "Glacier Energy Booster",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Slurp State"]
+    },
+    {
+      "id": 51013,
+      "name": "Marsh Energy Booster",
+      "region": "Expanded Marsh",
+      "requiresAbilities": ["Lizard Leap", "Glide", "Lizard Lash"]
+    },
+    {
+      "id": 51014,
+      "name": "Cashino Energy Booster",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Glide", "Lizard Leap"]
+    },
+    {
+      "id": 51015,
+      "name": "Galaxy Energy Booster",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Sonar Shield"],
+      "requiresItems": ["Galaxy Mollycool"]
+    },
+
+
+
+    {
+      "id": 51020,
+      "name": "Tropics Mollycool",
+      "region": "Tribalstack Tropics",
+      "requiresAbilities": ["Sonar Shot"]
+    },
+    {
+      "id": 51021,
+      "name": "Glacier Mollycool",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Slurp Shot", "Glide"]
+    },
+    {
+      "id": 51022,
+      "name": "Marsh Mollycool",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Buddy Slam", "Buddy Bubble"]
+    },
+    {
+      "id": 51023,
+      "name": "Cashino Mollycool",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Buddy Slam", "Lizard Lash"]
+    },
+    {
+      "id": 51024,
+      "name": "Galaxy Mollycool",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Flappy Flight", "Buddy Slam"]
+    },
+
+
+
+    {
+      "id": 51030,
+      "name": "Tropics Play Coin",
+      "region": "Tribalstack Tropics"
+    },
+    {
+      "id": 51031,
+      "name": "Glacier Play Coin",
+      "region": "Glitterglaze Glacier",
+      "requiresAbilities": ["Buddy Slam"]
+    },
+    {
+      "id": 51032,
+      "name": "Marsh Play Coin",
+      "region": "Moodymaze Marsh",
+      "requiresAbilities": ["Lizard Lash"]
+    },
+    {
+      "id": 51033,
+      "name": "Cashino Play Coin",
+      "region": "Capital Cashino",
+      "requiresAbilities": ["Buddy Slam", "Lizard Lash"]
+    },
+    {
+      "id": 51034,
+      "name": "Galaxy Play Coin",
+      "region": "Galleon Galaxy",
+      "requiresAbilities": ["Flappy Flight"]
     }
    ]

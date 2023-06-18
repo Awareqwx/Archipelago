@@ -45,12 +45,15 @@ class YookaWorld(World):
     def create_items(self):
         # Generate item pool
         pool = []
+        j = 0
         for item in item_table:
             
             for i in range(0, item["quantity"]):
+                print(i, item["name"])
                 yooka_item = self.create_item(item["name"])
                 pool.append(yooka_item)
-
+                j = j + 1
+        print(j)
         self.multiworld.itempool += pool
 
     def set_rules(self):
