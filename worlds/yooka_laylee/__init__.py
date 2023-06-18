@@ -45,15 +45,10 @@ class YookaWorld(World):
     def create_items(self):
         # Generate item pool
         pool = []
-        j = 0
         for item in item_table:
-            
             for i in range(0, item["quantity"]):
-                print(i, item["name"])
                 yooka_item = self.create_item(item["name"])
                 pool.append(yooka_item)
-                j = j + 1
-        print(j)
         self.multiworld.itempool += pool
 
     def set_rules(self):
@@ -72,26 +67,22 @@ class YookaWorld(World):
     
     def create_resourcePack(self, rpName: str) -> Item:
         return YookaItem(rpName, ItemClassification.filler, self.item_name_to_id[rpName], player=self.player)
-    
-    #TODO: Delete if unnecessary
-    # def collect_item(self, state, item, remove=False):
-    #     if item.name in progressive_item_list:
-    #         prog_table = progressive_item_list[item.name]
-    #         if remove:
-    #             for item_name in reversed(prog_table):
-    #                 if state.has(item_name, item.player):
-    #                     return item_name
-    #         else:
-    #             for item_name in prog_table:
-    #                 if not state.has(item_name, item.player):
-    #                     return item_name
-
-    #     return super(YookaWorld, self).collect_item(state, item, remove)
 
     def pre_fill(self):
         # Victory item
         self.multiworld.get_location("Game Complete", self.player).place_locked_item(
             YookaItem("Victory", ItemClassification.progression, None, player=self.player))
+        # TODO Prefill these if Mollycools and/or Play Coin randomization is disabled
+        # self.setLocationItem("Tropics Mollycool", "Tropics Mollycool")
+        # self.setLocationItem("Glacier Mollycool", "Glacier Mollycool")
+        # self.setLocationItem("Marsh Mollycool", "Marsh Mollycool")
+        # self.setLocationItem("Cashino Mollycool", "Cashino Mollycool")
+        # self.setLocationItem("Galaxy Mollycool", "Galaxy Mollycool")
+        # self.setLocationItem("Tropics Play Coin", "Tropics Play Coin")
+        # self.setLocationItem("Glacier Play Coin", "Glacier Play Coin")
+        # self.setLocationItem("Marsh Play Coin", "Marsh Play Coin")
+        # self.setLocationItem("Cashino Play Coin", "Cashino Play Coin")
+        # self.setLocationItem("Galaxy Play Coin", "Galaxy Play Coin")
     
     def setLocationItem(self, location: str, itemName: str):
         itemToUse = next(filter(lambda itm: itm.name == itemName, self.multiworld.itempool))
@@ -123,7 +114,6 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
 
 class YookaLocation(Location):
     game = "Yooka Laylee"
-
 
 class YookaItem(Item):
     game = "Yooka Laylee"
