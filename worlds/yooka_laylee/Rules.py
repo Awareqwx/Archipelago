@@ -94,7 +94,7 @@ def set_rules(world, player):
                         break
             if "requiresItems" in location:
                 for item in location["requiresItems"]:
-                    if not state.has(player, item):
+                    if not state.has(item, player):
                         canAccess = False
                         break
             return canAccess
