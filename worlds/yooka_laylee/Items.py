@@ -1,8 +1,7 @@
 import json
-import os
+import pkgutil
 
-with open(os.path.join(os.path.dirname(__file__), 'items.json'), 'r') as file:
-    item_table = json.loads(file.read())
+item_table = json.loads(pkgutil.get_data(__name__, "items.json").decode())
 
 lookup_name_to_item = {}
 lookup_name_to_id = {}

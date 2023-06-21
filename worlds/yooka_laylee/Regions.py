@@ -1,9 +1,8 @@
 import json
-import os
+import pkgutil
 from BaseClasses import Entrance
 
-with open(os.path.join(os.path.dirname(__file__), 'regions.json'), 'r') as file:
-    regionMap = json.loads(file.read())
+regionMap = json.loads(pkgutil.get_data(__name__, "regions.json").decode())
 
 def create_regions(world, player: int):
     from . import create_region
