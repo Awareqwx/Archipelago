@@ -59,7 +59,7 @@ class YookaLogic(LogicMixin):
                 raise Exception(f"Invalid requirements: {str(requirements)}")
     
     def yooka_has_ability(self, state, player, ability):
-        specialRequirementAbilities = {
+        specialRequirements = {
             "Reptile Rush": lambda state: self.has("Reptile Roll", player) and self.has("Reptile Rush", player),
             "Sonar Shield": lambda state: self.has("Reptile Roll", player) and self.has("Sonar Shield", player),
             "<DamagingAbility>": lambda state: (
@@ -69,10 +69,13 @@ class YookaLogic(LogicMixin):
                 or self.has("Reptile Rush", player)
                 or self.has("Sonar Shield", player)
             ),
+            "<Expanded Tribalstack Tropics>": lambda state: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
             "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
         }
-        if ability in specialRequirementAbilities:
-            return specialRequirementAbilities[ability](state)
+        if ability in specialRequirements:
+            return specialRequirements[ability](state)
+        elif "<" in ability:
+            raise Exception("Unknown special requirement: " + ability)
         else:
             return self.has(ability, player)
 

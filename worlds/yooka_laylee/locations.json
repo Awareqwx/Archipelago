@@ -213,203 +213,429 @@
         "id": 50536,
         "name": "Assist Planker",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "OR": [
+                "Flappy Flight",
+                {
+                    "AND": [
+                        "Lizard Leap",
+                        "Glide",
+                        "Sonar Shot"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50537,
         "name": "Rextro's Arcade (Kartos Carts)",
         "region": "Tribalstack Tropics",
-        "requiresItems": [
-            "Tropics Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Tropics Play Coin"
+            ]
+        }
     },
     {
         "id": 50538,
         "name": "Rextro's Hi-Score (Kartos Carts)",
         "region": "Tribalstack Tropics",
-        "requiresItems": [
-            "Tropics Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Tropics Play Coin"
+            ]
+        }
     },
     {
         "id": 50541,
         "name": "Pollinate Plant Bulbs",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Sonar Shot"
-        ],
-        "requiresItems": [
-            "Tropics Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Tropics Mollycool"
+            ]
+        }
     },
     {
         "id": 50542,
         "name": "Solve the Tribalstack Tile Puzzle",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50544,
         "name": "Locate the Knights of Hamalot in Tribalstack",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                "<Expanded Tribalstack Tropics>",
+                                "Slurp Shot"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50545,
         "name": "Rescue Clara Lost in Tribalstack",
-        "region": "Tribalstack Tropics"
+        "region": "Tribalstack Tropics",
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "<DamagingAbility>"
+            ]
+        }
     },
     {
         "id": 50547,
         "name": "Nimble Dry Canal Race",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Reptile Roll"
-        ]
+        "requiresAbilities": "Reptile Roll"
     },
     {
         "id": 50549,
         "name": "Reptile Roll Hoop Challenge",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "OR": [
+                "Reptile Roll",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50551,
         "name": "Assemble the Tribalstack Pagie Pieces",
-        "region": "Tribalstack Tropics"
+        "region": "Tribalstack Tropics",
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "<DamagingAbility>"
+            ]
+        }
     },
     {
         "id": 50552,
         "name": "Activate the Floating Platforms",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Sonar Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Sonar Shot",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50553,
         "name": "Duke's Temple Shootout",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Slurp Shot",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam",
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50558,
         "name": "Collect the Underwater Pagie",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Buddy Bubble",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Bubble",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50530,
         "name": "Tribalstack Ghost Writers",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Update Me"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Tail Twirl",
+                "Sonar Shot",
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50531,
         "name": "Tribalstack Quills",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Lizard Leap",
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Reptile Roll",
+                "Lizard Leap",
+                "Glide",
+                "Camo Cloak"
+            ]
+        }
     },
     {
         "id": 50539,
         "name": "Tribalstack Kartos Challenge",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Update Me"
-        ]
+        "requiresAbilities": {
+            "OR": [
+                "Reptile Roll",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50540,
         "name": "Rampo",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Reptile Roll"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Tail Twirl",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50543,
         "name": "Assist Blastooie",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Slurp State"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50546,
         "name": "Find Shovel Knight's Ruby",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50548,
         "name": "Nimble Frozen Canal Race",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "Slurp Shot",
+                "Reptile Roll"
+            ]
+        }
     },
     {
         "id": 50550,
         "name": "Repair the Broken Bridge",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Sonar Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Sonar Shot",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50554,
         "name": "Spew Water on Mr. Blowy",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Lizard Leap"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50555,
         "name": "Tribalstack Glide Hoop Challenge",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Glide"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50556,
         "name": "The Windy Challenge",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Slurp State"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50557,
         "name": "Inside the Tribalstack Monument",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Camo Cloak"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp Shot",
+                "Camo Cloak"
+            ]
+        }
     },
     {
         "id": 50560,
@@ -1317,9 +1543,12 @@
         "id": 51001,
         "name": "Tropics Health Booster",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Reptile Roll"
-        ]
+        "requiresAbilities": {
+            "OR": [
+                "Reptile Roll",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 51002,
@@ -1366,10 +1595,28 @@
         "id": 51011,
         "name": "Tropics Energy Booster",
         "region": "Expanded Tropics",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Lizard Leap"
+                                    ]
+                                },
+                                "Reptile Roll",
+                                "Slurp State",
+                                "Sonar Shot"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51012,
@@ -1413,9 +1660,21 @@
         "id": 51020,
         "name": "Tropics Mollycool",
         "region": "Tribalstack Tropics",
-        "requiresAbilities": [
-            "Sonar Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Sonar Shot"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51021,
@@ -1456,7 +1715,13 @@
     {
         "id": 51030,
         "name": "Tropics Play Coin",
-        "region": "Tribalstack Tropics"
+        "region": "Tribalstack Tropics",
+        "requiresAbilities": {
+            "OR": [
+                "Reptile Roll",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 51031,
