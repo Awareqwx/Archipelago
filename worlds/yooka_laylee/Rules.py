@@ -4,7 +4,6 @@ from .Regions import regionMap
 from ..AutoWorld import LogicMixin
 
 class YookaLogic(LogicMixin):
-    
     def yooka_can_access_tropics(self, player): #Once abilities are items, this will require Reptile Roll
         return self.has("Pagie", player, 1)
 
@@ -38,11 +37,54 @@ class YookaLogic(LogicMixin):
     def yooka_can_access_end(self, player):
         return self.has("Pagie", player, 100)
 
-
+    def yooka_has_requirements(self, state, player, requirements, searchMode = 0):
+        if isinstance(requirements, str): # Is ability name
+            return self.yooka_has_ability(state, player, requirements)
+        elif isinstance(requirements, (list, tuple)): # Is list of requirements, searchMode comes into play here
+            checkForAnyRequirement = searchMode == 1 # If searchMode is 0 (default), assume AND
+            isValid = not checkForAnyRequirement
+            for req in requirements:
+                isValid = self.yooka_has_requirements(state, player, req)
+                if checkForAnyRequirement == isValid:
+                    break
+            return isValid
+        else: # Is object with AND or OR requirement (should never have both)
+            if "AND" in requirements:
+                if "OR" in requirements:
+                    raise Exception(f"Object with both AND and OR present: {str(requirements)}")
+                return self.yooka_has_requirements(state, player, requirements["AND"])
+            elif "OR" in requirements:
+                return self.yooka_has_requirements(state, player, requirements["OR"], 1)
+            else:
+                raise Exception(f"Invalid requirements: {str(requirements)}")
+    
+    def yooka_has_ability(self, state, player, ability):
+        specialRequirementAbilities = {
+            "Reptile Rush": lambda state: self.has("Reptile Roll", player) and self.has("Reptile Rush", player),
+            "Sonar Shield": lambda state: self.has("Reptile Roll", player) and self.has("Sonar Shield", player),
+            "<DamagingAbility>": lambda state: (
+                self.has("Tail Twirl", player)
+                or self.has("Buddy Slam", player)
+                or self.has("Sonar 'Splosion", player)
+                or self.has("Reptile Rush", player)
+                or self.has("Sonar Shield", player)
+            ),
+            "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
+        }
+        if ability in specialRequirementAbilities:
+            return specialRequirementAbilities[ability](state)
+        else:
+            return self.has(ability, player)
 
 def set_rules(world, player):
     regionChecks = {
-        "Hivory Towers": lambda state: True,
+        "Shipwreck Creek": lambda state: True,
+        "Hivory Towers Entrance": lambda state: True,
+        "Hivory Towers Hub B": lambda state: True,
+        "Hivory Towers Archive": lambda state: True,
+        "Hivory Towers Waterworks": lambda state: True,
+        "Hivory Towers Outside (NoFlight)": lambda state: True,
+        "Hivory Towers Outside (Flight)": lambda state: True,
         "Tribalstack Tropics": lambda state: state.yooka_can_access_tropics(player),
         "Expanded Tropics": lambda state: state.yooka_can_access_tropics_exp(player),
         "Glitterglaze Glacier": lambda state: state.yooka_can_access_glacier(player),
@@ -87,12 +129,9 @@ def set_rules(world, player):
         locFromWorld = world.get_location(location["name"], player)
         def fullLocationCheck(state, location=location):
             canAccess = regionChecks[location["region"]](state)
-            if "requiresAbilities" in location:
-                for ability in location["requiresAbilities"]:
-                    if not abilityChecks[ability](state):
-                        canAccess = False
-                        break
-            if "requiresItems" in location:
+            if canAccess and "requiresAbilities" in location:
+                canAccess = state.yooka_has_requirements(state, player, location["requiresAbilities"])
+            if canAccess and "requiresItems" in location:
                 for item in location["requiresItems"]:
                     if not state.has(item, player):
                         canAccess = False

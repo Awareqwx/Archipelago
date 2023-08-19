@@ -16,10 +16,10 @@ def create_regions(world, player: int):
         new_region = create_region(world, player, region, [location["name"] for location in location_table if location["region"] == region], exit_array)
         world.regions += [new_region]
 
-    menu = create_region(world, player, "Menu", None, ["Hivory Towers"])
+    menu = create_region(world, player, "Menu", None, ["Shipwreck Creek"])
     world.regions += [menu]
-    menuConn = world.get_entrance("MenuToHivory Towers", player)
-    menuConn.connect(world.get_region("Hivory Towers", player))
+    menuConn = world.get_entrance("MenuToShipwreck Creek", player)
+    menuConn.connect(world.get_region("Shipwreck Creek", player))
 
     # Link regions together
     for region in regionMap:
