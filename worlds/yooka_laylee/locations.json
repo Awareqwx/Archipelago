@@ -641,75 +641,166 @@
         "id": 50560,
         "name": "Glitterglaze Ghosts",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Sonar 'Splosion",
+                "Tail Twirl",
+                "Slurp State",
+                "Sonar Shot"
+            ]
+        }
     },
     {
         "id": 50569,
         "name": "Glitterglaze Kartos Challenge",
-        "region": "Glitterglaze Glacier"
+        "region": "Glitterglaze Glacier",
+        "requiresAbilities": {
+            "OR": [
+                "Glide",
+				"Lizard Leap",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50570,
         "name": "Frozen Path Torches",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp State"
+            ]
+        }
     },
     {
         "id": 50571,
         "name": "Pentagonal Peak",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Lizard Leap"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Slurp State",
+                                "Lizard Leap"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50572,
         "name": "Find the Snowmen's Clothing",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Slurp Shot",
-            "Reptile Roll"
-        ],
-        "requiresItems": [
-            "Glacier Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Glacier Mollycool"
+            ]
+        }
     },
     {
         "id": 50573,
         "name": "Glitterglaze Glide Hoop Challenge",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50574,
         "name": "Crystalline Cave Ice Puzzle",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Sonar Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Sonar Shot"
+            ]
+        }
     },
     {
         "id": 50575,
         "name": "Sculpt the Capital B Ice Sculpture",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Glide"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50576,
         "name": "Glitterglaze Flying Hoop Challenge",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "Buddy Slam",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50584,
@@ -723,159 +814,447 @@
         "id": 50585,
         "name": "Jump over Dice Symbols Platforms",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "OR": [
+                {
+                    "AND": [
+                        "Reptile Roll",
+                        "Glide"
+                    ]
+                },
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50586,
         "name": "Assist Tubbz",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Buddy Bubble",
-            "Slurp Shot",
-            "Reptile Roll",
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "<GlacierLowerAccess>",
+                                "<GlacierBoss>"
+                            ]
+                        },
+                        {
+                            "AND": [
+                                "Sonar Shot",
+                                "Buddy Slam",
+                                "Flappy Flight",
+                                "Slurp Shot"
+                            ]
+                        }
+                    ]
+                },
+                "Buddy Bubble"
+            ]
+        }
     },
     {
         "id": 50587,
         "name": "Rescue Potty Mouth",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50561,
         "name": "Glitterglaze Quills",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Glide",
-            "Sonar Shot",
-            "Slurp Shot",
-            "Buddy Slam",
-            "Slurp State",
-            "Lizard Leap"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Lizard Leap",
+                                        "Sonar Shield"
+                                    ]
+                                },
+                                "Reptile Rush",
+                                "Camo Cloak"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp State",
+                "Buddy Slam",
+                "Reptile Roll",
+                "Slurp Shot",
+                "Sonar Shot"
+            ]
+        }
     },
     {
         "id": 50562,
         "name": "Rextro's Arcade (Rextro's Glaciators)",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Slurp State"
-        ],
-        "requiresItems": [
-            "Glacier Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "<GlacierUpperAccess>",
+                                "Reptile Roll"
+                            ]
+                        },
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Tail Twirl",
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                "Glacier Play Coin"
+            ]
+        }
     },
     {
         "id": 50563,
         "name": "Rextro's Hi-Score (Rextro's Glaciators)",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Slurp State"
-        ],
-        "requiresItems": [
-            "Glacier Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "<GlacierUpperAccess>",
+                                "Reptile Roll"
+                            ]
+                        },
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Tail Twirl",
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                "Glacier Play Coin"
+            ]
+        }
     },
     {
         "id": 50565,
         "name": "Icymetric Palace - Frozen Pagie",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Slurp State",
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "<GlacierUpperAccess>",
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                "<GlacierBoss>",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50566,
         "name": "Icymetric Palace - Brreeeze Blok",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp Shot",
-            "Reptile Roll",
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "<GlacierBoss>"
+            ]
+        }
     },
     {
         "id": 50577,
         "name": "Icymetric Palace - Pipes",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "<GlacierBoss>",
+                "Slurp State"
+            ]
+        }
     },
     {
         "id": 50578,
         "name": "Icymetric Palace - Dark Room Quiz",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Sonar Shot",
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "<GlacierUpperAccess>",
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Reptile Rush",
+                                        "Tail Twirl",
+                                        "Buddy Slam"
+                                    ]
+                                },
+                                "Sonar Shot"
+                            ]
+                        },
+                        "Sonar 'Splosion"
+                    ]
+                },
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50579,
         "name": "Icymetric Palace - Sonar Shot the Statues",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Sonar Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam",
+                "Sonar Shot"
+            ]
+        }
     },
     {
         "id": 50581,
         "name": "Icymetric Palace - Camo Cloak Pagie",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Slurp Shot",
-            "Buddy Slam",
-            "Camo Cloak"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "<GlacierUpperAccess>",
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Reptile Rush",
+                        "Tail Twirl",
+                        "Buddy Slam",
+                        "Sonar 'Splosion"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Glide",
+                        "Sonar Shield"
+                    ]
+                },
+                "Slurp Shot",
+                "Slurp State",
+                "Camo Cloak"
+            ]
+        }
     },
     {
         "id": 50582,
         "name": "Icymetric Palace - Burnie's Room",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Slurp Shot",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "<GlacierUpperAccess>",
+                                        "<GlacierLowerAccess>"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        "Tail Twirl",
+                                        "Reptile Rush",
+                                        "Sonar 'Splosion"
+                                    ]
+                                },
+                                "Slurp Shot",
+                                "Buddy Slam",
+                                "Flappy Flight"
+                            ]
+                        },
+                        "<GlacierBoss>"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50583,
         "name": "Icymetric Palace - Spikes Wall",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Lizard Leap"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "<GlacierUpperAccess>",
+                                "Reptile Roll"
+                            ]
+                        },
+                        "<GlacierLowerAccess>"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50588,
         "name": "Icymetric Palace - Acid Path",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Slurp State",
-            "Reptile Roll",
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Sonar Shield"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        "<GlacierUpperAccess>",
+                                        "<GlacierLowerAccess>"
+                                    ]
+                                },
+                                "Slurp Shot",
+                                "Slurp State"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50595,
@@ -1554,12 +1933,43 @@
         "id": 51002,
         "name": "Glacier Health Booster",
         "region": "Expanded Glacier",
-        "requiresAbilities": [
-            "Glide",
-            "Slurp Shot",
-            "Reptile Roll",
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Lizard Leap"
+                                    ]
+                                },
+                                "<GlacierBoss>"
+                            ]
+                        },
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "<GlacierUpperAccess>",
+                                        "<GlacierLowerAccess>"
+                                    ]
+                                },
+                                "Flappy Flight"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51003,
@@ -1622,9 +2032,23 @@
         "id": 51012,
         "name": "Glacier Energy Booster",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Slurp State",
+                        "Glitterglaze Mollycool"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51013,
@@ -1680,10 +2104,24 @@
         "id": 51021,
         "name": "Glacier Mollycool",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Slurp Shot",
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 51022,
@@ -1726,10 +2164,29 @@
     {
         "id": 51031,
         "name": "Glacier Play Coin",
-        "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Buddy Slam"
-        ]
+        "region": "Expanded Glacier",
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "<GlacierUpperAccess>",
+                                "Reptile Roll"
+                            ]
+                        },
+                        "<GlacierLowerAccess>"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51032,
