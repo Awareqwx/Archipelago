@@ -1993,48 +1993,74 @@
     {
         "id": 50650,
         "name": "Galaxy Ghosts",
-        "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Glide",
-            "Sonar Shot",
-            "Slurp Shot",
-            "Buddy Slam",
-            "Slurp State",
-            "Lizard Leap",
-            "Buddy Bubble",
-            "Lizard Lash",
-            "Sonar 'Splosion",
-            "Camo Cloak",
-            "Reptile Rush",
-            "Flappy Flight",
-            "Sonar Shield"
-        ]
+        "region": "Expanded Galaxy",
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Tail Twirl",
+                "Buddy Slam",
+                "Sonar Shot",
+                "Reptile Rush",
+                "Slurp Shot",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50653,
         "name": "The Lighthouse",
         "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Sonar Shield"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50664,
         "name": "Lunar Lockup Pagie",
         "region": "Galleon Galaxy",
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Reptile Rush",
+                "Slurp Shot",
+                "Slurp State",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50667,
         "name": "Cosmic Cavern Laser Challenge",
         "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Sonar Shield",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Rush",
+                                "Slurp Shot"
+                            ]
+                        },
+                        {
+                            "AND": [
+                                "Flappy Flight",
+                                "Buddy Slam",
+                                "Galaxy Mollycool"
+                            ]
+                        }
+                    ]
+                },
+                "Sonar Shield",
+                "Reptile Roll"
+            ]
+        }
     },
     {
         "id": 50651,
@@ -2064,178 +2090,268 @@
         "id": 50657,
         "name": "Rextro's Arcade (UpNova)",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ],
-        "requiresItems": [
-            "Galaxy Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Galaxy Play Coin"
+            ]
+        }
     },
     {
         "id": 50658,
         "name": "Rextro's Hi-Score (UpNova)",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ],
-        "requiresItems": [
-            "Galaxy Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Galaxy Play Coin"
+            ]
+        }
     },
     {
         "id": 50659,
         "name": "Galaxy Kartos Challenge",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50660,
         "name": "Defeat Planette",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50661,
         "name": "The Space Rig",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50663,
         "name": "Pressure Dome Swimming Challenge",
-        "region": "Expanded Galaxy"
+        "region": "Expanded Galaxy",
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50665,
         "name": "Complete Schell's Mission",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Reptile Rush",
-            "Sonar Shield"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Sonar Shield",
+                "Reptile Rush"
+            ]
+        }
     },
     {
         "id": 50666,
         "name": "Space Plumbing",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Sonar Shield",
-            "Reptile Roll"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Sonar Shield",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50668,
         "name": "Velocity Terminal",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50669,
         "name": "Spacecog Station",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 50670,
         "name": "Black Hole in One",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Buddy Slam"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Sonar Shot",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50671,
         "name": "Turn on the Captain's Lamp",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50672,
         "name": "Pressure Dome Security Gauntlet",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight",
-            "Sonar Shield",
-            "Sonar 'Splosion"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam",
+                "Camo Cloak",
+                "Sonar 'Splosion",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50673,
         "name": "Melt Rusto's Ice Cube",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Slurp State"
+            ]
+        }
     },
     {
         "id": 50674,
         "name": "Test of Strength Switch",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Slurp State",
-            "Lizard Leap"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        "Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp State",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50675,
         "name": "Galaxy Knights Key",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Reptile Rush",
+                "Slurp Shot",
+                "Camo Cloak",
+                "Sonar Shot",
+                "Tail Twirl",
+                "Buddy Slam",
+                "Sonar 'Splosion"
+            ]
+        }
     },
     {
         "id": 50676,
         "name": "Star Fishing Minigame",
-        "region": "Expanded Galaxy"
+        "region": "Expanded Galaxy",
+        "requiresAbilities": "<GalaxyEntry>"
     },
     {
         "id": 50677,
         "name": "Galaxy Pagie Piece",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        "Sonar Shot",
+                         "Sonar 'Splosion"
+                    ]
+                },
+                "Buddy Slam",
+                "Flappy Flight",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50678,
         "name": "Energy Ball Switch",
-        "region": "Expanded Galaxy"
+        "region": "Expanded Galaxy",
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Sonar Shield"
+            ]
+        }
     },
     {
         "id": 50679,
         "name": "Galaxy Nimble Race",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50680,
@@ -2338,15 +2454,24 @@
     {
         "id": 51005,
         "name": "Galaxy Health Booster",
-        "region": "Expanded Galaxy"
+        "region": "Expanded Galaxy",
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 51010,
         "name": "Hivory Towers Energy Booster",
         "region": "Hivory Towers Entrance",
-        "requiresAbilities": [
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 51011,
@@ -2416,12 +2541,30 @@
         "id": 51015,
         "name": "Galaxy Energy Booster",
         "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Sonar Shield"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Rush",
+                                "Slurp Shot"
+                            ]
+                        },
+                        {
+                            "AND": [
+                                "Flappy Flight",
+                                "Buddy Slam",
+                                "Galaxy Mollycool"
+                            ]
+                        }
+                    ]
+                },
+                "Sonar Shield",
+                "Reptile Roll"
+            ]
+        }
     },
     {
         "id": 51020,
@@ -2495,10 +2638,12 @@
         "id": 51024,
         "name": "Galaxy Mollycool",
         "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 51030,
