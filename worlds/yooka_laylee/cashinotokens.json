@@ -85,7 +85,7 @@
                         "Cashino Mollycool"
                     ]
                 },
-                "Tongue Lash",
+                "Lizard Lash",
                 "Buddy Slam"
             ]
         }
@@ -96,7 +96,7 @@
         "requiresAbilities": {
             "AND": [
                 "<CashinoEntry>",
-                "Tongue Lash",
+                "Lizard Lash",
                 "Buddy Slam"
             ]
         }
@@ -251,13 +251,13 @@
         }
     },
     {
-        "description": "Combined: Expanded World, Tongue Lash",
-        "count": 4,
+        "description": "Combined: Expanded World, Lizard Lash",
+        "count": 12,
         "requiresAbilities": {
             "AND": [
                 "<CashinoEntry>",
                 "<ExpandedCashino>",
-                "Tongue Lash"
+                "Lizard Lash"
             ]
         }
     },

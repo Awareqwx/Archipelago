@@ -178,7 +178,7 @@
         "requiresAbilities": {
             "AND": [
                 "Reptile Rush",
-                "Energy Booster x2"
+                "<(Energy Booster) x2>"
             ]
         }
     },
@@ -188,7 +188,7 @@
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": {
             "OR": [
-                "Health Booster x3",
+                "<(Health Booster) x3>",
                 {
                     "AND": [
                         "Reptile Roll",
@@ -1951,7 +1951,7 @@
                         "Flappy Flight"
                     ]
                 },
-                "Tongue Lash",
+                "Lizard Lash",
                 "Buddy Slam",
                 "Sonar 'Splosion",
                 "Reptile Rush",
@@ -2662,7 +2662,7 @@
         "requiresAbilities": {
             "AND": [
                 "<CashinoEntry>",
-                "Tongue Lash",
+                "Lizard Lash",
                 "Buddy Slam"
             ]
         }
@@ -2739,7 +2739,7 @@
         "requiresAbilities": {
             "AND": [
                 "<CashinoEntry>",
-                "Tongue Lash",
+                "Lizard Lash",
                 "Buddy Slam"
             ]
         }
@@ -2756,33 +2756,32 @@
         }
     },
     {
-        "id": 51501,
+        "id": 51500,
         "name": "Trowzer's Tail Twirl",
-        "region": "Shipwreck Creek",
-        "requiresAbilities": "<DamagingAbility>"
+        "region": "Shipwreck Creek"
     },
     {
-        "id": 51502,
+        "id": 51501,
         "name": "Trowzer's Reptile Roll",
         "region": "Hivory Towers Entrance"
     },
     {
-        "id": 51503,
+        "id": 51502,
         "name": "Trowzer's Glide",
         "region": "Hivory Towers Hub B"
     },
     {
-        "id": 51504,
+        "id": 51503,
         "name": "Trowzer's Buddy Bubble",
         "region": "Hivory Towers Archive"
     },
     {
-        "id": 51505,
+        "id": 51504,
         "name": "Trowzer's Camo Cloak",
         "region": "Hivory Towers Outside (NoFlight)"
     },
     {
-        "id": 51506,
+        "id": 51505,
         "name": "Trowzer's Flappy Flight",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": "Camo Cloak"

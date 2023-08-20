@@ -36,7 +36,7 @@ class YookaLogic(LogicMixin):
         accessibleTokenCount = 0
         for tokenGroup in cashinotokens_table:
             if "abilityRequirements" in tokenGroup:
-                if self.yooka_has_requirements(state, player, cashinotokens_table["abilityRequirements"]):
+                if self.yooka_has_requirements(state, player, tokenGroup["abilityRequirements"]):
                     accessibleTokenCount += tokenGroup["count"]
             else:
                 accessibleTokenCount += tokenGroup["count"]
@@ -96,14 +96,17 @@ class YookaLogic(LogicMixin):
             "<MoodymazeEntry>": lambda state: self.has("Bubble Buddy", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player),
             "<CashinoEntry>": lambda state: self.has("Camo Cloak", player) or self.has("Flappy Flight", player),
             "<ExpandedCashino>": lambda state: self.yooka_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
-            "<GalaxyEntry>": lambda state: self.has("Flappy Flight", player) or self.has("Glide", player) or self.has("Health Upgrade", player, 5),
-            "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
+            "<GalaxyEntry>": lambda state: self.has("Flappy Flight", player) or self.has("Glide", player) or self.has("Health Booster", player, 5)
         }
         if ability in specialRequirements:
             return specialRequirements[ability](state)
         elif "<CashinoTokens" in ability:
             tokenLevel = int(ability.removeprefix("<CashinoTokens").removesuffix(">"))
             return self.yooka_can_get_cashino_token_count(state, player, tokenLevel * 10)
+        elif "<(" in ability:
+            itemRequired = ability.removeprefix("<(").rsplit(")", 1)[0].strip()
+            numberRequired = ability.removeprefix("<(").rsplit(")", 1)[1].strip().removeprefix("x").removesuffix(">")
+            return self.has(itemRequired, player, int(numberRequired))
         elif "<" in ability:
             raise Exception("Unknown special requirement: " + ability)
         else:
@@ -112,12 +115,12 @@ class YookaLogic(LogicMixin):
 def set_rules(world, player):
     regionChecks = {
         "Shipwreck Creek": lambda state: True,
-        "Hivory Towers Entrance": lambda state: True,
-        "Hivory Towers Hub B": lambda state: True,
-        "Hivory Towers Archive": lambda state: True,
-        "Hivory Towers Waterworks": lambda state: True,
-        "Hivory Towers Outside (NoFlight)": lambda state: True,
-        "Hivory Towers Outside (Flight)": lambda state: True,
+        "Hivory Towers Entrance": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
+        "Hivory Towers Hub B": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
+        "Hivory Towers Archive": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
+        "Hivory Towers Waterworks": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
+        "Hivory Towers Outside (NoFlight)": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
+        "Hivory Towers Outside (Flight)": lambda state: state.yooka_has_ability(state, player, "<DamagingAbility>"),
         "Tribalstack Tropics": lambda state: state.yooka_can_access_tropics(player),
         "Expanded Tropics": lambda state: state.yooka_can_access_tropics_exp(player),
         "Glitterglaze Glacier": lambda state: state.yooka_can_access_glacier(player),
@@ -129,26 +132,6 @@ def set_rules(world, player):
         "Galleon Galaxy": lambda state: state.yooka_can_access_galaxy(player),
         "Expanded Galaxy": lambda state: state.yooka_can_access_galaxy_exp(player),
         "Endgame": lambda state: state.yooka_can_access_end(player)
-    }
-    itemChecks = {
-        "Pagie": lambda state: True,
-    }
-    abilityChecks = {
-        "Buddy Bubble": lambda state: state.yooka_can_access_marsh(player), #Once abilities are items, this will change
-        "Buddy Slam": lambda state: state.yooka_can_access_tropics(player),
-        "Camo Cloak": lambda state: state.yooka_can_access_cashino(player),
-        "Flappy Flight": lambda state: state.yooka_can_access_galaxy(player),
-        "Glide": lambda state: state.yooka_can_access_glacier(player),
-        "Lizard Lash": lambda state: state.yooka_can_access_marsh(player),
-        "Lizard Leap": lambda state: state.yooka_can_access_glacier(player),
-        "Reptile Roll": lambda state: state.yooka_can_access_tropics(player),
-        "Reptile Rush": lambda state: state.yooka_can_access_cashino(player),
-        "Slurp Shot": lambda state: state.yooka_can_access_tropics(player),
-        "Slurp State": lambda state: state.yooka_can_access_glacier(player),
-        "Sonar 'Splosion": lambda state: state.yooka_can_access_marsh(player),
-        "Sonar Shield": lambda state: state.yooka_can_access_galaxy(player),
-        "Sonar Shot": lambda state: state.yooka_can_access_tropics(player),
-        "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
     }
 
     # Region access rules
@@ -164,11 +147,6 @@ def set_rules(world, player):
             canAccess = regionChecks[location["region"]](state)
             if canAccess and "requiresAbilities" in location:
                 canAccess = state.yooka_has_requirements(state, player, location["requiresAbilities"])
-            if canAccess and "requiresItems" in location:
-                for item in location["requiresItems"]:
-                    if not state.has(item, player):
-                        canAccess = False
-                        break
             return canAccess
         set_rule(locFromWorld, fullLocationCheck)
 

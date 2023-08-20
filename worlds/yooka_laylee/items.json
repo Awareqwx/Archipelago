@@ -8,13 +8,13 @@
     {
         "id": 50001,
         "progression": true,
-        "name": "Health Upgrade",
+        "name": "Health Booster",
         "quantity": 6
     },
     {
         "id": 50002,
         "progression": true,
-        "name": "Energy Upgrade",
+        "name": "Energy Booster",
         "quantity": 6
     },
     {
@@ -92,73 +92,73 @@
     {
         "id": 50052,
         "progression": true,
-        "name": "Sonar Shot",
+        "name": "Glide",
         "quantity": 1
     },
     {
         "id": 50053,
         "progression": true,
-        "name": "Slurp Shot",
+        "name": "Buddy Bubble",
         "quantity": 1
     },
     {
         "id": 50054,
         "progression": true,
-        "name": "Buddy Slam",
+        "name": "Camo Cloak",
         "quantity": 1
     },
     {
         "id": 50055,
         "progression": true,
-        "name": "Glide",
+        "name": "Flappy Flight",
         "quantity": 1
     },
     {
         "id": 50056,
         "progression": true,
-        "name": "Slurp State",
+        "name": "Sonar Shot",
         "quantity": 1
     },
     {
         "id": 50057,
         "progression": true,
-        "name": "Lizard Leap",
+        "name": "Slurp Shot",
         "quantity": 1
     },
     {
         "id": 50058,
         "progression": true,
-        "name": "Buddy Bubble",
+        "name": "Buddy Slam",
         "quantity": 1
     },
     {
         "id": 50059,
         "progression": true,
-        "name": "Lizard Lash",
+        "name": "Slurp State",
         "quantity": 1
     },
     {
         "id": 50060,
         "progression": true,
-        "name": "Sonar 'Splosion",
+        "name": "Lizard Leap",
         "quantity": 1
     },
     {
         "id": 50061,
         "progression": true,
-        "name": "Camo Cloak",
+        "name": "Lizard Lash",
         "quantity": 1
     },
     {
         "id": 50062,
         "progression": true,
-        "name": "Reptile Rush",
+        "name": "Sonar 'Splosion",
         "quantity": 1
     },
     {
         "id": 50063,
         "progression": true,
-        "name": "Flappy Flight",
+        "name": "Reptile Rush",
         "quantity": 1
     },
     {
