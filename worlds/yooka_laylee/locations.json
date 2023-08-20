@@ -1618,138 +1618,300 @@
     {
         "id": 50620,
         "name": "Cashino Ghosts",
-        "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Camo Cloak",
-            "Reptile Rush",
-            "Sonar Shot"
-        ]
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Cashino Mollycool"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Tail Twirl"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                "Sonar Shot",
+                                                "Buddy Slam"
+                                            ]
+                                        },
+                                        "Sonar 'Splosion",
+                                        "Lizard Leap"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Sonar Shot",
+                "Slurp Shot",
+                "Reptile Rush",
+                "Tail Twirl"
+            ]
+        }
     },
     {
         "id": 50622,
         "name": "Cashino Tokens - 1",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens1>"
+            ]
+        }
     },
     {
         "id": 50623,
         "name": "Cashino Tokens - 2",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens2>"
+            ]
+        }
     },
     {
         "id": 50624,
         "name": "Cashino Tokens - 3",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens3>"
+            ]
+        }
     },
     {
         "id": 50625,
         "name": "Cashino Tokens - 4",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens4>"
+            ]
+        }
     },
     {
         "id": 50626,
         "name": "Cashino Tokens - 5",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens5>"
+            ]
+        }
     },
     {
         "id": 50627,
         "name": "Rextro's Arcade (Hurdle Hijinx)",
         "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Camo Cloak",
-            "Lizard Lash",
-            "Buddy Slam",
-            "Glide"
-        ],
-        "requiresItems": [
-            "Cashino Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Cashino Play Coin"
+            ]
+        }
     },
     {
         "id": 50628,
         "name": "Rextro's Hi-Score (Hurdle Hijinx)",
         "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Camo Cloak",
-            "Lizard Lash",
-            "Buddy Slam",
-            "Glide"
-        ],
-        "requiresItems": [
-            "Cashino Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Cashino Play Coin"
+            ]
+        }
     },
     {
         "id": 50629,
         "name": "Cashino Kartos Challenge",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Tail Twirl"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                "Sonar Shot",
+                                                "Buddy Slam"
+                                            ]
+                                        },
+                                        "Sonar 'Splosion",
+                                        "Lizard Leap"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50630,
         "name": "I.N.E.P.T. Boss Battle",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Tail Twirl"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                "Sonar Shot",
+                                                "Buddy Slam"
+                                            ]
+                                        },
+                                        "Sonar 'Splosion",
+                                        "Lizard Leap"
+                                    ]
+                                }
+                            ]
+                        },
+                        "Cashino Mollycool"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50633,
         "name": "Cashino Tokens - 6",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens6>"
+            ]
+        }
     },
     {
         "id": 50634,
         "name": "Cashino Tokens - 7",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens7>"
+            ]
+        }
     },
     {
         "id": 50635,
         "name": "Cashino Tokens - 8",
-        "region": "Capital Cashino"
+        "region": "Capital Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens8>"
+            ]
+        }
     },
     {
         "id": 50636,
         "name": "Cashino Tokens - 9",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens9>"
+            ]
+        }
     },
     {
         "id": 50637,
         "name": "Cashino Tokens - 10",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens10>"
+            ]
+        }
     },
     {
         "id": 50638,
         "name": "Cashino Tokens - 11",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens11>"
+            ]
+        }
     },
     {
         "id": 50639,
         "name": "Cashino Tokens - 12",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens12>"
+            ]
+        }
     },
     {
         "id": 50640,
         "name": "Cashino Tokens - 13",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens13>"
+            ]
+        }
     },
     {
         "id": 50641,
         "name": "Cashino Tokens - 14",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens14>"
+            ]
+        }
     },
     {
         "id": 50621,
@@ -1776,27 +1938,57 @@
     {
         "id": 50642,
         "name": "Cashino Tokens - 15",
-        "region": "Expanded Cashino"
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens15>"
+            ]
+        }
     },
     {
         "id": 50643,
         "name": "Cashino Tokens - 16",
-        "region": "Expanded Cashino"
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens16>"
+            ]
+        }
     },
     {
         "id": 50644,
         "name": "Cashino Tokens - 17",
-        "region": "Expanded Cashino"
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens17>"
+            ]
+        }
     },
     {
         "id": 50645,
         "name": "Cashino Tokens - 18",
-        "region": "Expanded Cashino"
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens18>"
+            ]
+        }
     },
     {
         "id": 50646,
         "name": "Cashino Tokens - 19",
-        "region": "Expanded Cashino"
+        "region": "Expanded Cashino",
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<CashinoTokens19>"
+            ]
+        }
     },
     {
         "id": 50650,
@@ -2123,18 +2315,25 @@
         "id": 51003,
         "name": "Marsh Health Booster",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Buddy Bubble",
-            "Sonar 'Splosion"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Buddy Bubble",
+                "Sonar 'Splosion"
+            ]
+        }
     },
     {
         "id": 51004,
         "name": "Cashino Health Booster",
         "region": "Capital Cashino",
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Flappy Flight",
+                "Cashino Mollycool"
+            ]
+        }
     },
     {
         "id": 51005,
@@ -2202,11 +2401,7 @@
         "id": 51013,
         "name": "Marsh Energy Booster",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Lizard Leap",
-            "Glide",
-            "Lizard Lash"
-        ]
+        "requiresAbilities": "Flappy Flight"
     },
     {
         "id": 51014,
@@ -2288,10 +2483,13 @@
         "id": 51023,
         "name": "Cashino Mollycool",
         "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Tongue Lash",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 51024,
@@ -2360,10 +2558,13 @@
         "id": 51033,
         "name": "Cashino Play Coin",
         "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Tongue Lash",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 51034,
