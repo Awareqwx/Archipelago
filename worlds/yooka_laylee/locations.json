@@ -806,9 +806,29 @@
         "id": 50584,
         "name": "Traverse through Gloomy Gem Grotto",
         "region": "Glitterglaze Glacier",
-        "requiresAbilities": [
-            "Reptile Roll"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                {
+                    "OR": [
+						"Glide",
+						"Lizard Leap",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Reptile Roll",
+                                "Glide",
+                                "Slurp State"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50585,
@@ -1917,23 +1937,28 @@
         "id": 50621,
         "name": "Cashino Quills",
         "region": "Expanded Cashino",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Glide",
-            "Sonar Shot",
-            "Slurp Shot",
-            "Buddy Slam",
-            "Slurp State",
-            "Lizard Leap",
-            "Buddy Bubble",
-            "Lizard Lash",
-            "Sonar 'Splosion",
-            "Camo Cloak",
-            "Reptile Rush"
-        ],
-        "requiresItems": [
-            "Cashino Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Lizard Leap",
+                                "Glide"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Tongue Lash",
+                "Buddy Slam",
+                "Sonar 'Splosion",
+                "Reptile Rush",
+                "Camo Cloak",
+                "Cashino Mollycool"
+            ]
+        }
     },
     {
         "id": 50642,
@@ -2066,25 +2091,21 @@
         "id": 50651,
         "name": "Galaxy Quills",
         "region": "Expanded Galaxy",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Glide",
-            "Sonar Shot",
-            "Slurp Shot",
-            "Buddy Slam",
-            "Slurp State",
-            "Lizard Leap",
-            "Buddy Bubble",
-            "Lizard Lash",
-            "Sonar 'Splosion",
-            "Camo Cloak",
-            "Reptile Rush",
-            "Flappy Flight",
-            "Sonar Shield"
-        ],
-        "requiresItems": [
-            "Galaxy Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight",
+                "Buddy Slam",
+                "Reptile Rush",
+                "Sonar Shield",
+                "Slurp Shot",
+                "Camo Cloak",
+                "Sonar Shot",
+                "Tail Twirl",
+                "Sonar 'Splosion",
+                "Galaxy Mollycool"
+            ]
+        }
     },
     {
         "id": 50657,
@@ -2532,10 +2553,22 @@
         "id": 51014,
         "name": "Cashino Energy Booster",
         "region": "Capital Cashino",
-        "requiresAbilities": [
-            "Glide",
-            "Lizard Leap"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Lizard Leap",
+                                "Glide"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51015,
@@ -2715,9 +2748,12 @@
         "id": 51034,
         "name": "Galaxy Play Coin",
         "region": "Galleon Galaxy",
-        "requiresAbilities": [
-            "Flappy Flight"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<GalaxyEntry>",
+                "Flappy Flight"
+            ]
+        }
     },
     {
         "id": 51501,
