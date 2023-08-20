@@ -1260,212 +1260,360 @@
         "id": 50595,
         "name": "Swampy Station",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Reptile Rush"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Slam",
+                "Reptile Roll",
+                "Reptile Rush"
+            ]
+        }
     },
     {
         "id": 50597,
         "name": "Rextro's Arcade (Bee Bop)",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ],
-        "requiresItems": [
-            "Marsh Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Marsh Play Coin"
+            ]
+        }
     },
     {
         "id": 50598,
         "name": "Rextro's Hi-Score (Bee Bop)",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ],
-        "requiresItems": [
-            "Marsh Play Coin"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Marsh Play Coin"
+            ]
+        }
     },
     {
         "id": 50600,
         "name": "Moodymaze Kartos Challenge",
-        "region": "Moodymaze Marsh"
+        "region": "Moodymaze Marsh",
+        "requiresAbilities": "<MoodymazeEntry>"
     },
     {
         "id": 50601,
         "name": "Rescue Dolly the Trolley",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash",
-            "Buddy Slam"
-        ],
-        "requiresItems": [
-            "Marsh Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Slam",
+                "Marsh Mollycool"
+            ]
+        }
     },
     {
         "id": 50602,
         "name": "Defeat Trev the Tenteyecle",
-        "region": "Moodymaze Marsh"
+        "region": "Moodymaze Marsh",
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Tail Twirl"
+            ]
+        }
     },
     {
         "id": 50603,
         "name": "Complete Ollie the Trolley's Maze",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Reptile Roll"
-        ]
+        "requiresAbilities": "<MoodymazeEntry>"
     },
     {
         "id": 50605,
         "name": "Pumping Plant Puzzle",
-        "region": "Moodymaze Marsh"
+        "region": "Moodymaze Marsh",
+        "requiresAbilities": "<MoodymazeEntry>"
     },
     {
         "id": 50606,
         "name": "Moodymaze Trapped Pagie",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50608,
         "name": "Underwater Pagie",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Buddy Bubble"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Buddy Bubble"
+            ]
+        }
     },
     {
         "id": 50609,
         "name": "Barbed Vines",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash",
-            "Buddy Slam"
-        ],
-        "requiresItems": [
-            "Marsh Mollycool"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Slam",
+                "Marsh Mollycool"
+            ]
+        }
     },
     {
         "id": 50610,
         "name": "Travel through the Murky Passage",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash",
-            "Buddy Slam",
-            "Buddy Bubble"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Slam",
+                "Buddy Bubble"
+            ]
+        }
     },
     {
         "id": 50612,
         "name": "Scale the Tree",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Lizard Lash",
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50613,
         "name": "Complete Jolly's Switch Mission",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50618,
         "name": "Remove Fungus from Wally's Garden",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Sonar 'Splosion"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Sonar 'Splosion"
+            ]
+        }
     },
     {
         "id": 50619,
         "name": "Moodymaze Hanging Pagie",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Sonar 'Splosion",
-            "Slurp Shot"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Sonar 'Splosion",
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50590,
         "name": "Moodymaze Ghosts",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Slurp State"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Lizard Leap"
+                    ]
+                },
+                "Tail Twirl",
+                "Lizard Lash",
+                "Buddy Slam",
+                "Sonar Shot",
+                "Slurp Shot"
+            ]
+        }
     },
     {
         "id": 50591,
         "name": "Moodymaze Quills",
-        "region": "Expanded Marsh"
+        "region": "Expanded Marsh",
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Tail Twirl",
+                                        "Glide"
+                                    ]
+                                },
+                                "Lizard Leap"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                "Lizard Lash",
+                "Buddy Slam",
+                "Reptile Rush",
+                "Buddy Bubble"
+            ]
+        }
     },
     {
         "id": 50604,
         "name": "Moodymaze Timed Platform Challenge",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Reptile Roll",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Reptile Roll",
+                        "Flappy Flight"
+                    ]
+                },
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50607,
         "name": "Cage Match",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Glide"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Tail Twirl",
+                                        "Glide"
+                                    ]
+                                },
+                                "Lizard Leap"
+                            ]
+                        },
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Reptile Rush",
+                        "Tail Twirl",
+                        "Buddy Slam",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50611,
         "name": "Hotswitch Hollow",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Buddy Bubble"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Buddy Bubble"
+            ]
+        }
     },
     {
         "id": 50614,
         "name": "Fire Platform Challenge",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Lizard Lash",
-            "Slurp State",
-            "Buddy Slam"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Lizard Lash",
+                        "Flappy Flight"
+                    ]
+                },
+                "Slurp State",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 50615,
         "name": "Moodymaze Hoop Challenge",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Lizard Lash",
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 50616,
         "name": "Get Clara's Gem",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Sonar 'Splosion"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Sonar 'Splosion"
+            ]
+        }
     },
     {
         "id": 50617,
         "name": "Collect Planker's Seeds",
         "region": "Expanded Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Tail Twirl",
+                        "Buddy Slam",
+                        "Sonar 'Splosion"
+                    ]
+                },
+                "Lizard Lash"
+            ]
+        }
     },
     {
         "id": 50620,
@@ -2127,10 +2275,14 @@
         "id": 51022,
         "name": "Marsh Mollycool",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Buddy Slam",
-            "Buddy Bubble"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                "Lizard Lash",
+                "Buddy Bubble",
+                "Buddy Slam"
+            ]
+        }
     },
     {
         "id": 51023,
@@ -2192,9 +2344,17 @@
         "id": 51032,
         "name": "Marsh Play Coin",
         "region": "Moodymaze Marsh",
-        "requiresAbilities": [
-            "Lizard Lash"
-        ]
+        "requiresAbilities": {
+            "AND": [
+                "<MoodymazeEntry>",
+                {
+                    "OR": [
+                        "Lizard Lash",
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 51033,

@@ -70,6 +70,7 @@ class YookaLogic(LogicMixin):
                 or self.has("Sonar Shield", player)
             ),
             "<Expanded Tribalstack Tropics>": lambda state: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
+            "<MoodymazeEntry>": lambda state: self.has("Bubble Buddy", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player),
             "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
         }
         if ability in specialRequirements:
