@@ -83,17 +83,27 @@ class YookaLogic(LogicMixin):
                 or self.has("Reptile Rush", player)
                 or self.has("Sonar Shield", player)
             ),
-            "<Expanded Tribalstack Tropics>": lambda state: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
+            "<ExpandedTribalstackTropics>": lambda state: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
+            "<GlacierUpperAccess>": lambda state: (
+                self.has("Flappy Flight", player)
+                or (self.has("Slurp State", player) and (self.has("Tail Twirl", player) or self.has("Glide", player)))
+            ),
+            "<GlacierLowerAccess>": lambda state: self.has("Buddy Slam", player) and self.has("Sonar Shot", player) and self.has("Reptile Rush", player),
+            "<GlacierBoss>": lambda state: (
+                (self.yooka_has_ability(state, player, "<GlacierUpperAccess>") or self.yooka_has_ability(state, player, "<GlacierLowerAccess>"))
+                and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
+            ),
             "<MoodymazeEntry>": lambda state: self.has("Bubble Buddy", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player),
             "<CashinoEntry>": lambda state: self.has("Camo Cloak", player) or self.has("Flappy Flight", player),
             "<ExpandedCashino>": lambda state: self.yooka_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
+            "<GalaxyEntry>": lambda state: self.has("Flappy Flight", player) or self.has("Glide", player) or self.has("Health Upgrade", player, 5),
             "Update Me": lambda state: True #Placeholder - Fill in actual ability requirements
         }
         if ability in specialRequirements:
             return specialRequirements[ability](state)
         elif "<CashinoTokens" in ability:
             tokenLevel = int(ability.removeprefix("<CashinoTokens").removesuffix(">"))
-            return self.yooka_can_get_cashino_token_count(player, tokenLevel * 10)
+            return self.yooka_can_get_cashino_token_count(state, player, tokenLevel * 10)
         elif "<" in ability:
             raise Exception("Unknown special requirement: " + ability)
         else:
