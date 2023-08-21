@@ -7,101 +7,101 @@ import pkgutil
 
 cashinotokens_table = json.loads(pkgutil.get_data(__name__, "cashinotokens.json").decode())
 
-class YookaLogic(LogicMixin):
-    yooka_specialRequirements = {
+class YookaLayleeLogic(LogicMixin):
+    yookaLaylee_specialRequirements = {
         "Reptile Rush": lambda state, player: state.has("Reptile Roll", player) and state.has("Reptile Rush", player),
         "Sonar Shield": lambda state, player: state.has("Reptile Roll", player) and state.has("Sonar Shield", player),
         "<DamagingAbility>": lambda state, player: (
             state.has("Tail Twirl", player)
             or state.has("Buddy Slam", player)
-            or state.yooka_has_requirements(player, "Sonar 'Splosion")
-            or state.yooka_has_requirements(player, "Reptile Rush")
-            or state.yooka_has_requirements(player, "Sonar Shield")
+            or state.yookaLaylee_has_requirements(player, "Sonar 'Splosion")
+            or state.yookaLaylee_has_requirements(player, "Reptile Rush")
+            or state.yookaLaylee_has_requirements(player, "Sonar Shield")
         ),
-        "<TribalstackPagie>": lambda state, player: state.yooka_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
-        "<ExpandedTribalstackTropics>": lambda state, player: state.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
+        "<TribalstackPagie>": lambda state, player: state.yookaLaylee_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
+        "<ExpandedTribalstackTropics>": lambda state, player: state.yookaLaylee_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
         "<GlacierUpperAccess>": lambda state, player: (
             state.has("Flappy Flight", player)
             or (state.has("Slurp State", player) and (state.has("Tail Twirl", player) or state.has("Glide", player)))
         ),
-        "<GlacierLowerAccess>": lambda state, player: state.has("Buddy Slam", player) and state.has("Sonar Shot", player) and state.yooka_has_requirements(player, "Reptile Rush"),
+        "<GlacierLowerAccess>": lambda state, player: state.has("Buddy Slam", player) and state.has("Sonar Shot", player) and state.yookaLaylee_has_requirements(player, "Reptile Rush"),
         "<GlacierBoss>": lambda state, player: (
-            (state.yooka_has_requirements(player, "<GlacierUpperAccess>") or state.yooka_has_requirements(player, "<GlacierLowerAccess>"))
+            (state.yookaLaylee_has_requirements(player, "<GlacierUpperAccess>") or state.yookaLaylee_has_requirements(player, "<GlacierLowerAccess>"))
             and state.has("Buddy Slam", player) and state.has("Slurp Shot", player)
         ),
         "<MoodymazeEntry>": lambda state, player: state.has("Bubble Buddy", player) or state.has("Lizard Lash", player) or state.has("Flappy Flight", player),
         "<CashinoEntry>": lambda state, player: state.has("Camo Cloak", player) or state.has("Flappy Flight", player),
-        "<ExpandedCashino>": lambda state, player: state.yooka_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
+        "<ExpandedCashino>": lambda state, player: state.yookaLaylee_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
         "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
     }
 
-    def yooka_can_access_tropics(self, player):
+    def yookaLaylee_can_access_tropics(self, player):
         return (self.has("Pagie", player, 1)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)))
 
-    def yooka_can_access_tropics_exp(self, player):
-        return self.has("Pagie", player, 4) and self.yooka_can_access_tropics(player)
+    def yookaLaylee_can_access_tropics_exp(self, player):
+        return self.has("Pagie", player, 4) and self.yookaLaylee_can_access_tropics(player)
 
-    def yooka_can_access_glacier(self, player):
+    def yookaLaylee_can_access_glacier(self, player):
         return (self.has("Pagie", player, 7)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player))
 
-    def yooka_can_access_glacier_exp(self, player):
-        return self.has("Pagie", player, 12) and self.yooka_can_access_glacier(player)
+    def yookaLaylee_can_access_glacier_exp(self, player):
+        return self.has("Pagie", player, 12) and self.yookaLaylee_can_access_glacier(player)
 
-    def yooka_can_access_marsh(self, player):
+    def yookaLaylee_can_access_marsh(self, player):
         return (self.has("Pagie", player, 19)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player)
                 and self.has("Slurp Shot", player) and self.has("Buddy Bubble", player))
 
-    def yooka_can_access_marsh_exp(self, player):
-        return self.has("Pagie", player, 27) and self.yooka_can_access_marsh(player)
+    def yookaLaylee_can_access_marsh_exp(self, player):
+        return self.has("Pagie", player, 27) and self.yookaLaylee_can_access_marsh(player)
 
-    def yooka_can_access_cashino(self, player):
+    def yookaLaylee_can_access_cashino(self, player):
         return (self.has("Pagie", player, 37)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player)
                 and self.has("Slurp Shot", player) and self.has("Buddy Bubble", player) and self.has("Camo Cloak", player))
 
-    def yooka_can_access_cashino_exp(self, player):
-        return self.has("Pagie", player, 48) and self.yooka_can_access_cashino(player)
+    def yookaLaylee_can_access_cashino_exp(self, player):
+        return self.has("Pagie", player, 48) and self.yookaLaylee_can_access_cashino(player)
 
-    def yooka_can_access_galaxy(self, player): #Once abilities are items, this will require Flappy Flight
+    def yookaLaylee_can_access_galaxy(self, player): #Once abilities are items, this will require Flappy Flight
         return (self.has("Pagie", player, 60)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and self.has("Flappy Flight", player) and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
                 and self.has("Buddy Bubble", player))
 
-    def yooka_can_access_galaxy_exp(self, player):
-        return self.has("Pagie", player, 75) and self.yooka_can_access_galaxy(player)
+    def yookaLaylee_can_access_galaxy_exp(self, player):
+        return self.has("Pagie", player, 75) and self.yookaLaylee_can_access_galaxy(player)
 
-    def yooka_can_access_end(self, player): # Technically don't need Tail Twirl and Sonar Shield, but the final boss is pretty miserable without it
+    def yookaLaylee_can_access_end(self, player): # Technically don't need Tail Twirl and Sonar Shield, but the final boss is pretty miserable without it
         return (self.has("Pagie", player, 100)
-                and self.yooka_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
                 and self.has("Flappy Flight", player) and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
                 and self.has("Buddy Bubble", player) and self.has("Tail Twirl", player) and self.has("Reptile Roll", player)
                 and self.has("Sonar Shield", player))
 
-    def yooka_can_get_cashino_token_count(self, player, tokenCount):
+    def yookaLaylee_can_get_cashino_token_count(self, player, tokenCount):
         accessibleTokenCount = 0
         for tokenGroup in cashinotokens_table:
             if "abilityRequirements" in tokenGroup:
-                if self.yooka_has_requirements(player, tokenGroup["abilityRequirements"]):
+                if self.yookaLaylee_has_requirements(player, tokenGroup["abilityRequirements"]):
                     accessibleTokenCount += tokenGroup["count"]
             else:
                 accessibleTokenCount += tokenGroup["count"]
         return accessibleTokenCount >= tokenCount
 
-    def yooka_has_requirements(self, player, requirements, searchMode = 0):
+    def yookaLaylee_has_requirements(self, player, requirements, searchMode = 0):
         if isinstance(requirements, str): # Is ability name
-            if requirements in self.yooka_specialRequirements:
-                return self.yooka_specialRequirements[requirements](self, player)
+            if requirements in self.yookaLaylee_specialRequirements:
+                return self.yookaLaylee_specialRequirements[requirements](self, player)
             elif "<CashinoTokens" in requirements:
                 tokenLevel = int(requirements.removeprefix("<CashinoTokens").removesuffix(">"))
-                return self.yooka_can_get_cashino_token_count(player, tokenLevel * 10)
+                return self.yookaLaylee_can_get_cashino_token_count(player, tokenLevel * 10)
             elif "<(" in requirements:
                 itemRequired = requirements.removeprefix("<(").rsplit(")", 1)[0].strip()
                 numberRequired = requirements.removeprefix("<(").rsplit(")", 1)[1].strip().removeprefix("x").removesuffix(">")
@@ -114,7 +114,7 @@ class YookaLogic(LogicMixin):
             checkForAnyRequirement = searchMode == 1 # If searchMode is 0 (default), assume AND
             isValid = not checkForAnyRequirement
             for req in requirements:
-                isValid = self.yooka_has_requirements(player, req)
+                isValid = self.yookaLaylee_has_requirements(player, req)
                 if checkForAnyRequirement == isValid:
                     break
             return isValid
@@ -122,32 +122,32 @@ class YookaLogic(LogicMixin):
             if "AND" in requirements:
                 if "OR" in requirements:
                     raise Exception(f"Object with both AND and OR present: {str(requirements)}")
-                return self.yooka_has_requirements(player, requirements["AND"])
+                return self.yookaLaylee_has_requirements(player, requirements["AND"])
             elif "OR" in requirements:
-                return self.yooka_has_requirements(player, requirements["OR"], 1)
+                return self.yookaLaylee_has_requirements(player, requirements["OR"], 1)
             else:
                 raise Exception(f"Invalid requirements: {str(requirements)}")
 
 def set_rules(world, player):
     regionChecks = {
         "Shipwreck Creek": lambda state: True,
-        "Hivory Towers Entrance": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Hivory Towers Hub B": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Hivory Towers Archive": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Hivory Towers Waterworks": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Hivory Towers Outside (NoFlight)": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Hivory Towers Outside (Flight)": lambda state: state.yooka_has_requirements(player, "<DamagingAbility>"),
-        "Tribalstack Tropics": lambda state: state.yooka_can_access_tropics(player),
-        "Expanded Tropics": lambda state: state.yooka_can_access_tropics_exp(player),
-        "Glitterglaze Glacier": lambda state: state.yooka_can_access_glacier(player),
-        "Expanded Glacier": lambda state: state.yooka_can_access_glacier_exp(player),
-        "Moodymaze Marsh": lambda state: state.yooka_can_access_marsh(player),
-        "Expanded Marsh": lambda state: state.yooka_can_access_marsh_exp(player),
-        "Capital Cashino": lambda state: state.yooka_can_access_cashino(player),
-        "Expanded Cashino": lambda state: state.yooka_can_access_cashino_exp(player),
-        "Galleon Galaxy": lambda state: state.yooka_can_access_galaxy(player),
-        "Expanded Galaxy": lambda state: state.yooka_can_access_galaxy_exp(player),
-        "Endgame": lambda state: state.yooka_can_access_end(player)
+        "Hivory Towers Entrance": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Hivory Towers Hub B": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Hivory Towers Archive": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Hivory Towers Waterworks": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Hivory Towers Outside (NoFlight)": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Hivory Towers Outside (Flight)": lambda state: state.yookaLaylee_has_requirements(player, "<DamagingAbility>"),
+        "Tribalstack Tropics": lambda state: state.yookaLaylee_can_access_tropics(player),
+        "Expanded Tropics": lambda state: state.yookaLaylee_can_access_tropics_exp(player),
+        "Glitterglaze Glacier": lambda state: state.yookaLaylee_can_access_glacier(player),
+        "Expanded Glacier": lambda state: state.yookaLaylee_can_access_glacier_exp(player),
+        "Moodymaze Marsh": lambda state: state.yookaLaylee_can_access_marsh(player),
+        "Expanded Marsh": lambda state: state.yookaLaylee_can_access_marsh_exp(player),
+        "Capital Cashino": lambda state: state.yookaLaylee_can_access_cashino(player),
+        "Expanded Cashino": lambda state: state.yookaLaylee_can_access_cashino_exp(player),
+        "Galleon Galaxy": lambda state: state.yookaLaylee_can_access_galaxy(player),
+        "Expanded Galaxy": lambda state: state.yookaLaylee_can_access_galaxy_exp(player),
+        "Endgame": lambda state: state.yookaLaylee_can_access_end(player)
     }
 
     # Region access rules
@@ -162,7 +162,7 @@ def set_rules(world, player):
         def fullLocationCheck(state, location=location):
             canAccess = regionChecks[location["region"]](state)
             if canAccess and "requiresAbilities" in location:
-                canAccess = state.yooka_has_requirements(player, location["requiresAbilities"])
+                canAccess = state.yookaLaylee_has_requirements(player, location["requiresAbilities"])
             return canAccess
         set_rule(locFromWorld, fullLocationCheck)
 
