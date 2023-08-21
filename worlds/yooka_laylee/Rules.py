@@ -35,9 +35,28 @@ class YookaLayleeLogic(LogicMixin):
         "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
     }
 
+    def yookaLaylee_can_access_HT_hub_entrance(self, player):
+        return self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
+
+    def yookaLaylee_can_access_HT_hub_B(self, player):
+        return (self.yookaLaylee_can_access_HT_hub_entrance(player)
+                and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player))
+
+    def yookaLaylee_can_access_HT_archive(self, player):
+        return self.yookaLaylee_can_access_HT_hub_B(player) and self.has("Slurp Shot", player)
+
+    def yookaLaylee_can_access_HT_waterworks(self, player):
+        return self.yookaLaylee_can_access_HT_archive(player) and self.has("Buddy Bubble", player) and self.has("Buddy Slam", player)
+
+    def yookaLaylee_can_access_HT_outside(self, player):
+        return self.yookaLaylee_can_access_HT_waterworks(player) and (self.has("Lizard Lash", player) or self.has("Flappy Flight", player))
+
+    def yookaLaylee_can_access_HT_finalArea(self, player):
+        return self.yookaLaylee_can_access_HT_outside(player) and self.has("Flappy Flight", player)
+
     def yookaLaylee_can_access_tropics(self, player):
         return (self.has("Pagie", player, 1)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
+                and self.yookaLaylee_can_access_HT_hub_entrance(player)
                 and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)))
 
     def yookaLaylee_can_access_tropics_exp(self, player):
@@ -45,45 +64,40 @@ class YookaLayleeLogic(LogicMixin):
 
     def yookaLaylee_can_access_glacier(self, player):
         return (self.has("Pagie", player, 7)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
-                and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player))
+                and self.yookaLaylee_can_access_HT_hub_B(player)
+                and (self.has("Glide", player) or self.has("Flappy Flight", player)))
 
     def yookaLaylee_can_access_glacier_exp(self, player):
         return self.has("Pagie", player, 12) and self.yookaLaylee_can_access_glacier(player)
 
     def yookaLaylee_can_access_marsh(self, player):
         return (self.has("Pagie", player, 19)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
-                and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player)
-                and self.has("Slurp Shot", player) and self.has("Buddy Bubble", player))
+                and self.yookaLaylee_can_access_HT_waterworks(player)
+                # TODO Does Buddy Bubble also require Buddy Slam for a switch to open the entrance to get to Marsh book?
+                and (self.has("Buddy Bubble", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player)))
 
     def yookaLaylee_can_access_marsh_exp(self, player):
         return self.has("Pagie", player, 27) and self.yookaLaylee_can_access_marsh(player)
 
     def yookaLaylee_can_access_cashino(self, player):
         return (self.has("Pagie", player, 37)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
-                and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)) and self.has("Buddy Slam", player)
-                and self.has("Slurp Shot", player) and self.has("Buddy Bubble", player) and self.has("Camo Cloak", player))
+                and self.yookaLaylee_can_access_HT_outside(player)
+                and self.has("Camo Cloak", player))
 
     def yookaLaylee_can_access_cashino_exp(self, player):
         return self.has("Pagie", player, 48) and self.yookaLaylee_can_access_cashino(player)
 
     def yookaLaylee_can_access_galaxy(self, player): #Once abilities are items, this will require Flappy Flight
-        return (self.has("Pagie", player, 60)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
-                and self.has("Flappy Flight", player) and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
-                and self.has("Buddy Bubble", player))
+        return self.has("Pagie", player, 60) and self.yookaLaylee_can_access_HT_finalArea(player)
 
     def yookaLaylee_can_access_galaxy_exp(self, player):
         return self.has("Pagie", player, 75) and self.yookaLaylee_can_access_galaxy(player)
 
     def yookaLaylee_can_access_end(self, player): # Technically don't need Tail Twirl and Sonar Shield, but the final boss is pretty miserable without it
         return (self.has("Pagie", player, 100)
-                and self.yookaLaylee_has_requirements(player, "<DamagingAbility>")
-                and self.has("Flappy Flight", player) and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
-                and self.has("Buddy Bubble", player) and self.has("Tail Twirl", player) and self.has("Reptile Roll", player)
-                and self.has("Sonar Shield", player))
+                and self.yookaLaylee_can_access_HT_finalArea(player)
+                and self.yookaLaylee_has_requirements(player, "Sonar Shield")
+                and self.has("Tail Twirl", player))
 
     def yookaLaylee_can_get_cashino_token_count(self, player, tokenCount):
         accessibleTokenCount = 0
