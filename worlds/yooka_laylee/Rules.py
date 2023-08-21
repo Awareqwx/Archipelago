@@ -8,6 +8,33 @@ import pkgutil
 cashinotokens_table = json.loads(pkgutil.get_data(__name__, "cashinotokens.json").decode())
 
 class YookaLogic(LogicMixin):
+    yooka_specialRequirements = {
+        "Reptile Rush": lambda state, player: state.has("Reptile Roll", player) and state.has("Reptile Rush", player),
+        "Sonar Shield": lambda state, player: state.has("Reptile Roll", player) and state.has("Sonar Shield", player),
+        "<DamagingAbility>": lambda state, player: (
+            state.has("Tail Twirl", player)
+            or state.has("Buddy Slam", player)
+            or state.yooka_has_ability(player, "Sonar 'Splosion")
+            or state.yooka_has_ability(player, "Reptile Rush")
+            or state.yooka_has_ability(player, "Sonar Shield")
+        ),
+        "<TribalstackPagie>": lambda state, player: state.yooka_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
+        "<ExpandedTribalstackTropics>": lambda state, player: state.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
+        "<GlacierUpperAccess>": lambda state, player: (
+            state.has("Flappy Flight", player)
+            or (state.has("Slurp State", player) and (state.has("Tail Twirl", player) or state.has("Glide", player)))
+        ),
+        "<GlacierLowerAccess>": lambda state, player: state.has("Buddy Slam", player) and state.has("Sonar Shot", player) and state.yooka_has_ability(player, "Reptile Rush"),
+        "<GlacierBoss>": lambda state, player: (
+            (state.yooka_has_ability(player, "<GlacierUpperAccess>") or state.yooka_has_ability(player, "<GlacierLowerAccess>"))
+            and state.has("Buddy Slam", player) and state.has("Slurp Shot", player)
+        ),
+        "<MoodymazeEntry>": lambda state, player: state.has("Bubble Buddy", player) or state.has("Lizard Lash", player) or state.has("Flappy Flight", player),
+        "<CashinoEntry>": lambda state, player: state.has("Camo Cloak", player) or state.has("Flappy Flight", player),
+        "<ExpandedCashino>": lambda state, player: state.yooka_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
+        "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
+    }
+
     def yooka_can_access_tropics(self, player):
         return (self.has("Pagie", player, 1)
                 and self.yooka_has_ability(player, "<DamagingAbility>")
@@ -90,34 +117,8 @@ class YookaLogic(LogicMixin):
                 raise Exception(f"Invalid requirements: {str(requirements)}")
     
     def yooka_has_ability(self, player, ability):
-        specialRequirements = {
-            "Reptile Rush": lambda: self.has("Reptile Roll", player) and self.has("Reptile Rush", player),
-            "Sonar Shield": lambda: self.has("Reptile Roll", player) and self.has("Sonar Shield", player),
-            "<DamagingAbility>": lambda: (
-                self.has("Tail Twirl", player)
-                or self.has("Buddy Slam", player)
-                or self.yooka_has_ability(player, "Sonar 'Splosion")
-                or self.yooka_has_ability(player, "Reptile Rush")
-                or self.yooka_has_ability(player, "Sonar Shield")
-            ),
-            "<TribalstackPagie>": lambda: self.yooka_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
-            "<ExpandedTribalstackTropics>": lambda: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
-            "<GlacierUpperAccess>": lambda: (
-                self.has("Flappy Flight", player)
-                or (self.has("Slurp State", player) and (self.has("Tail Twirl", player) or self.has("Glide", player)))
-            ),
-            "<GlacierLowerAccess>": lambda: self.has("Buddy Slam", player) and self.has("Sonar Shot", player) and self.yooka_has_ability(player, "Reptile Rush"),
-            "<GlacierBoss>": lambda: (
-                (self.yooka_has_ability(player, "<GlacierUpperAccess>") or self.yooka_has_ability(player, "<GlacierLowerAccess>"))
-                and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
-            ),
-            "<MoodymazeEntry>": lambda: self.has("Bubble Buddy", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player),
-            "<CashinoEntry>": lambda: self.has("Camo Cloak", player) or self.has("Flappy Flight", player),
-            "<ExpandedCashino>": lambda: self.yooka_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
-            "<GalaxyEntry>": lambda: self.has("Flappy Flight", player) or self.has("Glide", player) or self.has("Health Booster", player, 5)
-        }
-        if ability in specialRequirements:
-            return specialRequirements[ability]()
+        if ability in self.yooka_specialRequirements:
+            return self.yooka_specialRequirements[ability](self, player)
         elif "<CashinoTokens" in ability:
             tokenLevel = int(ability.removeprefix("<CashinoTokens").removesuffix(">"))
             return self.yooka_can_get_cashino_token_count(player, tokenLevel * 10)
