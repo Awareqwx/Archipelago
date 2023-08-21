@@ -89,7 +89,7 @@ class YookaLogic(LogicMixin):
                 self.has("Flappy Flight", player)
                 or (self.has("Slurp State", player) and (self.has("Tail Twirl", player) or self.has("Glide", player)))
             ),
-            "<GlacierLowerAccess>": lambda state: self.has("Buddy Slam", player) and self.has("Sonar Shot", player) and self.has("Reptile Rush", player),
+            "<GlacierLowerAccess>": lambda state: self.has("Buddy Slam", player) and self.has("Sonar Shot", player) and self.yooka_can_access_tropics(state, player, "Reptile Rush"),
             "<GlacierBoss>": lambda state: (
                 (self.yooka_has_ability(state, player, "<GlacierUpperAccess>") or self.yooka_has_ability(state, player, "<GlacierLowerAccess>"))
                 and self.has("Buddy Slam", player) and self.has("Slurp Shot", player)
