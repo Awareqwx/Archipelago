@@ -18,7 +18,7 @@ class YookaLayleeLogic(LogicMixin):
             or state.yookaLaylee_has_requirements("Reptile Rush", player)
             or state.yookaLaylee_has_requirements("Sonar Shield", player)
         ),
-        "<TribalstackPagie>": lambda state, player: state.yookaLaylee_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
+        "<CanAccessTribalstack>": lambda state, player: state.yookaLaylee_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
         "<ExpandedTribalstackTropics>": lambda state, player: state.yookaLaylee_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
         "<GlacierUpperAccess>": lambda state, player: (
             state.has("Flappy Flight", player)
@@ -145,12 +145,12 @@ class YookaLayleeLogic(LogicMixin):
 def set_rules(world, player):
     regionChecks = {
         "Shipwreck Creek": lambda state: True,
-        "Hivory Towers Entrance": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
-        "Hivory Towers Hub B": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
-        "Hivory Towers Archive": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
-        "Hivory Towers Waterworks": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
-        "Hivory Towers Outside (NoFlight)": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
-        "Hivory Towers Outside (Flight)": lambda state: state.yookaLaylee_has_requirements("<DamagingAbility>", player),
+        "Hivory Towers Entrance": lambda state: state.yookaLaylee_can_access_HT_hub_entrance(player),
+        "Hivory Towers Hub B": lambda state: state.yookaLaylee_can_access_HT_hub_B(player),
+        "Hivory Towers Archive": lambda state: state.yookaLaylee_can_access_HT_archive(player),
+        "Hivory Towers Waterworks": lambda state: state.yookaLaylee_can_access_HT_waterworks(player),
+        "Hivory Towers Outside (NoFlight)": lambda state: state.yookaLaylee_can_access_HT_outside(player),
+        "Hivory Towers Outside (Flight)": lambda state: state.yookaLaylee_can_access_HT_finalArea(player),
         "Tribalstack Tropics": lambda state: state.yookaLaylee_can_access_tropics(player),
         "Expanded Tropics": lambda state: state.yookaLaylee_can_access_tropics_exp(player),
         "Glitterglaze Glacier": lambda state: state.yookaLaylee_can_access_glacier(player),

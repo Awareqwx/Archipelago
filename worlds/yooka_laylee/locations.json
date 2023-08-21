@@ -12,6 +12,7 @@
         "requiresAbilities": {
             "AND": [
                 "Slurp Shot",
+                "<CanAccessTribalstack>",
                 "<DamagingAbility>"
             ]
         }
@@ -22,7 +23,7 @@
         "region": "Shipwreck Creek",
         "requiresAbilities": {
             "OR": [
-                "<TribalstackPagie>",
+                "<CanAccessTribalstack>",
                 "Reptile Roll",
                 "Flappy Flight"
             ]
