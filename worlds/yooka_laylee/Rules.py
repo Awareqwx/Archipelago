@@ -79,10 +79,11 @@ class YookaLogic(LogicMixin):
             "<DamagingAbility>": lambda state: (
                 self.has("Tail Twirl", player)
                 or self.has("Buddy Slam", player)
-                or self.has("Sonar 'Splosion", player)
-                or self.has("Reptile Rush", player)
-                or self.has("Sonar Shield", player)
+                or self.yooka_has_ability(state, player, "Sonar 'Splosion")
+                or self.yooka_has_ability(state, player, "Reptile Rush")
+                or self.yooka_has_ability(state, player, "Sonar Shield")
             ),
+            "<TribalstackPagie>": lambda state: self.yooka_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
             "<ExpandedTribalstackTropics>": lambda state: self.yooka_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
             "<GlacierUpperAccess>": lambda state: (
                 self.has("Flappy Flight", player)

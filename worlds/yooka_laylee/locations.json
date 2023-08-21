@@ -22,6 +22,7 @@
         "region": "Shipwreck Creek",
         "requiresAbilities": {
             "OR": [
+                "<TribalstackPagie>",
                 "Reptile Roll",
                 "Flappy Flight"
             ]
