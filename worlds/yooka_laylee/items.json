@@ -7,14 +7,14 @@
     },
     {
         "id": 50001,
-        "progression": false,
-        "name": "Health Upgrade",
+        "progression": true,
+        "name": "Health Booster",
         "quantity": 6
     },
     {
         "id": 50002,
-        "progression": false,
-        "name": "Energy Upgrade",
+        "progression": true,
+        "name": "Energy Booster",
         "quantity": 6
     },
     {
@@ -75,6 +75,96 @@
         "id": 50024,
         "progression": true,
         "name": "Galaxy Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 50050,
+        "progression": true,
+        "name": "Tail Twirl",
+        "quantity": 1
+    },
+    {
+        "id": 50051,
+        "progression": true,
+        "name": "Reptile Roll",
+        "quantity": 1
+    },
+    {
+        "id": 50052,
+        "progression": true,
+        "name": "Glide",
+        "quantity": 1
+    },
+    {
+        "id": 50053,
+        "progression": true,
+        "name": "Buddy Bubble",
+        "quantity": 1
+    },
+    {
+        "id": 50054,
+        "progression": true,
+        "name": "Camo Cloak",
+        "quantity": 1
+    },
+    {
+        "id": 50055,
+        "progression": true,
+        "name": "Flappy Flight",
+        "quantity": 1
+    },
+    {
+        "id": 50056,
+        "progression": true,
+        "name": "Sonar Shot",
+        "quantity": 1
+    },
+    {
+        "id": 50057,
+        "progression": true,
+        "name": "Slurp Shot",
+        "quantity": 1
+    },
+    {
+        "id": 50058,
+        "progression": true,
+        "name": "Buddy Slam",
+        "quantity": 1
+    },
+    {
+        "id": 50059,
+        "progression": true,
+        "name": "Slurp State",
+        "quantity": 1
+    },
+    {
+        "id": 50060,
+        "progression": true,
+        "name": "Lizard Leap",
+        "quantity": 1
+    },
+    {
+        "id": 50061,
+        "progression": true,
+        "name": "Lizard Lash",
+        "quantity": 1
+    },
+    {
+        "id": 50062,
+        "progression": true,
+        "name": "Sonar 'Splosion",
+        "quantity": 1
+    },
+    {
+        "id": 50063,
+        "progression": true,
+        "name": "Reptile Rush",
+        "quantity": 1
+    },
+    {
+        "id": 50064,
+        "progression": true,
+        "name": "Sonar Shield",
         "quantity": 1
     }
 ]
