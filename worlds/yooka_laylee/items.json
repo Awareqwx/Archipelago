@@ -1,168 +1,169 @@
 [
     {
-        "id": 50000,
+        "id": 625490000,
         "progression": true,
         "name": "Pagie",
         "quantity": 145
     },
     {
-        "id": 50001,
+        "id": 625490001,
         "progression": true,
         "name": "Health Booster",
         "quantity": 6
     },
     {
-        "id": 50002,
+        "id": 625490002,
         "progression": true,
         "name": "Energy Booster",
         "quantity": 6
     },
     {
-        "id": 50010,
+        "id": 625490010,
         "progression": true,
         "name": "Tropics Mollycool",
         "quantity": 1
     },
     {
-        "id": 50011,
+        "id": 625490011,
         "progression": true,
         "name": "Glacier Mollycool",
         "quantity": 1
     },
     {
-        "id": 50012,
+        "id": 625490012,
         "progression": true,
         "name": "Marsh Mollycool",
         "quantity": 1
     },
     {
-        "id": 50013,
+        "id": 625490013,
         "progression": true,
         "name": "Cashino Mollycool",
         "quantity": 1
     },
     {
-        "id": 50014,
+        "id": 625490014,
         "progression": true,
         "name": "Galaxy Mollycool",
         "quantity": 1
     },
     {
-        "id": 50020,
+        "id": 625490020,
         "progression": true,
         "name": "Tropics Play Coin",
         "quantity": 1
     },
     {
-        "id": 50021,
+        "id": 625490021,
         "progression": true,
         "name": "Glacier Play Coin",
         "quantity": 1
     },
     {
-        "id": 50022,
+        "id": 625490022,
         "progression": true,
         "name": "Marsh Play Coin",
         "quantity": 1
     },
     {
-        "id": 50023,
+        "id": 625490023,
         "progression": true,
         "name": "Cashino Play Coin",
         "quantity": 1
     },
     {
-        "id": 50024,
+        "id": 625490024,
         "progression": true,
         "name": "Galaxy Play Coin",
         "quantity": 1
     },
     {
-        "id": 50050,
+        "id": 625490050,
         "progression": true,
         "name": "Tail Twirl",
+        "generationTag": 1,
         "quantity": 1
     },
     {
-        "id": 50051,
+        "id": 625490051,
         "progression": true,
         "name": "Reptile Roll",
         "quantity": 1
     },
     {
-        "id": 50052,
+        "id": 625490052,
         "progression": true,
         "name": "Glide",
         "quantity": 1
     },
     {
-        "id": 50053,
+        "id": 625490053,
         "progression": true,
         "name": "Buddy Bubble",
         "quantity": 1
     },
     {
-        "id": 50054,
+        "id": 625490054,
         "progression": true,
         "name": "Camo Cloak",
         "quantity": 1
     },
     {
-        "id": 50055,
+        "id": 625490055,
         "progression": true,
         "name": "Flappy Flight",
         "quantity": 1
     },
     {
-        "id": 50056,
+        "id": 625490056,
         "progression": true,
         "name": "Sonar Shot",
         "quantity": 1
     },
     {
-        "id": 50057,
+        "id": 625490057,
         "progression": true,
         "name": "Slurp Shot",
         "quantity": 1
     },
     {
-        "id": 50058,
+        "id": 625490058,
         "progression": true,
         "name": "Buddy Slam",
         "quantity": 1
     },
     {
-        "id": 50059,
+        "id": 625490059,
         "progression": true,
         "name": "Slurp State",
         "quantity": 1
     },
     {
-        "id": 50060,
+        "id": 625490060,
         "progression": true,
         "name": "Lizard Leap",
         "quantity": 1
     },
     {
-        "id": 50061,
+        "id": 625490061,
         "progression": true,
         "name": "Lizard Lash",
         "quantity": 1
     },
     {
-        "id": 50062,
+        "id": 625490062,
         "progression": true,
         "name": "Sonar 'Splosion",
         "quantity": 1
     },
     {
-        "id": 50063,
+        "id": 625490063,
         "progression": true,
         "name": "Reptile Rush",
         "quantity": 1
     },
     {
-        "id": 50064,
+        "id": 625490064,
         "progression": true,
         "name": "Sonar Shield",
         "quantity": 1

@@ -1,12 +1,12 @@
 [
     {
-        "id": 50501,
+        "id": 625490501,
         "name": "Help Blasto",
         "region": "Shipwreck Creek",
         "requiresAbilities": "Buddy Slam"
     },
     {
-        "id": 50502,
+        "id": 625490502,
         "name": "Extinguish the Fire",
         "region": "Hivory Towers Entrance",
         "requiresAbilities": {
@@ -18,7 +18,7 @@
         }
     },
     {
-        "id": 50503,
+        "id": 625490503,
         "name": "The Wrecked Crow's Nest",
         "region": "Shipwreck Creek",
         "requiresAbilities": {
@@ -30,7 +30,7 @@
         }
     },
     {
-        "id": 50504,
+        "id": 625490504,
         "name": "Entrance to Tribalstack Tropics Tome",
         "region": "Hivory Towers Entrance",
         "requiresAbilities": {
@@ -53,24 +53,24 @@
         }
     },
     {
-        "id": 50505,
+        "id": 625490505,
         "name": "On Top of Capital B Statue",
         "region": "Hivory Towers Entrance"
     },
     {
-        "id": 50506,
+        "id": 625490506,
         "name": "Fiery Pipe",
         "region": "Hivory Towers Entrance",
         "requiresAbilities": "Reptile Rush"
     },
     {
-        "id": 50507,
+        "id": 625490507,
         "name": "Catch the Pagie",
         "region": "Hivory Towers Waterworks",
         "requiresAbilities": "Buddy Slam"
     },
     {
-        "id": 50508,
+        "id": 625490508,
         "name": "In the Arcade Machine",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
@@ -81,7 +81,7 @@
         }
     },
     {
-        "id": 50509,
+        "id": 625490509,
         "name": "Slippery Slope",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
@@ -92,7 +92,7 @@
         }
     },
     {
-        "id": 50510,
+        "id": 625490510,
         "name": "Pipe Climb",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
@@ -103,7 +103,7 @@
         }
     },
     {
-        "id": 50511,
+        "id": 625490511,
         "name": "Behind the Steel Bars",
         "region": "Hivory Towers Waterworks",
         "requiresAbilities": {
@@ -119,7 +119,7 @@
         }
     },
     {
-        "id": 50512,
+        "id": 625490512,
         "name": "Underwater Challenge",
         "region": "Hivory Towers Waterworks",
         "requiresAbilities": {
@@ -130,7 +130,7 @@
         }
     },
     {
-        "id": 50513,
+        "id": 625490513,
         "name": "In the Pipes",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
@@ -141,18 +141,18 @@
         }
     },
     {
-        "id": 50514,
+        "id": 625490514,
         "name": "Glass Maze",
         "region": "Hivory Towers Archive"
     },
     {
-        "id": 50515,
+        "id": 625490515,
         "name": "Domino Books",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": "Reptile Rush"
     },
     {
-        "id": 50516,
+        "id": 625490516,
         "name": "Balloon Challenge",
         "region": "Hivory Towers Outside (Flight)",
         "requiresAbilities": {
@@ -163,7 +163,7 @@
         }
     },
     {
-        "id": 50517,
+        "id": 625490517,
         "name": "Slide Challenge",
         "region": "Hivory Towers Outside (Flight)",
         "requiresAbilities": {
@@ -174,7 +174,7 @@
         }
     },
     {
-        "id": 50518,
+        "id": 625490518,
         "name": "Across the Wind Turbines",
         "region": "Hivory Towers Outside (Flight)",
         "requiresAbilities": {
@@ -185,7 +185,7 @@
         }
     },
     {
-        "id": 50519,
+        "id": 625490519,
         "name": "Through the Toxic Tunnel",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": {
@@ -206,13 +206,13 @@
         }
     },
     {
-        "id": 50520,
+        "id": 625490520,
         "name": "Novel Puzzle",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": "Lizard Lash"
     },
     {
-        "id": 50536,
+        "id": 625490536,
         "name": "Assist Planker",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -229,7 +229,7 @@
         }
     },
     {
-        "id": 50537,
+        "id": 625490537,
         "name": "Rextro's Arcade (Kartos Carts)",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -245,7 +245,7 @@
         }
     },
     {
-        "id": 50538,
+        "id": 625490538,
         "name": "Rextro's Hi-Score (Kartos Carts)",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -261,7 +261,7 @@
         }
     },
     {
-        "id": 50541,
+        "id": 625490541,
         "name": "Pollinate Plant Bulbs",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -277,7 +277,7 @@
         }
     },
     {
-        "id": 50542,
+        "id": 625490542,
         "name": "Solve the Tribalstack Tile Puzzle",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -293,7 +293,7 @@
         }
     },
     {
-        "id": 50544,
+        "id": 625490544,
         "name": "Locate the Knights of Hamalot in Tribalstack",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -320,7 +320,7 @@
         }
     },
     {
-        "id": 50545,
+        "id": 625490545,
         "name": "Rescue Clara Lost in Tribalstack",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -336,13 +336,13 @@
         }
     },
     {
-        "id": 50547,
+        "id": 625490547,
         "name": "Nimble Dry Canal Race",
         "region": "Tribalstack Tropics",
         "requiresAbilities": "Reptile Roll"
     },
     {
-        "id": 50549,
+        "id": 625490549,
         "name": "Reptile Roll Hoop Challenge",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -353,7 +353,7 @@
         }
     },
     {
-        "id": 50551,
+        "id": 625490551,
         "name": "Assemble the Tribalstack Pagie Pieces",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -369,7 +369,7 @@
         }
     },
     {
-        "id": 50552,
+        "id": 625490552,
         "name": "Activate the Floating Platforms",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -390,7 +390,7 @@
         }
     },
     {
-        "id": 50553,
+        "id": 625490553,
         "name": "Duke's Temple Shootout",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -407,7 +407,7 @@
         }
     },
     {
-        "id": 50558,
+        "id": 625490558,
         "name": "Collect the Underwater Pagie",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -424,7 +424,7 @@
         }
     },
     {
-        "id": 50530,
+        "id": 625490530,
         "name": "Tribalstack Ghost Writers",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -442,7 +442,7 @@
         }
     },
     {
-        "id": 50531,
+        "id": 625490531,
         "name": "Tribalstack Quills",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -461,7 +461,7 @@
         }
     },
     {
-        "id": 50539,
+        "id": 625490539,
         "name": "Tribalstack Kartos Challenge",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -472,7 +472,7 @@
         }
     },
     {
-        "id": 50540,
+        "id": 625490540,
         "name": "Rampo",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -493,7 +493,7 @@
         }
     },
     {
-        "id": 50543,
+        "id": 625490543,
         "name": "Assist Blastooie",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -514,7 +514,7 @@
         }
     },
     {
-        "id": 50546,
+        "id": 625490546,
         "name": "Find Shovel Knight's Ruby",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -530,7 +530,7 @@
         }
     },
     {
-        "id": 50548,
+        "id": 625490548,
         "name": "Nimble Frozen Canal Race",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -541,7 +541,7 @@
         }
     },
     {
-        "id": 50550,
+        "id": 625490550,
         "name": "Repair the Broken Bridge",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -562,7 +562,7 @@
         }
     },
     {
-        "id": 50554,
+        "id": 625490554,
         "name": "Spew Water on Mr. Blowy",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -583,7 +583,7 @@
         }
     },
     {
-        "id": 50555,
+        "id": 625490555,
         "name": "Tribalstack Glide Hoop Challenge",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -603,7 +603,7 @@
         }
     },
     {
-        "id": 50556,
+        "id": 625490556,
         "name": "The Windy Challenge",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -623,7 +623,7 @@
         }
     },
     {
-        "id": 50557,
+        "id": 625490557,
         "name": "Inside the Tribalstack Monument",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -640,7 +640,7 @@
         }
     },
     {
-        "id": 50560,
+        "id": 625490560,
         "name": "Glitterglaze Ghosts",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -666,7 +666,7 @@
         }
     },
     {
-        "id": 50569,
+        "id": 625490569,
         "name": "Glitterglaze Kartos Challenge",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -678,7 +678,7 @@
         }
     },
     {
-        "id": 50570,
+        "id": 625490570,
         "name": "Frozen Path Torches",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -695,7 +695,7 @@
         }
     },
     {
-        "id": 50571,
+        "id": 625490571,
         "name": "Pentagonal Peak",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -723,7 +723,7 @@
         }
     },
     {
-        "id": 50572,
+        "id": 625490572,
         "name": "Find the Snowmen's Clothing",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -740,7 +740,7 @@
         }
     },
     {
-        "id": 50573,
+        "id": 625490573,
         "name": "Glitterglaze Glide Hoop Challenge",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -756,7 +756,7 @@
         }
     },
     {
-        "id": 50574,
+        "id": 625490574,
         "name": "Crystalline Cave Ice Puzzle",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -773,7 +773,7 @@
         }
     },
     {
-        "id": 50575,
+        "id": 625490575,
         "name": "Sculpt the Capital B Ice Sculpture",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -794,7 +794,7 @@
         }
     },
     {
-        "id": 50576,
+        "id": 625490576,
         "name": "Glitterglaze Flying Hoop Challenge",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -805,7 +805,7 @@
         }
     },
     {
-        "id": 50584,
+        "id": 625490584,
         "name": "Traverse through Gloomy Gem Grotto",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -833,7 +833,7 @@
         }
     },
     {
-        "id": 50585,
+        "id": 625490585,
         "name": "Jump over Dice Symbols Platforms",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -849,7 +849,7 @@
         }
     },
     {
-        "id": 50586,
+        "id": 625490586,
         "name": "Assist Tubbz",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -884,7 +884,7 @@
         }
     },
     {
-        "id": 50587,
+        "id": 625490587,
         "name": "Rescue Potty Mouth",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -901,7 +901,7 @@
         }
     },
     {
-        "id": 50561,
+        "id": 625490561,
         "name": "Glitterglaze Quills",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -939,7 +939,7 @@
         }
     },
     {
-        "id": 50562,
+        "id": 625490562,
         "name": "Rextro's Arcade (Rextro's Glaciators)",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -974,7 +974,7 @@
         }
     },
     {
-        "id": 50563,
+        "id": 625490563,
         "name": "Rextro's Hi-Score (Rextro's Glaciators)",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1009,7 +1009,7 @@
         }
     },
     {
-        "id": 50565,
+        "id": 625490565,
         "name": "Icymetric Palace - Frozen Pagie",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1033,7 +1033,7 @@
         }
     },
     {
-        "id": 50566,
+        "id": 625490566,
         "name": "Icymetric Palace - Brreeeze Blok",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1050,7 +1050,7 @@
         }
     },
     {
-        "id": 50577,
+        "id": 625490577,
         "name": "Icymetric Palace - Pipes",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1068,7 +1068,7 @@
         }
     },
     {
-        "id": 50578,
+        "id": 625490578,
         "name": "Icymetric Palace - Dark Room Quiz",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1108,7 +1108,7 @@
         }
     },
     {
-        "id": 50579,
+        "id": 625490579,
         "name": "Icymetric Palace - Sonar Shot the Statues",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1126,7 +1126,7 @@
         }
     },
     {
-        "id": 50581,
+        "id": 625490581,
         "name": "Icymetric Palace - Camo Cloak Pagie",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1166,7 +1166,7 @@
         }
     },
     {
-        "id": 50582,
+        "id": 625490582,
         "name": "Icymetric Palace - Burnie's Room",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1207,7 +1207,7 @@
         }
     },
     {
-        "id": 50583,
+        "id": 625490583,
         "name": "Icymetric Palace - Spikes Wall",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1240,7 +1240,7 @@
         }
     },
     {
-        "id": 50588,
+        "id": 625490588,
         "name": "Icymetric Palace - Acid Path",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -1279,7 +1279,7 @@
         }
     },
     {
-        "id": 50595,
+        "id": 625490595,
         "name": "Swampy Station",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1293,7 +1293,7 @@
         }
     },
     {
-        "id": 50597,
+        "id": 625490597,
         "name": "Rextro's Arcade (Bee Bop)",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1304,7 +1304,7 @@
         }
     },
     {
-        "id": 50598,
+        "id": 625490598,
         "name": "Rextro's Hi-Score (Bee Bop)",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1315,13 +1315,13 @@
         }
     },
     {
-        "id": 50600,
+        "id": 625490600,
         "name": "Moodymaze Kartos Challenge",
         "region": "Moodymaze Marsh",
         "requiresAbilities": "<MoodymazeEntry>"
     },
     {
-        "id": 50601,
+        "id": 625490601,
         "name": "Rescue Dolly the Trolley",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1334,7 +1334,7 @@
         }
     },
     {
-        "id": 50602,
+        "id": 625490602,
         "name": "Defeat Trev the Tenteyecle",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1345,19 +1345,19 @@
         }
     },
     {
-        "id": 50603,
+        "id": 625490603,
         "name": "Complete Ollie the Trolley's Maze",
         "region": "Moodymaze Marsh",
         "requiresAbilities": "<MoodymazeEntry>"
     },
     {
-        "id": 50605,
+        "id": 625490605,
         "name": "Pumping Plant Puzzle",
         "region": "Moodymaze Marsh",
         "requiresAbilities": "<MoodymazeEntry>"
     },
     {
-        "id": 50606,
+        "id": 625490606,
         "name": "Moodymaze Trapped Pagie",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1374,7 +1374,7 @@
         }
     },
     {
-        "id": 50608,
+        "id": 625490608,
         "name": "Underwater Pagie",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1385,7 +1385,7 @@
         }
     },
     {
-        "id": 50609,
+        "id": 625490609,
         "name": "Barbed Vines",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1398,7 +1398,7 @@
         }
     },
     {
-        "id": 50610,
+        "id": 625490610,
         "name": "Travel through the Murky Passage",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1411,7 +1411,7 @@
         }
     },
     {
-        "id": 50612,
+        "id": 625490612,
         "name": "Scale the Tree",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1427,7 +1427,7 @@
         }
     },
     {
-        "id": 50613,
+        "id": 625490613,
         "name": "Complete Jolly's Switch Mission",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1439,7 +1439,7 @@
         }
     },
     {
-        "id": 50618,
+        "id": 625490618,
         "name": "Remove Fungus from Wally's Garden",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1450,7 +1450,7 @@
         }
     },
     {
-        "id": 50619,
+        "id": 625490619,
         "name": "Moodymaze Hanging Pagie",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -1462,7 +1462,7 @@
         }
     },
     {
-        "id": 50590,
+        "id": 625490590,
         "name": "Moodymaze Ghosts",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1483,7 +1483,7 @@
         }
     },
     {
-        "id": 50591,
+        "id": 625490591,
         "name": "Moodymaze Quills",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1513,7 +1513,7 @@
         }
     },
     {
-        "id": 50604,
+        "id": 625490604,
         "name": "Moodymaze Timed Platform Challenge",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1530,7 +1530,7 @@
         }
     },
     {
-        "id": 50607,
+        "id": 625490607,
         "name": "Cage Match",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1564,7 +1564,7 @@
         }
     },
     {
-        "id": 50611,
+        "id": 625490611,
         "name": "Hotswitch Hollow",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1575,7 +1575,7 @@
         }
     },
     {
-        "id": 50614,
+        "id": 625490614,
         "name": "Fire Platform Challenge",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1593,7 +1593,7 @@
         }
     },
     {
-        "id": 50615,
+        "id": 625490615,
         "name": "Moodymaze Hoop Challenge",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1609,7 +1609,7 @@
         }
     },
     {
-        "id": 50616,
+        "id": 625490616,
         "name": "Get Clara's Gem",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1620,7 +1620,7 @@
         }
     },
     {
-        "id": 50617,
+        "id": 625490617,
         "name": "Collect Planker's Seeds",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -1638,7 +1638,7 @@
         }
     },
     {
-        "id": 50620,
+        "id": 625490620,
         "name": "Cashino Ghosts",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -1685,7 +1685,7 @@
         }
     },
     {
-        "id": 50622,
+        "id": 625490622,
         "name": "Cashino Tokens - 1",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1696,7 +1696,7 @@
         }
     },
     {
-        "id": 50623,
+        "id": 625490623,
         "name": "Cashino Tokens - 2",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1707,7 +1707,7 @@
         }
     },
     {
-        "id": 50624,
+        "id": 625490624,
         "name": "Cashino Tokens - 3",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1718,7 +1718,7 @@
         }
     },
     {
-        "id": 50625,
+        "id": 625490625,
         "name": "Cashino Tokens - 4",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1729,7 +1729,7 @@
         }
     },
     {
-        "id": 50626,
+        "id": 625490626,
         "name": "Cashino Tokens - 5",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1740,7 +1740,7 @@
         }
     },
     {
-        "id": 50627,
+        "id": 625490627,
         "name": "Rextro's Arcade (Hurdle Hijinx)",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1751,7 +1751,7 @@
         }
     },
     {
-        "id": 50628,
+        "id": 625490628,
         "name": "Rextro's Hi-Score (Hurdle Hijinx)",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1762,7 +1762,7 @@
         }
     },
     {
-        "id": 50629,
+        "id": 625490629,
         "name": "Cashino Kartos Challenge",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1799,7 +1799,7 @@
         }
     },
     {
-        "id": 50630,
+        "id": 625490630,
         "name": "I.N.E.P.T. Boss Battle",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1837,7 +1837,7 @@
         }
     },
     {
-        "id": 50631,
+        "id": 625490631,
         "name": "Cashino Tokens - 6",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1848,7 +1848,7 @@
         }
     },
     {
-        "id": 50632,
+        "id": 625490632,
         "name": "Cashino Tokens - 7",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1859,7 +1859,7 @@
         }
     },
     {
-        "id": 50633,
+        "id": 625490633,
         "name": "Cashino Tokens - 8",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1870,7 +1870,7 @@
         }
     },
     {
-        "id": 50634,
+        "id": 625490634,
         "name": "Cashino Tokens - 9",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1881,7 +1881,7 @@
         }
     },
     {
-        "id": 50635,
+        "id": 625490635,
         "name": "Cashino Tokens - 10",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1892,7 +1892,7 @@
         }
     },
     {
-        "id": 50636,
+        "id": 625490636,
         "name": "Cashino Tokens - 11",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1903,7 +1903,7 @@
         }
     },
     {
-        "id": 50637,
+        "id": 625490637,
         "name": "Cashino Tokens - 12",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1914,7 +1914,7 @@
         }
     },
     {
-        "id": 50638,
+        "id": 625490638,
         "name": "Cashino Tokens - 13",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1925,7 +1925,7 @@
         }
     },
     {
-        "id": 50639,
+        "id": 625490639,
         "name": "Cashino Tokens - 14",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -1936,7 +1936,7 @@
         }
     },
     {
-        "id": 50621,
+        "id": 625490621,
         "name": "Cashino Quills",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -1963,7 +1963,7 @@
         }
     },
     {
-        "id": 50642,
+        "id": 625490642,
         "name": "Cashino Tokens - 15",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -1974,7 +1974,7 @@
         }
     },
     {
-        "id": 50643,
+        "id": 625490643,
         "name": "Cashino Tokens - 16",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -1985,7 +1985,7 @@
         }
     },
     {
-        "id": 50644,
+        "id": 625490644,
         "name": "Cashino Tokens - 17",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -1996,7 +1996,7 @@
         }
     },
     {
-        "id": 50645,
+        "id": 625490645,
         "name": "Cashino Tokens - 18",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -2007,7 +2007,7 @@
         }
     },
     {
-        "id": 50646,
+        "id": 625490646,
         "name": "Cashino Tokens - 19",
         "region": "Expanded Cashino",
         "requiresAbilities": {
@@ -2018,7 +2018,7 @@
         }
     },
     {
-        "id": 50650,
+        "id": 625490650,
         "name": "Galaxy Ghosts",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2035,7 +2035,7 @@
         }
     },
     {
-        "id": 50653,
+        "id": 625490653,
         "name": "The Lighthouse",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2047,7 +2047,7 @@
         }
     },
     {
-        "id": 50664,
+        "id": 625490664,
         "name": "Lunar Lockup Pagie",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2061,7 +2061,7 @@
         }
     },
     {
-        "id": 50667,
+        "id": 625490667,
         "name": "Cosmic Cavern Laser Challenge",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2090,7 +2090,7 @@
         }
     },
     {
-        "id": 50651,
+        "id": 625490651,
         "name": "Galaxy Quills",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2110,7 +2110,7 @@
         }
     },
     {
-        "id": 50657,
+        "id": 625490657,
         "name": "Rextro's Arcade (UpNova)",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2122,7 +2122,7 @@
         }
     },
     {
-        "id": 50658,
+        "id": 625490658,
         "name": "Rextro's Hi-Score (UpNova)",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2134,7 +2134,7 @@
         }
     },
     {
-        "id": 50659,
+        "id": 625490659,
         "name": "Galaxy Kartos Challenge",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2145,7 +2145,7 @@
         }
     },
     {
-        "id": 50660,
+        "id": 625490660,
         "name": "Defeat Planette",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2158,7 +2158,7 @@
         }
     },
     {
-        "id": 50661,
+        "id": 625490661,
         "name": "The Space Rig",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2171,7 +2171,7 @@
         }
     },
     {
-        "id": 50663,
+        "id": 625490663,
         "name": "Pressure Dome Swimming Challenge",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2183,7 +2183,7 @@
         }
     },
     {
-        "id": 50665,
+        "id": 625490665,
         "name": "Complete Schell's Mission",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2196,7 +2196,7 @@
         }
     },
     {
-        "id": 50666,
+        "id": 625490666,
         "name": "Space Plumbing",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2208,7 +2208,7 @@
         }
     },
     {
-        "id": 50668,
+        "id": 625490668,
         "name": "Velocity Terminal",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2220,7 +2220,7 @@
         }
     },
     {
-        "id": 50669,
+        "id": 625490669,
         "name": "Spacecog Station",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2231,7 +2231,7 @@
         }
     },
     {
-        "id": 50670,
+        "id": 625490670,
         "name": "Black Hole in One",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2253,7 +2253,7 @@
         }
     },
     {
-        "id": 50671,
+        "id": 625490671,
         "name": "Turn on the Captain's Lamp",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2264,7 +2264,7 @@
         }
     },
     {
-        "id": 50672,
+        "id": 625490672,
         "name": "Pressure Dome Security Gauntlet",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2279,7 +2279,7 @@
         }
     },
     {
-        "id": 50673,
+        "id": 625490673,
         "name": "Melt Rusto's Ice Cube",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2291,7 +2291,7 @@
         }
     },
     {
-        "id": 50674,
+        "id": 625490674,
         "name": "Test of Strength Switch",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2309,7 +2309,7 @@
         }
     },
     {
-        "id": 50675,
+        "id": 625490675,
         "name": "Galaxy Knights Key",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2327,13 +2327,13 @@
         }
     },
     {
-        "id": 50676,
+        "id": 625490676,
         "name": "Star Fishing Minigame",
         "region": "Expanded Galaxy",
         "requiresAbilities": "<GalaxyEntry>"
     },
     {
-        "id": 50677,
+        "id": 625490677,
         "name": "Galaxy Pagie Piece",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2352,7 +2352,7 @@
         }
     },
     {
-        "id": 50678,
+        "id": 625490678,
         "name": "Energy Ball Switch",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2364,7 +2364,7 @@
         }
     },
     {
-        "id": 50679,
+        "id": 625490679,
         "name": "Galaxy Nimble Race",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2377,12 +2377,12 @@
         }
     },
     {
-        "id": 50680,
+        "id": 625490680,
         "name": "Game Complete",
         "region": "Endgame"
     },
     {
-        "id": 51000,
+        "id": 625490000,
         "name": "Shipwreck Creek Health Booster",
         "region": "Shipwreck Creek",
         "requiresAbilities": {
@@ -2398,7 +2398,7 @@
         }
     },
     {
-        "id": 51001,
+        "id": 625490001,
         "name": "Tropics Health Booster",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -2409,7 +2409,7 @@
         }
     },
     {
-        "id": 51002,
+        "id": 625490002,
         "name": "Glacier Health Booster",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -2451,7 +2451,7 @@
         }
     },
     {
-        "id": 51003,
+        "id": 625490003,
         "name": "Marsh Health Booster",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -2463,7 +2463,7 @@
         }
     },
     {
-        "id": 51004,
+        "id": 625490004,
         "name": "Cashino Health Booster",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2475,7 +2475,7 @@
         }
     },
     {
-        "id": 51005,
+        "id": 625490005,
         "name": "Galaxy Health Booster",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2487,7 +2487,7 @@
         }
     },
     {
-        "id": 51010,
+        "id": 625490010,
         "name": "Hivory Towers Energy Booster",
         "region": "Hivory Towers Entrance",
         "requiresAbilities": {
@@ -2497,7 +2497,7 @@
         }
     },
     {
-        "id": 51011,
+        "id": 625490011,
         "name": "Tropics Energy Booster",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -2524,7 +2524,7 @@
         }
     },
     {
-        "id": 51012,
+        "id": 625490012,
         "name": "Glacier Energy Booster",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -2546,13 +2546,13 @@
         }
     },
     {
-        "id": 51013,
+        "id": 625490013,
         "name": "Marsh Energy Booster",
         "region": "Expanded Marsh",
         "requiresAbilities": "Flappy Flight"
     },
     {
-        "id": 51014,
+        "id": 625490014,
         "name": "Cashino Energy Booster",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2573,7 +2573,7 @@
         }
     },
     {
-        "id": 51015,
+        "id": 625490015,
         "name": "Galaxy Energy Booster",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2602,7 +2602,7 @@
         }
     },
     {
-        "id": 51020,
+        "id": 625490020,
         "name": "Tropics Mollycool",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -2622,7 +2622,7 @@
         }
     },
     {
-        "id": 51021,
+        "id": 625490021,
         "name": "Glacier Mollycool",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -2645,7 +2645,7 @@
         }
     },
     {
-        "id": 51022,
+        "id": 625490022,
         "name": "Marsh Mollycool",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -2658,7 +2658,7 @@
         }
     },
     {
-        "id": 51023,
+        "id": 625490023,
         "name": "Cashino Mollycool",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2670,7 +2670,7 @@
         }
     },
     {
-        "id": 51024,
+        "id": 625490024,
         "name": "Galaxy Mollycool",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2681,7 +2681,7 @@
         }
     },
     {
-        "id": 51030,
+        "id": 625490030,
         "name": "Tropics Play Coin",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -2692,7 +2692,7 @@
         }
     },
     {
-        "id": 51031,
+        "id": 625490031,
         "name": "Glacier Play Coin",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -2719,7 +2719,7 @@
         }
     },
     {
-        "id": 51032,
+        "id": 625490032,
         "name": "Marsh Play Coin",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -2735,7 +2735,7 @@
         }
     },
     {
-        "id": 51033,
+        "id": 625490033,
         "name": "Cashino Play Coin",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2747,7 +2747,7 @@
         }
     },
     {
-        "id": 51034,
+        "id": 625490034,
         "name": "Galaxy Play Coin",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2758,78 +2758,78 @@
         }
     },
     {
-        "id": 51500,
+        "id": 625490500,
         "name": "Trowzer's Tail Twirl",
         "region": "Shipwreck Creek"
     },
     {
-        "id": 51501,
+        "id": 625490501,
         "name": "Trowzer's Reptile Roll",
         "region": "Hivory Towers Entrance"
     },
     {
-        "id": 51502,
+        "id": 625490502,
         "name": "Trowzer's Glide",
         "region": "Hivory Towers Hub B"
     },
     {
-        "id": 51503,
+        "id": 625490503,
         "name": "Trowzer's Buddy Bubble",
         "region": "Hivory Towers Archive"
     },
     {
-        "id": 51504,
+        "id": 625490504,
         "name": "Trowzer's Camo Cloak",
         "region": "Hivory Towers Outside (NoFlight)"
     },
     {
-        "id": 51505,
+        "id": 625490505,
         "name": "Trowzer's Flappy Flight",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": "Camo Cloak"
     },
     {
-        "id": 51510,
+        "id": 625490510,
         "name": "Trowzer's Sonar Shot",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 51511,
+        "id": 625490511,
         "name": "Trowzer's Slurp Shot",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 51512,
+        "id": 625490512,
         "name": "Trowzer's Buddy Slam",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 51513,
+        "id": 625490513,
         "name": "Trowzer's Slurp State",
         "region": "Glitterglaze Glacier"
     },
     {
-        "id": 51514,
+        "id": 625490514,
         "name": "Trowzer's Lizard Leap",
         "region": "Glitterglaze Glacier"
     },
     {
-        "id": 51515,
+        "id": 625490515,
         "name": "Trowzer's Lizard Lash",
         "region": "Moodymaze Marsh"
     },
     {
-        "id": 51516,
+        "id": 625490516,
         "name": "Trowzer's Sonar 'Splosion",
         "region": "Moodymaze Marsh"
     },
     {
-        "id": 51517,
+        "id": 625490517,
         "name": "Trowzer's Reptile Rush",
         "region": "Capital Cashino"
     },
     {
-        "id": 51518,
+        "id": 625490518,
         "name": "Trowzer's Sonar Shield",
         "region": "Galleon Galaxy"
     }
