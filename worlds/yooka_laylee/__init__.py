@@ -40,15 +40,42 @@ class YookaWorld(World):
     option_definitions = yooka_options
 
     data_version = 1
-    required_client_version = (0, 3, 4)
+    required_client_version = (0, 4, 2)
 
     def create_items(self):
+        # Set up prefill data for later
+        if not hasattr(self.multiworld, "yookaLaylee_prefillItems"):
+            self.multiworld.yookaLaylee_prefillItems = {}
+        self.multiworld.yookaLaylee_prefillItems[self.player] = {}
+
+        # Decide on which ability to prefill
+        damagingAbilityOptions = ["Tail Twirl", "Sonar 'Splosion", "Buddy Slam", "Flappy Flight"]
+        if self.multiworld.flappy_flight_location[self.player] == 1:
+            damagingAbilityOptions = ["Flappy Flight"]
+        elif self.multiworld.flappy_flight_location[self.player] == 2:
+            damagingAbilityOptions.append("Flappy Flight")
+        damagingAbilityToInsert = self.multiworld.random.choice(damagingAbilityOptions)
+        tropicsAccessAbility = None
+        if damagingAbilityToInsert != "Flappy Flight":
+            tropicsAccessAbility = self.multiworld.random.choice(["Reptile Roll", "Flappy Flight"])
+
         # Generate item pool
         pool = []
         for item in item_table:
             for i in range(0, item["quantity"]):
                 yooka_item = self.create_item(item["name"])
-                pool.append(yooka_item)
+                if item["name"] == damagingAbilityToInsert:
+                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
+                elif item["name"] == tropicsAccessAbility:
+                    locationOptions = ["Trowzer's Reptile Roll", "On Top of Capital B Statue"]
+                    if damagingAbilityToInsert == "Buddy Slam":
+                        locationOptions.append("Hivory Towers Energy Booster")
+                    locationToUse = self.multiworld.random.choice(locationOptions)
+                    self.multiworld.yookaLaylee_prefillItems[self.player][locationToUse] = yooka_item
+                elif item["name"] == "Flappy Flight" and self.multiworld.flappy_flight_location[self.player] == 3:
+                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
+                else:
+                    pool.append(yooka_item)
         self.multiworld.itempool += pool
 
     def set_rules(self):
@@ -58,7 +85,7 @@ class YookaWorld(World):
         create_regions(self.multiworld, self.player)
     
     def get_pre_fill_items(self):
-        return []
+        return [loc.item for loc in self.multiworld.get_filled_locations(self.player)]
 
     def create_item(self, name: str) -> Item:
         item = lookup_name_to_item[name]
@@ -69,31 +96,14 @@ class YookaWorld(World):
         return YookaItem(rpName, ItemClassification.filler, self.item_name_to_id[rpName], player=self.player)
 
     def pre_fill(self):
+        # Prefill all predetermined items in their relevant locations
+        for locationName, itemToInsert in self.multiworld.yookaLaylee_prefillItems[self.player].items():
+            self.multiworld.get_location(locationName, self.player).place_locked_item(itemToInsert)
+        self.multiworld.yookaLaylee_prefillItems.pop(self.player) # Clean up references
+
         # Victory item
         self.multiworld.get_location("Game Complete", self.player).place_locked_item(
             YookaItem("Victory", ItemClassification.progression, None, player=self.player))
-        # TODO Prefill these if Mollycools and/or Play Coin randomization is disabled
-        # self.setLocationItem("Tropics Mollycool", "Tropics Mollycool")
-        # self.setLocationItem("Glacier Mollycool", "Glacier Mollycool")
-        # self.setLocationItem("Marsh Mollycool", "Marsh Mollycool")
-        # self.setLocationItem("Cashino Mollycool", "Cashino Mollycool")
-        # self.setLocationItem("Galaxy Mollycool", "Galaxy Mollycool")
-        # self.setLocationItem("Tropics Play Coin", "Tropics Play Coin")
-        # self.setLocationItem("Glacier Play Coin", "Glacier Play Coin")
-        # self.setLocationItem("Marsh Play Coin", "Marsh Play Coin")
-        # self.setLocationItem("Cashino Play Coin", "Cashino Play Coin")
-        # self.setLocationItem("Galaxy Play Coin", "Galaxy Play Coin")
-    
-    def setLocationItem(self, location: str, itemName: str):
-        itemToUse = next(filter(lambda itm: itm.name == itemName, self.multiworld.itempool))
-        self.multiworld.itempool.remove(itemToUse)
-        self.multiworld.get_location(location, self.player).place_locked_item(itemToUse)
-    
-    def setLocationItemFromRegion(self, region: str, itemName: str):
-        itemToUse = next(filter(lambda itm: itm.name == itemName, self.multiworld.itempool))
-        self.multiworld.itempool.remove(itemToUse)
-        location = random.choice(list(loc for loc in location_table if loc["region"] == region))
-        self.multiworld.get_location(location["name"], self.player).place_locked_item(itemToUse)
 
     def fill_slot_data(self):
         return {
