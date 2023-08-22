@@ -1,5 +1,6 @@
 import typing
 import random
+import logging
 
 from .Locations import location_table, lookup_name_to_id as locations_lookup_name_to_id, priority_locations as locations_priority_locations
 from .Items import (item_table, lookup_name_to_item, lookup_name_to_id as items_lookup_name_to_id)
@@ -44,6 +45,8 @@ class YookaWorld(World):
 
     def create_items(self):
         # TODO Add an option for how likely Flappy Flight shows up early. Range 0-100, 0 being never and 100 being always. Or something like that.
+        if not self.multiworld.prevent_tropics_bk[self.player]:
+            logging.warn("Yooka-Laylee: Prevent Tropics BK not enabled. World generation may fail with only Yooka-Laylee worlds.")
 
         # Set up prefill data for later
         if not hasattr(self.multiworld, "yookaLaylee_prefillItems"):
@@ -57,6 +60,9 @@ class YookaWorld(World):
         elif self.multiworld.flappy_flight_location[self.player] == 2:
             firstAbilityOptions.append("Flappy Flight")
         damagingAbilityToInsert = self.multiworld.random.choice(firstAbilityOptions)
+        antiBkPagieLocationToUse = None
+        antiBkLocationToUse = None
+        antiBkItemNameToInsert = None
         if not self.multiworld.force_local_first_item[self.player]:
             self.multiworld.early_items[self.player][damagingAbilityToInsert] = 1
         if damagingAbilityToInsert != "Flappy Flight" and self.multiworld.prevent_tropics_bk[self.player]:
@@ -66,8 +72,12 @@ class YookaWorld(World):
             antiBkItems = ["Reptile Roll", "Reptile Roll", "Reptile Roll"]
             if self.multiworld.flappy_flight_location[self.player] != 3:
                 antiBkItems.append("Flappy Flight") # 25% chance for FF if allowed
+            # Set up ability placement info
             antiBkLocationToUse = self.multiworld.random.choice(antiBkLocations)
             antiBkItemNameToInsert = self.multiworld.random.choice(antiBkItems)
+            # Set up pagie placement info
+            antiBkLocations.remove(antiBkLocationToUse)
+            antiBkPagieLocationToUse = self.multiworld.random.choice(antiBkLocations)
 
         # Generate item pool
         pool = []
@@ -80,6 +90,9 @@ class YookaWorld(World):
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
                 elif item["name"] == antiBkItemNameToInsert:
                     self.multiworld.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
+                elif item["name"] == "Pagie" and antiBkPagieLocationToUse != None:
+                    self.multiworld.yookaLaylee_prefillItems[self.player][antiBkPagieLocationToUse] = yooka_item
+                    antiBkPagieLocationToUse = None
                 else:
                     pool.append(yooka_item)
         self.multiworld.itempool += pool
@@ -95,8 +108,12 @@ class YookaWorld(World):
 
     def create_item(self, name: str) -> Item:
         item = lookup_name_to_item[name]
-        return YookaItem(name, ItemClassification.progression if item["progression"] else ItemClassification.filler,
-                        self.item_name_to_id[name], player=self.player)
+        itemClassification = ItemClassification.useful
+        if item["name"] == "Pagie":
+            itemClassification = ItemClassification.progression_skip_balancing
+        elif item["progression"]:
+            itemClassification = ItemClassification.progression
+        return YookaItem(name, itemClassification, self.item_name_to_id[name], player=self.player)
     
     def create_resourcePack(self, rpName: str) -> Item:
         return YookaItem(rpName, ItemClassification.filler, self.item_name_to_id[rpName], player=self.player)
