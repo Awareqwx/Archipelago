@@ -2760,7 +2760,8 @@
     {
         "id": 625490500,
         "name": "Trowzer's Tail Twirl",
-        "region": "Shipwreck Creek"
+        "region": "Shipwreck Creek",
+        "type": "Priority"
     },
     {
         "id": 625490501,

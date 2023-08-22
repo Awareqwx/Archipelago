@@ -1,14 +1,14 @@
 import typing
 import random
 
-from .Locations import location_table, lookup_name_to_id as locations_lookup_name_to_id
+from .Locations import location_table, lookup_name_to_id as locations_lookup_name_to_id, priority_locations as locations_priority_locations
 from .Items import (item_table, lookup_name_to_item, lookup_name_to_id as items_lookup_name_to_id)
 
 from .Regions import create_regions, getConnectionName
 from .Rules import set_rules
 from .Options import yooka_options
 
-from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial
+from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial, LocationProgressType
 from ..AutoWorld import World, WebWorld
 
 
@@ -43,37 +43,43 @@ class YookaWorld(World):
     required_client_version = (0, 4, 2)
 
     def create_items(self):
+        # TODO Add an option for how likely Flappy Flight shows up early. Range 0-100, 0 being never and 100 being always. Or something like that.
+
         # Set up prefill data for later
         if not hasattr(self.multiworld, "yookaLaylee_prefillItems"):
             self.multiworld.yookaLaylee_prefillItems = {}
         self.multiworld.yookaLaylee_prefillItems[self.player] = {}
 
         # Decide on which ability to prefill
-        damagingAbilityOptions = ["Tail Twirl", "Sonar 'Splosion", "Buddy Slam", "Flappy Flight"]
+        firstAbilityOptions = ["Tail Twirl", "Sonar 'Splosion", "Buddy Slam", "Flappy Flight"]
         if self.multiworld.flappy_flight_location[self.player] == 1:
-            damagingAbilityOptions = ["Flappy Flight"]
+            firstAbilityOptions = ["Flappy Flight"]
         elif self.multiworld.flappy_flight_location[self.player] == 2:
-            damagingAbilityOptions.append("Flappy Flight")
-        damagingAbilityToInsert = self.multiworld.random.choice(damagingAbilityOptions)
-        tropicsAccessAbility = None
-        if damagingAbilityToInsert != "Flappy Flight":
-            tropicsAccessAbility = self.multiworld.random.choice(["Reptile Roll", "Flappy Flight"])
+            firstAbilityOptions.append("Flappy Flight")
+        damagingAbilityToInsert = self.multiworld.random.choice(firstAbilityOptions)
+        if not self.multiworld.force_local_first_item[self.player]:
+            self.multiworld.early_items[self.player][damagingAbilityToInsert] = 1
+        if damagingAbilityToInsert != "Flappy Flight" and self.multiworld.prevent_tropics_bk[self.player]:
+            antiBkLocations = ["Trowzer's Reptile Roll", "On Top of Capital B Statue"]
+            if damagingAbilityToInsert == "Buddy Slam":
+                antiBkLocations.append("Hivory Towers Energy Booster")
+            antiBkItems = ["Reptile Roll", "Reptile Roll", "Reptile Roll"]
+            if self.multiworld.flappy_flight_location[self.player] != 3:
+                antiBkItems.append("Flappy Flight") # 25% chance for FF if allowed
+            antiBkLocationToUse = self.multiworld.random.choice(antiBkLocations)
+            antiBkItemNameToInsert = self.multiworld.random.choice(antiBkItems)
 
         # Generate item pool
         pool = []
         for item in item_table:
-            for i in range(0, item["quantity"]):
+            for _ in range(item["quantity"]):
                 yooka_item = self.create_item(item["name"])
-                if item["name"] == damagingAbilityToInsert:
-                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
-                elif item["name"] == tropicsAccessAbility:
-                    locationOptions = ["Trowzer's Reptile Roll", "On Top of Capital B Statue"]
-                    if damagingAbilityToInsert == "Buddy Slam":
-                        locationOptions.append("Hivory Towers Energy Booster")
-                    locationToUse = self.multiworld.random.choice(locationOptions)
-                    self.multiworld.yookaLaylee_prefillItems[self.player][locationToUse] = yooka_item
-                elif item["name"] == "Flappy Flight" and self.multiworld.flappy_flight_location[self.player] == 3:
+                if item["name"] == "Flappy Flight" and self.multiworld.flappy_flight_location[self.player] == 3:
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
+                elif item["name"] == damagingAbilityToInsert and self.multiworld.force_local_first_item[self.player]:
+                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
+                elif item["name"] == antiBkItemNameToInsert:
+                    self.multiworld.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
                 else:
                     pool.append(yooka_item)
         self.multiworld.itempool += pool
@@ -116,6 +122,8 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
         for location in locations:
             loc_id = locations_lookup_name_to_id.get(location, 0)
             locationObj = YookaLocation(player, location, loc_id, ret)
+            if location in locations_priority_locations:
+                locationObj.progress_type = LocationProgressType.PRIORITY
             ret.locations.append(locationObj)
     if exits:
         for exit in exits:
