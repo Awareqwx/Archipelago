@@ -16,7 +16,7 @@ from ..AutoWorld import World, WebWorld
 class YookaWeb(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up Yooka Laylee integration for Archipelago multiworld games.",
+        "A guide to setting up Yooka-Laylee integration for Archipelago multiworld games.",
         "English",
         "setup_en.md",
         "setup/en",
@@ -31,7 +31,7 @@ class YookaWorld(World):
     With a variety of abilities and quirky characters to encounter, players must utilize their skills to
     defeat enemies, uncover secrets, and save the day from the nefarious Capital B.
     """
-    game: str = "Yooka Laylee"
+    game: str = "Yooka-Laylee"
     web = YookaWeb()
 
     item_name_to_id = items_lookup_name_to_id.copy()
@@ -148,7 +148,7 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
     return ret
 
 class YookaLocation(Location):
-    game = "Yooka Laylee"
+    game = "Yooka-Laylee"
 
 class YookaItem(Item):
-    game = "Yooka Laylee"
+    game = "Yooka-Laylee"
