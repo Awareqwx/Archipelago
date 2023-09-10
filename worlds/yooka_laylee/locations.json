@@ -2758,79 +2758,79 @@
         }
     },
     {
-        "id": 625490500,
+        "id": 625491500,
         "name": "Trowzer's Tail Twirl",
         "region": "Shipwreck Creek",
         "type": "Priority"
     },
     {
-        "id": 625490501,
+        "id": 625491501,
         "name": "Trowzer's Reptile Roll",
         "region": "Hivory Towers Entrance"
     },
     {
-        "id": 625490502,
+        "id": 625491502,
         "name": "Trowzer's Glide",
         "region": "Hivory Towers Hub B"
     },
     {
-        "id": 625490503,
+        "id": 625491503,
         "name": "Trowzer's Buddy Bubble",
         "region": "Hivory Towers Archive"
     },
     {
-        "id": 625490504,
+        "id": 625491504,
         "name": "Trowzer's Camo Cloak",
         "region": "Hivory Towers Outside (NoFlight)"
     },
     {
-        "id": 625490505,
+        "id": 625491505,
         "name": "Trowzer's Flappy Flight",
         "region": "Hivory Towers Outside (NoFlight)",
         "requiresAbilities": "Camo Cloak"
     },
     {
-        "id": 625490510,
+        "id": 625491510,
         "name": "Trowzer's Sonar Shot",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 625490511,
+        "id": 625491511,
         "name": "Trowzer's Slurp Shot",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 625490512,
+        "id": 625491512,
         "name": "Trowzer's Buddy Slam",
         "region": "Tribalstack Tropics"
     },
     {
-        "id": 625490513,
+        "id": 625491513,
         "name": "Trowzer's Slurp State",
         "region": "Glitterglaze Glacier"
     },
     {
-        "id": 625490514,
+        "id": 625491514,
         "name": "Trowzer's Lizard Leap",
         "region": "Glitterglaze Glacier"
     },
     {
-        "id": 625490515,
+        "id": 625491515,
         "name": "Trowzer's Lizard Lash",
         "region": "Moodymaze Marsh"
     },
     {
-        "id": 625490516,
+        "id": 625491516,
         "name": "Trowzer's Sonar 'Splosion",
         "region": "Moodymaze Marsh"
     },
     {
-        "id": 625490517,
+        "id": 625491517,
         "name": "Trowzer's Reptile Rush",
         "region": "Capital Cashino"
     },
     {
-        "id": 625490518,
+        "id": 625491518,
         "name": "Trowzer's Sonar Shield",
         "region": "Galleon Galaxy"
     }
