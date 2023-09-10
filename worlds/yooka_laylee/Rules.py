@@ -29,7 +29,7 @@ class YookaLayleeLogic(LogicMixin):
             (state.yookaLaylee_has_requirements("<GlacierUpperAccess>", player) or state.yookaLaylee_has_requirements("<GlacierLowerAccess>", player))
             and state.has("Buddy Slam", player) and state.has("Slurp Shot", player)
         ),
-        "<MoodymazeEntry>": lambda state, player: state.has("Bubble Buddy", player) or state.has("Lizard Lash", player) or state.has("Flappy Flight", player),
+        "<MoodymazeEntry>": lambda state, player: state.has("Buddy Bubble", player) or state.has("Lizard Lash", player) or state.has("Flappy Flight", player),
         "<CashinoEntry>": lambda state, player: state.has("Camo Cloak", player) or state.has("Flappy Flight", player),
         "<ExpandedCashino>": lambda state, player: state.yookaLaylee_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
         "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
