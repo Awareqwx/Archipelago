@@ -2372,7 +2372,7 @@
         "region": "Endgame"
     },
     {
-        "id": 625490000,
+        "id": 625491000,
         "name": "Shipwreck Creek Health Booster",
         "region": "Shipwreck Creek",
         "requiresAbilities": {
@@ -2388,7 +2388,7 @@
         }
     },
     {
-        "id": 625490001,
+        "id": 625491001,
         "name": "Tropics Health Booster",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -2399,7 +2399,7 @@
         }
     },
     {
-        "id": 625490002,
+        "id": 625491002,
         "name": "Glacier Health Booster",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -2441,7 +2441,7 @@
         }
     },
     {
-        "id": 625490003,
+        "id": 625491003,
         "name": "Marsh Health Booster",
         "region": "Expanded Marsh",
         "requiresAbilities": {
@@ -2453,7 +2453,7 @@
         }
     },
     {
-        "id": 625490004,
+        "id": 625491004,
         "name": "Cashino Health Booster",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2465,7 +2465,7 @@
         }
     },
     {
-        "id": 625490005,
+        "id": 625491005,
         "name": "Galaxy Health Booster",
         "region": "Expanded Galaxy",
         "requiresAbilities": {
@@ -2477,7 +2477,7 @@
         }
     },
     {
-        "id": 625490010,
+        "id": 625491010,
         "name": "Hivory Towers Energy Booster",
         "region": "Hivory Towers Entrance",
         "requiresAbilities": {
@@ -2487,7 +2487,7 @@
         }
     },
     {
-        "id": 625490011,
+        "id": 625491011,
         "name": "Tropics Energy Booster",
         "region": "Expanded Tropics",
         "requiresAbilities": {
@@ -2514,7 +2514,7 @@
         }
     },
     {
-        "id": 625490012,
+        "id": 625491012,
         "name": "Glacier Energy Booster",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -2536,13 +2536,13 @@
         }
     },
     {
-        "id": 625490013,
+        "id": 625491013,
         "name": "Marsh Energy Booster",
         "region": "Expanded Marsh",
         "requiresAbilities": "Flappy Flight"
     },
     {
-        "id": 625490014,
+        "id": 625491014,
         "name": "Cashino Energy Booster",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2563,7 +2563,7 @@
         }
     },
     {
-        "id": 625490015,
+        "id": 625491015,
         "name": "Galaxy Energy Booster",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2592,7 +2592,7 @@
         }
     },
     {
-        "id": 625490020,
+        "id": 625491020,
         "name": "Tropics Mollycool",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -2612,7 +2612,7 @@
         }
     },
     {
-        "id": 625490021,
+        "id": 625491021,
         "name": "Glacier Mollycool",
         "region": "Glitterglaze Glacier",
         "requiresAbilities": {
@@ -2635,7 +2635,7 @@
         }
     },
     {
-        "id": 625490022,
+        "id": 625491022,
         "name": "Marsh Mollycool",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -2648,7 +2648,7 @@
         }
     },
     {
-        "id": 625490023,
+        "id": 625491023,
         "name": "Cashino Mollycool",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2660,7 +2660,7 @@
         }
     },
     {
-        "id": 625490024,
+        "id": 625491024,
         "name": "Galaxy Mollycool",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2671,7 +2671,7 @@
         }
     },
     {
-        "id": 625490030,
+        "id": 625491030,
         "name": "Tropics Play Coin",
         "region": "Tribalstack Tropics",
         "requiresAbilities": {
@@ -2682,7 +2682,7 @@
         }
     },
     {
-        "id": 625490031,
+        "id": 625491031,
         "name": "Glacier Play Coin",
         "region": "Expanded Glacier",
         "requiresAbilities": {
@@ -2709,7 +2709,7 @@
         }
     },
     {
-        "id": 625490032,
+        "id": 625491032,
         "name": "Marsh Play Coin",
         "region": "Moodymaze Marsh",
         "requiresAbilities": {
@@ -2725,7 +2725,7 @@
         }
     },
     {
-        "id": 625490033,
+        "id": 625491033,
         "name": "Cashino Play Coin",
         "region": "Capital Cashino",
         "requiresAbilities": {
@@ -2737,7 +2737,7 @@
         }
     },
     {
-        "id": 625490034,
+        "id": 625491034,
         "name": "Galaxy Play Coin",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
