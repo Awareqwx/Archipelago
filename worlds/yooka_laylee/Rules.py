@@ -73,7 +73,6 @@ class YookaLayleeLogic(LogicMixin):
     def yookaLaylee_can_access_marsh(self, player):
         return (self.has("Pagie", player, 19)
                 and self.yookaLaylee_can_access_HT_waterworks(player)
-                # TODO Does Buddy Bubble also require Buddy Slam for a switch to open the entrance to get to Marsh book?
                 and (self.has("Buddy Bubble", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player)))
 
     def yookaLaylee_can_access_marsh_exp(self, player):
@@ -87,7 +86,7 @@ class YookaLayleeLogic(LogicMixin):
     def yookaLaylee_can_access_cashino_exp(self, player):
         return self.has("Pagie", player, 48) and self.yookaLaylee_can_access_cashino(player)
 
-    def yookaLaylee_can_access_galaxy(self, player): #Once abilities are items, this will require Flappy Flight
+    def yookaLaylee_can_access_galaxy(self, player):
         return self.has("Pagie", player, 60) and self.yookaLaylee_can_access_HT_finalArea(player)
 
     def yookaLaylee_can_access_galaxy_exp(self, player):

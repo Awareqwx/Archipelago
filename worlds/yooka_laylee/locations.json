@@ -122,12 +122,7 @@
         "id": 625490512,
         "name": "Underwater Challenge",
         "region": "Hivory Towers Waterworks",
-        "requiresAbilities": {
-            "AND": [
-                "Buddy Bubble",
-                "Buddy Slam"
-            ]
-        }
+        "requiresAbilities": "Buddy Bubble"
     },
     {
         "id": 625490513,
@@ -1599,12 +1594,7 @@
         "requiresAbilities": {
             "AND": [
                 "<MoodymazeEntry>",
-                {
-                    "OR": [
-                        "Lizard Lash",
-                        "Flappy Flight"
-                    ]
-                }
+                "Lizard Lash"
             ]
         }
     },
