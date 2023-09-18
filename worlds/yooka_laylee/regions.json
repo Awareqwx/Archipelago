@@ -1,0 +1,20 @@
+{
+	"Shipwreck Creek": ["Hivory Towers Entrance"],
+	"Hivory Towers Entrance": ["Tribalstack Tropics", "Expanded Tropics", "Hivory Towers Hub B"],
+	"Hivory Towers Hub B": ["Glitterglaze Glacier", "Expanded Glacier", "Hivory Towers Archive"],
+	"Hivory Towers Archive": ["Hivory Towers Waterworks"],
+	"Hivory Towers Waterworks": ["Moodymaze Marsh", "Expanded Marsh", "Hivory Towers Outside (NoFlight)"],
+	"Hivory Towers Outside (NoFlight)": ["Capital Cashino", "Expanded Cashino", "Hivory Towers Outside (Flight)"],
+	"Hivory Towers Outside (Flight)": ["Galleon Galaxy", "Expanded Galaxy", "Endgame"],
+	"Tribalstack Tropics": [],
+	"Expanded Tropics": [],
+	"Glitterglaze Glacier": [],
+	"Expanded Glacier": [],
+	"Moodymaze Marsh": [],
+	"Expanded Marsh": [],
+	"Capital Cashino": [],
+	"Expanded Cashino": [],
+	"Galleon Galaxy": [],
+	"Expanded Galaxy": [],
+	"Endgame": []
+}

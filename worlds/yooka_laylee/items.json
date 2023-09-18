@@ -1,0 +1,171 @@
+[
+    {
+        "id": 625490000,
+        "progression": true,
+        "name": "Pagie",
+        "quantity": 145
+    },
+    {
+        "id": 625490001,
+        "progression": false,
+        "name": "Health Booster",
+        "quantity": 6
+    },
+    {
+        "id": 625490002,
+        "progression": true,
+        "name": "Energy Booster",
+        "quantity": 6
+    },
+    {
+        "id": 625490010,
+        "progression": true,
+        "name": "Tropics Mollycool",
+        "quantity": 1
+    },
+    {
+        "id": 625490011,
+        "progression": true,
+        "name": "Glacier Mollycool",
+        "quantity": 1
+    },
+    {
+        "id": 625490012,
+        "progression": true,
+        "name": "Marsh Mollycool",
+        "quantity": 1
+    },
+    {
+        "id": 625490013,
+        "progression": true,
+        "name": "Cashino Mollycool",
+        "quantity": 1
+    },
+    {
+        "id": 625490014,
+        "progression": true,
+        "name": "Galaxy Mollycool",
+        "quantity": 1
+    },
+    {
+        "id": 625490020,
+        "progression": true,
+        "name": "Tropics Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 625490021,
+        "progression": true,
+        "name": "Glacier Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 625490022,
+        "progression": true,
+        "name": "Marsh Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 625490023,
+        "progression": true,
+        "name": "Cashino Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 625490024,
+        "progression": true,
+        "name": "Galaxy Play Coin",
+        "quantity": 1
+    },
+    {
+        "id": 625490050,
+        "progression": true,
+        "name": "Tail Twirl",
+        "generationTag": 1,
+        "quantity": 1
+    },
+    {
+        "id": 625490051,
+        "progression": true,
+        "name": "Reptile Roll",
+        "quantity": 1
+    },
+    {
+        "id": 625490052,
+        "progression": true,
+        "name": "Glide",
+        "quantity": 1
+    },
+    {
+        "id": 625490053,
+        "progression": true,
+        "name": "Buddy Bubble",
+        "quantity": 1
+    },
+    {
+        "id": 625490054,
+        "progression": true,
+        "name": "Camo Cloak",
+        "quantity": 1
+    },
+    {
+        "id": 625490055,
+        "progression": true,
+        "name": "Flappy Flight",
+        "quantity": 1
+    },
+    {
+        "id": 625490056,
+        "progression": true,
+        "name": "Sonar Shot",
+        "quantity": 1
+    },
+    {
+        "id": 625490057,
+        "progression": true,
+        "name": "Slurp Shot",
+        "quantity": 1
+    },
+    {
+        "id": 625490058,
+        "progression": true,
+        "name": "Buddy Slam",
+        "quantity": 1
+    },
+    {
+        "id": 625490059,
+        "progression": true,
+        "name": "Slurp State",
+        "quantity": 1
+    },
+    {
+        "id": 625490060,
+        "progression": true,
+        "name": "Lizard Leap",
+        "quantity": 1
+    },
+    {
+        "id": 625490061,
+        "progression": true,
+        "name": "Lizard Lash",
+        "quantity": 1
+    },
+    {
+        "id": 625490062,
+        "progression": true,
+        "name": "Sonar 'Splosion",
+        "quantity": 1
+    },
+    {
+        "id": 625490063,
+        "progression": true,
+        "name": "Reptile Rush",
+        "quantity": 1
+    },
+    {
+        "id": 625490064,
+        "progression": true,
+        "name": "Sonar Shield",
+        "quantity": 1
+    }
+]

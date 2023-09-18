@@ -1,0 +1,302 @@
+[
+    {
+        "description": "Combined: No additional requirements",
+        "count": 17,
+        "requiresAbilities": "<CashinoEntry>"
+    },
+    {
+        "description": "Roulette Passage",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Tail Twirl"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                "Sonar Shot",
+                                                "Buddy Slam"
+                                            ]
+                                        },
+                                        "Sonar 'Splosion",
+                                        "Lizard Leap"
+                                    ]
+                                }
+                            ]
+                        },
+                        "Cashino Mollycool"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "Combined: Mollycool",
+        "count": 64,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Cashino Mollycool"
+            ]
+        }
+    },
+    {
+        "description": "Slot machine near Kartos",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        "Glide",
+                                        "Tail Twirl"
+                                    ]
+                                },
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                "Sonar Shot",
+                                                "Buddy Slam"
+                                            ]
+                                        },
+                                        "Sonar 'Splosion",
+                                        "Lizard Leap"
+                                    ]
+                                }
+                            ]
+                        },
+                        "Cashino Mollycool"
+                    ]
+                },
+                "Lizard Lash",
+                "Buddy Slam"
+            ]
+        }
+    },
+    {
+        "description": "Combined: Slots (no other requirements)",
+        "count": 17,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Lizard Lash",
+                "Buddy Slam"
+            ]
+        }
+    },
+    {
+        "description": "Security Room (room with monitors, tokens in cagies, and windows covered; under Kartos)",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Camo Cloak"
+            ]
+        }
+    },
+    {
+        "description": "4x4 ground-pound tile memoization game",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Buddy Slam"
+            ]
+        }
+    },
+    {
+        "description": "On top of the golf course flagpole",
+        "count": 1,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Flappy Flight",
+                "Cashino Mollycool"
+            ]
+        }
+    },
+    {
+        "description": "Maintenance Room (1)",
+        "count": 1,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Sonar Shot",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "Maintenance Room (2)",
+        "count": 6,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Sonar Shot",
+                        "Sonar 'Splosion"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Buddy Slam",
+                        "Flappy Flight",
+                        "Lizard Leap"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "End of Roulette Passage",
+        "count": 1,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Tail Twirl",
+                        "Glide",
+                        "Flappy Flight",
+                        "Cashino Mollycool"
+                    ]
+                },
+                "Sonar 'Splosion"
+            ]
+        }
+    },
+    {
+        "description": "Tokens above the water fountain",
+        "count": 3,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        {
+                            "AND": [
+                                "Buddy Bubble",
+                                {
+                                    "OR": [
+                                        "Tail Twirl",
+                                        "Sonar 'Splosion"
+                                    ]
+                                }
+                            ]
+                        },
+                        "Flappy Flight",
+                        "Cashino Mollycool"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "Hoop challenge near-ish golf course",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight",
+                        "Cashino Mollycool"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "Inside the pyramid / Obtain \"Special\" card",
+        "count": 10,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "Reptile Rush"
+            ]
+        }
+    },
+    {
+        "description": "Combined: Expanded World, Reptile Rush",
+        "count": 16,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<ExpandedCashino>",
+                "Reptile Rush"
+            ]
+        }
+    },
+    {
+        "description": "Combined: Expanded World, Lizard Lash",
+        "count": 12,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<ExpandedCashino>",
+                "Lizard Lash"
+            ]
+        }
+    },
+    {
+        "description": "Shooting Gallery",
+        "count": 7,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<ExpandedCashino>",
+                "Slurp Shot"
+            ]
+        }
+    },
+    {
+        "description": "Wager Laser",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<ExpandedCashino>",
+                {
+                    "OR": [
+                        "Camo Cloak",
+                        "Sonar 'Splosion"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "description": "Safe Room",
+        "count": 5,
+        "requiresAbilities": {
+            "AND": [
+                "<CashinoEntry>",
+                "<ExpandedCashino>",
+                "Camo Cloak"
+            ]
+        }
+    }
+]
