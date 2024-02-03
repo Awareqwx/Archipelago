@@ -85,9 +85,19 @@
         "name": "Slippery Slope",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
-            "OR": [
-                "Flappy Flight",
-                "Slurp State"
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Slurp State"
+                    ]
+                }
             ]
         }
     },
@@ -375,12 +385,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Sonar Shot",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Sonar Shot"
             ]
         }
     },
