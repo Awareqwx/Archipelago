@@ -127,9 +127,11 @@ class YookaWorld(World):
         # Victory item
         self.multiworld.get_location("Game Complete", self.player).place_locked_item(
             YookaItem("Victory", ItemClassification.progression, None, player=self.player))
-
+    
     def fill_slot_data(self):
         return {
+            "CapitalBPagieCount": self.multiworld.capital_b_pagie_count[self.player].value,
+            "DisableQuizzes": bool(self.multiworld.disable_quizzes[self.player].value),
             "DeathLink": bool(self.multiworld.death_link[self.player].value)
         }
 
