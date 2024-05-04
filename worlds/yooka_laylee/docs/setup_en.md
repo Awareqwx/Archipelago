@@ -1,4 +1,4 @@
-# Raft Randomizer Setup Guide
+# Yooka-Laylee Randomizer Setup Guide
 
 ## Required Software
 
