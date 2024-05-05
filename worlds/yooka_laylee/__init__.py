@@ -44,7 +44,7 @@ class YookaWorld(World):
     required_client_version = (1, 0, 0)
 
     def create_items(self):
-        if not self.multiworld.prevent_tropics_bk[self.player]:
+        if not self.options.prevent_tropics_bk:
             logging.warn("Yooka-Laylee: Prevent Tropics BK not enabled. World generation may fail with only Yooka-Laylee worlds.")
 
         # Set up prefill data for later
@@ -54,22 +54,22 @@ class YookaWorld(World):
 
         # Decide on which ability to prefill
         firstAbilityOptions = ["Tail Twirl", "Sonar 'Splosion", "Buddy Slam", "Flappy Flight"]
-        if self.multiworld.flappy_flight_location[self.player] == 1:
+        if self.options.flappy_flight_location == 1:
             firstAbilityOptions = ["Flappy Flight"]
-        elif self.multiworld.flappy_flight_location[self.player] == 2:
+        elif self.options.flappy_flight_location == 2:
             firstAbilityOptions.append("Flappy Flight")
         damagingAbilityToInsert = self.multiworld.random.choice(firstAbilityOptions)
         antiBkPagieLocationToUse = None
         antiBkLocationToUse = None
         antiBkItemNameToInsert = None
-        if not self.multiworld.force_local_first_item[self.player]:
+        if not self.options.force_local_first_item:
             self.multiworld.early_items[self.player][damagingAbilityToInsert] = 1
-        if damagingAbilityToInsert != "Flappy Flight" and self.multiworld.prevent_tropics_bk[self.player]:
+        if damagingAbilityToInsert != "Flappy Flight" and self.options.prevent_tropics_bk:
             antiBkLocations = ["Trowzer's Reptile Roll", "On Top of Capital B Statue"]
             if damagingAbilityToInsert == "Buddy Slam":
                 antiBkLocations.append("Hivory Towers Energy Booster")
             antiBkItems = ["Reptile Roll", "Reptile Roll", "Reptile Roll"]
-            if self.multiworld.flappy_flight_location[self.player] != 3:
+            if self.options.flappy_flight_location != 3:
                 antiBkItems.append("Flappy Flight") # 25% chance for FF if allowed
             # Set up ability placement info
             antiBkLocationToUse = self.multiworld.random.choice(antiBkLocations)
@@ -83,9 +83,9 @@ class YookaWorld(World):
         for item in item_table:
             for _ in range(item["quantity"]):
                 yooka_item = self.create_item(item["name"])
-                if item["name"] == "Flappy Flight" and self.multiworld.flappy_flight_location[self.player] == 3:
+                if item["name"] == "Flappy Flight" and self.options.flappy_flight_location == 3:
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
-                elif item["name"] == damagingAbilityToInsert and self.multiworld.force_local_first_item[self.player]:
+                elif item["name"] == damagingAbilityToInsert and self.options.force_local_first_item:
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
                 elif item["name"] == antiBkItemNameToInsert:
                     self.multiworld.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
@@ -129,9 +129,9 @@ class YookaWorld(World):
     
     def fill_slot_data(self):
         return {
-            "CapitalBPagieCount": self.multiworld.capital_b_pagie_count[self.player].value,
-            "DisableQuizzes": bool(self.multiworld.disable_quizzes[self.player].value),
-            "DeathLink": bool(self.multiworld.death_link[self.player].value)
+            "CapitalBPagieCount": self.options.capital_b_pagie_count.value,
+            "DisableQuizzes": bool(self.options.disable_quizzes.value),
+            "DeathLink": bool(self.options.death_link.value)
         }
 
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None):
