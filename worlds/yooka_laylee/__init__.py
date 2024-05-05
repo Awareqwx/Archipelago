@@ -1,15 +1,11 @@
-import typing
-import random
-import logging
-
-from .Locations import location_table, lookup_name_to_id as locations_lookup_name_to_id, priority_locations as locations_priority_locations
+from .Locations import lookup_name_to_id as locations_lookup_name_to_id
 from .Items import (item_table, lookup_name_to_item, lookup_name_to_id as items_lookup_name_to_id)
 
 from .Regions import create_regions, getConnectionName
 from .Rules import set_rules
 from .Options import yooka_options
 
-from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial, LocationProgressType
+from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial
 from ..AutoWorld import World, WebWorld
 
 
