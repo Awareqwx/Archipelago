@@ -55,10 +55,10 @@ class YookaWorld(World):
             firstAbilityOptions = ["Flappy Flight"]
         elif self.options.flappy_flight_location == 2:
             firstAbilityOptions.append("Flappy Flight")
-        # We decide on the damaging ability that we will be using for breaking the chests
+        # We decide on the first ability that we will be using for breaking the chests
         # that contain quillies at the beginning of the game. This ability is guaranteed
         # to show up very early.
-        damagingAbilityToInsert = self.multiworld.random.choice(firstAbilityOptions)
+        firstAbilityToInsert = self.random.choice(firstAbilityOptions)
         antiBkPagieLocationToUse = None
         antiBkLocationToUse = None
         antiBkItemNameToInsert = None
@@ -67,11 +67,13 @@ class YookaWorld(World):
         # If we are forcing a local first item, we don't need to worry about this, since
         # we're guaranteed to not be stuck.
         if not self.options.force_local_first_item:
-            self.multiworld.early_items[self.player][damagingAbilityToInsert] = 1
-        # If we've selected FF for the first ability, we're unblocked from everything
-        if damagingAbilityToInsert != "Flappy Flight" and self.options.prevent_tropics_bk:
+            self.multiworld.early_items[self.player][firstAbilityToInsert] = 1
+        # If we've selected FF for the first ability, we're unblocked from everything.
+        # Otherwise, if we want to prevent Tropics BK, we need to insert an ability that
+        # can get us to Tropics into a location we can reach.
+        if firstAbilityToInsert != "Flappy Flight" and self.options.prevent_tropics_bk:
             antiBkLocations = ["Trowzer's Reptile Roll", "On Top of Capital B Statue"]
-            if damagingAbilityToInsert == "Buddy Slam": # Can Buddy Slam statue nose for Energy Booster
+            if firstAbilityToInsert == "Buddy Slam": # Can Buddy Slam statue nose for Energy Booster
                 antiBkLocations.append("Hivory Towers Energy Booster")
             antiBkItems = ["Reptile Roll"] * 3
             if self.options.flappy_flight_location == 4: # If Anywhere, significantly decrease the odds of rolling FF
@@ -79,11 +81,11 @@ class YookaWorld(World):
             if self.options.flappy_flight_location != 3: # As long as FF isn't forced vanilla, it's an option for anti-BK
                 antiBkItems.append("Flappy Flight")
             # Set up ability placement info
-            antiBkLocationToUse = self.multiworld.random.choice(antiBkLocations)
-            antiBkItemNameToInsert = self.multiworld.random.choice(antiBkItems)
+            antiBkLocationToUse = self.random.choice(antiBkLocations)
+            antiBkItemNameToInsert = self.random.choice(antiBkItems)
             # Set up pagie placement info
             antiBkLocations.remove(antiBkLocationToUse)
-            antiBkPagieLocationToUse = self.multiworld.random.choice(antiBkLocations)
+            antiBkPagieLocationToUse = self.random.choice(antiBkLocations)
 
         # Generate item pool
         pool = []
@@ -92,7 +94,7 @@ class YookaWorld(World):
                 yooka_item = self.create_item(item["name"])
                 if item["name"] == "Flappy Flight" and self.options.flappy_flight_location == 3:
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
-                elif item["name"] == damagingAbilityToInsert and self.options.force_local_first_item:
+                elif item["name"] == firstAbilityToInsert and self.options.force_local_first_item:
                     self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
                 elif item["name"] == antiBkItemNameToInsert:
                     self.multiworld.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
@@ -147,8 +149,6 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
         for location in locations:
             loc_id = locations_lookup_name_to_id.get(location, 0)
             locationObj = YookaLocation(player, location, loc_id, ret)
-            if location in locations_priority_locations:
-                locationObj.progress_type = LocationProgressType.PRIORITY
             ret.locations.append(locationObj)
     if exits:
         for exit in exits:
