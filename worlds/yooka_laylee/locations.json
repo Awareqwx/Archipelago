@@ -483,12 +483,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Tail Twirl",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Tail Twirl"
             ]
         }
     },
