@@ -40,11 +40,10 @@ class YookaWorld(World):
     location_name_to_id = locations_lookup_name_to_id
     option_definitions = yooka_options
 
-    data_version = 1
-    required_client_version = (0, 4, 2)
+    data_version = 2
+    required_client_version = (1, 0, 0)
 
     def create_items(self):
-        # TODO Add an option for how likely Flappy Flight shows up early. Range 0-100, 0 being never and 100 being always. Or something like that.
         if not self.multiworld.prevent_tropics_bk[self.player]:
             logging.warn("Yooka-Laylee: Prevent Tropics BK not enabled. World generation may fail with only Yooka-Laylee worlds.")
 
