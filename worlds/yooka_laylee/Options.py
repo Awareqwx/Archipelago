@@ -10,16 +10,29 @@ class PreventTropicsBK(DefaultOnToggle):
 
 class FlappyFlightLocation(Choice):
     """Choose where Flappy Flight is put. Flappy Flight opens up many checks and effectively invalidates some abilities like Lizard Leap. "Early" refers to one of the earlygame checks before entering Tribalstack Tropics."""
-    display_name = "Flappy Flight location"
+    display_name = "Flappy Flight Location"
     option_force_early = 1
     option_allow_early = 2
     option_vanilla = 3
     option_anywhere = 4
     default = 2
 
+class PagiesRequiredForCapitalB(Range):
+    """The amount of pagies required to face Capital B. Note that this does NOT guarantee you will be able to access Capital B's office at a particular time, as there are still ability requirements to progress up to Capital B's office in the first place. There are a total of 145 pagies in the game."""
+    display_name = "Pagies Required for Capital B"
+    range_start = 0
+    range_end = 145
+    default = 100
+
+class DisableQuizzes(Toggle):
+    """If enabled, causes the quizzes to be completely skipped."""
+    display_name = "Disable Quizzes"
+
 yooka_options = {
     "force_local_first_item": ForceLocalFirstItem,
     "prevent_tropics_bk": PreventTropicsBK,
     "flappy_flight_location": FlappyFlightLocation,
+    "capital_b_pagie_count": PagiesRequiredForCapitalB,
+    "disable_quizzes": DisableQuizzes,
     "death_link": DeathLink
 }

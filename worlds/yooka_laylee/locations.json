@@ -85,9 +85,19 @@
         "name": "Slippery Slope",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
-            "OR": [
-                "Flappy Flight",
-                "Slurp State"
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Slurp State"
+                    ]
+                }
             ]
         }
     },
@@ -375,12 +385,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Sonar Shot",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Sonar Shot"
             ]
         }
     },
@@ -478,12 +483,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Tail Twirl",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Tail Twirl"
             ]
         }
     },
@@ -2025,7 +2025,7 @@
         }
     },
     {
-        "id": 625490653,
+        "id": 625490662,
         "name": "The Lighthouse",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
