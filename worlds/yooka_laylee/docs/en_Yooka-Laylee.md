@@ -1,4 +1,4 @@
-# Raft
+# Yooka-Laylee
 
 ## Where is the settings page?
 The player settings page for this game is located <a href="../player-settings">here</a>. It contains all the options
