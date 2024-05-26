@@ -101,8 +101,8 @@ class YookaLayleeLogic(LogicMixin):
     def yookaLaylee_can_get_cashino_token_count(self, player, tokenCount):
         accessibleTokenCount = 0
         for tokenGroup in cashinotokens_table:
-            if "abilityRequirements" in tokenGroup:
-                if self.yookaLaylee_has_requirements(tokenGroup["abilityRequirements"], player):
+            if "requiresAbilities" in tokenGroup:
+                if self.yookaLaylee_has_requirements(tokenGroup["requiresAbilities"], player):
                     accessibleTokenCount += tokenGroup["count"]
             else:
                 accessibleTokenCount += tokenGroup["count"]
