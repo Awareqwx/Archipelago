@@ -8,7 +8,6 @@ from .Options import yooka_options
 from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial
 from ..AutoWorld import World, WebWorld
 
-
 class YookaWeb(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
@@ -35,9 +34,16 @@ class YookaWorld(World):
 
     location_name_to_id = locations_lookup_name_to_id
     option_definitions = yooka_options
+    grandTomeOrder = ["TT", "GG", "MM", "CC", "GY"]
 
-    data_version = 2
+    data_version = 3
     required_client_version = (1, 0, 0)
+
+    def generate_early(self):
+        if self.options.randomize_grand_tomes:
+            self.random.shuffle(self.grandTomeOrder)
+        while self.grandTomeOrder[0] is "GY":
+            self.random.shuffle(self.grandTomeOrder)
 
     def create_items(self):
         # Set up prefill data for later
@@ -102,7 +108,7 @@ class YookaWorld(World):
         self.multiworld.itempool += pool
 
     def set_rules(self):
-        set_rules(self.multiworld, self.player)
+        set_rules(self.multiworld, self.player, self.grandTomeOrder)
 
     def create_regions(self):
         create_regions(self.multiworld, self.player)
@@ -135,6 +141,7 @@ class YookaWorld(World):
     def fill_slot_data(self):
         return {
             "CapitalBPagieCount": self.options.capital_b_pagie_count.value,
+            "WorldOrder": self.grandTomeOrder,
             "DisableQuizzes": bool(self.options.disable_quizzes.value),
             "DeathLink": bool(self.options.death_link.value)
         }
