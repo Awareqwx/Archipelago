@@ -24,6 +24,10 @@ class PagiesRequiredForCapitalB(Range):
     range_end = 145
     default = 100
 
+class GrandTomeRandomization(Toggle):
+    """If enabled, randomizes the order of the Grand Tome worlds. This does not change the location of the Grand Tomes within Hivory Towers or the cost of the Grand Tomes, only the world you go to when entering a Grand Tome. Galleon Galaxy will never be randomized in place of Tribalstack Tropics."""
+    display_name = "Randomize Grand Tome World Order"
+
 class DisableQuizzes(Toggle):
     """If enabled, causes the quizzes to be completely skipped."""
     display_name = "Disable Quizzes"
@@ -33,6 +37,7 @@ yooka_options = {
     "prevent_tropics_bk": PreventTropicsBK,
     "flappy_flight_location": FlappyFlightLocation,
     "capital_b_pagie_count": PagiesRequiredForCapitalB,
+    "randomize_grand_tomes": GrandTomeRandomization,
     "disable_quizzes": DisableQuizzes,
     "death_link": DeathLink
 }
