@@ -85,9 +85,19 @@
         "name": "Slippery Slope",
         "region": "Hivory Towers Hub B",
         "requiresAbilities": {
-            "OR": [
-                "Flappy Flight",
-                "Slurp State"
+            "AND": [
+                {
+                    "OR": [
+                        "Glide",
+                        "Flappy Flight"
+                    ]
+                },
+                {
+                    "OR": [
+                        "Flappy Flight",
+                        "Slurp State"
+                    ]
+                }
             ]
         }
     },
@@ -204,7 +214,17 @@
         "id": 625490520,
         "name": "Novel Puzzle",
         "region": "Hivory Towers Outside (NoFlight)",
-        "requiresAbilities": "Lizard Lash"
+        "requiresAbilities": {
+            "AND": [
+                "Lizard Lash",
+                {
+                    "OR": [
+                        "Camo Cloak",
+                        "Flappy Flight"
+                    ]
+                }
+            ]
+        }
     },
     {
         "id": 625490536,
@@ -375,12 +395,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Sonar Shot",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Sonar Shot"
             ]
         }
     },
@@ -478,12 +493,7 @@
                         "Flappy Flight"
                     ]
                 },
-                {
-                    "OR": [
-                        "Tail Twirl",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Tail Twirl"
             ]
         }
     },
@@ -730,6 +740,7 @@
                         "Flappy Flight"
                     ]
                 },
+                "Slurp State",
                 "Glacier Mollycool"
             ]
         }
@@ -1731,7 +1742,7 @@
     },
     {
         "id": 625490627,
-        "name": "Rextro's Arcade (Hurdle Hijinx)",
+        "name": "Rextro's Hi-Score (Hurdle Hijinx)",
         "region": "Capital Cashino",
         "requiresAbilities": {
             "AND": [
@@ -1742,7 +1753,7 @@
     },
     {
         "id": 625490628,
-        "name": "Rextro's Hi-Score (Hurdle Hijinx)",
+        "name": "Rextro's Arcade (Hurdle Hijinx)",
         "region": "Capital Cashino",
         "requiresAbilities": {
             "AND": [
@@ -2025,7 +2036,7 @@
         }
     },
     {
-        "id": 625490653,
+        "id": 625490662,
         "name": "The Lighthouse",
         "region": "Galleon Galaxy",
         "requiresAbilities": {
@@ -2502,9 +2513,14 @@
                                         "Lizard Leap"
                                     ]
                                 },
+                                {
+                                    "OR": [
+                                        "Sonar 'Splosion",
+                                        "Sonar Shot"
+                                    ]
+                                },
                                 "Reptile Roll",
-                                "Slurp State",
-                                "Sonar Shot"
+                                "Slurp State"
                             ]
                         },
                         "Flappy Flight"
@@ -2750,8 +2766,7 @@
     {
         "id": 625491500,
         "name": "Trowzer's Tail Twirl",
-        "region": "Shipwreck Creek",
-        "type": "Priority"
+        "region": "Shipwreck Creek"
     },
     {
         "id": 625491501,

@@ -6,6 +6,14 @@ import json
 import pkgutil
 
 cashinotokens_table = json.loads(pkgutil.get_data(__name__, "cashinotokens.json").decode())
+requiredPagiesPerTomeVanillaOrder = [
+    [1, 4],
+    [7, 12],
+    [19, 27],
+    [37, 48],
+    [60, 75]
+]
+randomizedWorldOrder = []
 
 class YookaLayleeLogic(LogicMixin):
     yookaLaylee_specialRequirements = {
@@ -35,6 +43,19 @@ class YookaLayleeLogic(LogicMixin):
         "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
     }
 
+    yookaLaylee_tomeRequirementsVanillaOrder = [
+        lambda self, player: self.yookaLaylee_can_access_HT_hub_entrance(player) and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)),
+        lambda self, player: self.yookaLaylee_can_access_HT_hub_B(player) and (self.has("Glide", player) or self.has("Flappy Flight", player)),
+        lambda self, player: self.yookaLaylee_can_access_HT_waterworks(player) and (self.has("Buddy Bubble", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player)),
+        lambda self, player: self.yookaLaylee_can_access_HT_outside(player) and self.has("Camo Cloak", player),
+        lambda self, player: self.yookaLaylee_can_access_HT_finalArea(player)
+    ]
+    
+    def yookaLaylee_checkRequirementsForWorld(self, player, worldIdentifier, expanded = False):
+        worldOrderIndex = randomizedWorldOrder.index(worldIdentifier)
+        return (self.has("Pagie", player, requiredPagiesPerTomeVanillaOrder[worldOrderIndex][0 if expanded else 1])
+                and self.yookaLaylee_tomeRequirementsVanillaOrder[worldOrderIndex](self, player))
+
     def yookaLaylee_can_access_HT_hub_entrance(self, player):
         return self.yookaLaylee_has_requirements("<DamagingAbility>", player)
 
@@ -55,45 +76,37 @@ class YookaLayleeLogic(LogicMixin):
         return self.yookaLaylee_can_access_HT_outside(player) and self.has("Flappy Flight", player)
 
     def yookaLaylee_can_access_tropics(self, player):
-        return (self.has("Pagie", player, 1)
-                and self.yookaLaylee_can_access_HT_hub_entrance(player)
-                and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)))
+        return self.yookaLaylee_checkRequirementsForWorld(player, "TT")
 
     def yookaLaylee_can_access_tropics_exp(self, player):
-        return self.has("Pagie", player, 4) and self.yookaLaylee_can_access_tropics(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "TT", True)
 
     def yookaLaylee_can_access_glacier(self, player):
-        return (self.has("Pagie", player, 7)
-                and self.yookaLaylee_can_access_HT_hub_B(player)
-                and (self.has("Glide", player) or self.has("Flappy Flight", player)))
+        return self.yookaLaylee_checkRequirementsForWorld(player, "GG")
 
     def yookaLaylee_can_access_glacier_exp(self, player):
-        return self.has("Pagie", player, 12) and self.yookaLaylee_can_access_glacier(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "GG", True)
 
     def yookaLaylee_can_access_marsh(self, player):
-        return (self.has("Pagie", player, 19)
-                and self.yookaLaylee_can_access_HT_waterworks(player)
-                and (self.has("Buddy Bubble", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player)))
+        return self.yookaLaylee_checkRequirementsForWorld(player, "MM")
 
     def yookaLaylee_can_access_marsh_exp(self, player):
-        return self.has("Pagie", player, 27) and self.yookaLaylee_can_access_marsh(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "MM", True)
 
     def yookaLaylee_can_access_cashino(self, player):
-        return (self.has("Pagie", player, 37)
-                and self.yookaLaylee_can_access_HT_outside(player)
-                and self.has("Camo Cloak", player))
+        return self.yookaLaylee_checkRequirementsForWorld(player, "CC")
 
     def yookaLaylee_can_access_cashino_exp(self, player):
-        return self.has("Pagie", player, 48) and self.yookaLaylee_can_access_cashino(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "CC", True)
 
     def yookaLaylee_can_access_galaxy(self, player):
-        return self.has("Pagie", player, 60) and self.yookaLaylee_can_access_HT_finalArea(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "GY")
 
     def yookaLaylee_can_access_galaxy_exp(self, player):
-        return self.has("Pagie", player, 75) and self.yookaLaylee_can_access_galaxy(player)
+        return self.yookaLaylee_checkRequirementsForWorld(player, "GY", True)
 
     def yookaLaylee_can_access_end(self, player): # Technically don't need Tail Twirl and Sonar Shield, but the final boss is pretty miserable without it
-        return (self.has("Pagie", player, 100)
+        return (self.has("Pagie", player, 100) # Pagie count should not affect item placement, since endgame is locked. TODO Verify this.
                 and self.yookaLaylee_can_access_HT_finalArea(player)
                 and self.yookaLaylee_has_requirements("Sonar Shield", player)
                 and self.has("Tail Twirl", player))
@@ -101,8 +114,8 @@ class YookaLayleeLogic(LogicMixin):
     def yookaLaylee_can_get_cashino_token_count(self, player, tokenCount):
         accessibleTokenCount = 0
         for tokenGroup in cashinotokens_table:
-            if "abilityRequirements" in tokenGroup:
-                if self.yookaLaylee_has_requirements(tokenGroup["abilityRequirements"], player):
+            if "requiresAbilities" in tokenGroup:
+                if self.yookaLaylee_has_requirements(tokenGroup["requiresAbilities"], player):
                     accessibleTokenCount += tokenGroup["count"]
             else:
                 accessibleTokenCount += tokenGroup["count"]
@@ -141,7 +154,9 @@ class YookaLayleeLogic(LogicMixin):
             else:
                 raise Exception(f"Invalid requirements: {str(requirements)}")
 
-def set_rules(world, player):
+def set_rules(world, player, regionOrder):
+    global randomizedWorldOrder
+    randomizedWorldOrder = regionOrder
     regionChecks = {
         "Shipwreck Creek": lambda state: True,
         "Hivory Towers Entrance": lambda state: state.yookaLaylee_can_access_HT_hub_entrance(player),
