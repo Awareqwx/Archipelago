@@ -1,27 +1,73 @@
 import datetime
 import os
-from typing import List, Dict, Union
+from typing import Any, IO, Dict, Iterator, List, Tuple, Union
 
 import jinja2.exceptions
 from flask import request, redirect, url_for, render_template, Response, session, abort, send_from_directory
 from pony.orm import count, commit, db_session
+from werkzeug.utils import secure_filename
 
-from worlds.AutoWorld import AutoWorldRegister
+from worlds.AutoWorld import AutoWorldRegister, World
 from . import app, cache
 from .models import Seed, Room, Command, UUID, uuid4
+from Utils import title_sorted
 
 
-def get_world_theme(game_name: str):
+def get_world_theme(game_name: str) -> str:
     if game_name in AutoWorldRegister.world_types:
         return AutoWorldRegister.world_types[game_name].web.theme
     return 'grass'
 
 
-@app.before_request
-def register_session():
-    session.permanent = True  # technically 31 days after the last visit
-    if not session.get("_id", None):
-        session["_id"] = uuid4()  # uniquely identify each session without needing a login
+def get_visible_worlds() -> dict[str, type(World)]:
+    worlds = {}
+    for game, world in AutoWorldRegister.world_types.items():
+        if not world.hidden:
+            worlds[game] = world
+    return worlds
+
+
+def render_markdown(path: str) -> str:
+    import mistune
+    from collections import Counter
+
+    markdown = mistune.create_markdown(
+        escape=False,
+        plugins=[
+            "strikethrough",
+            "footnotes",
+            "table",
+            "speedup",
+        ],
+    )
+
+    heading_id_count: Counter[str] = Counter()
+
+    def heading_id(text: str) -> str:
+        nonlocal heading_id_count
+        import re  # there is no good way to do this without regex
+
+        s = re.sub(r"[^\w\- ]", "", text.lower()).replace(" ", "-").strip("-")
+        n = heading_id_count[s]
+        heading_id_count[s] += 1
+        if n > 0:
+            s += f"-{n}"
+        return s
+
+    def id_hook(_: mistune.Markdown, state: mistune.BlockState) -> None:
+        for tok in state.tokens:
+            if tok["type"] == "heading" and tok["attrs"]["level"] < 4:
+                text = tok["text"]
+                assert isinstance(text, str)
+                unique_id = heading_id(text)
+                tok["attrs"]["id"] = unique_id
+                tok["text"] = f"<a href=\"#{unique_id}\">{text}</a>"  # make header link to itself
+
+    markdown.before_render_hooks.append(id_hook)
+
+    with open(path, encoding="utf-8-sig") as f:
+        document = f.read()
+    return markdown(document)
 
 
 @app.errorhandler(404)
@@ -37,46 +83,104 @@ def start_playing():
     return render_template(f"startPlaying.html")
 
 
-# Game Info Pages
 @app.route('/games/<string:game>/info/<string:lang>')
 @cache.cached()
 def game_info(game, lang):
-    return render_template('gameInfo.html', game=game, lang=lang, theme=get_world_theme(game))
+    """Game Info Pages"""
+    try:
+        theme = get_world_theme(game)
+        secure_game_name = secure_filename(game)
+        lang = secure_filename(lang)
+        document = render_markdown(os.path.join(
+            app.static_folder, "generated", "docs",
+            secure_game_name, f"{lang}_{secure_game_name}.md"
+        ))
+        return render_template(
+            "markdown_document.html",
+            title=f"{game} Guide",
+            html_from_markdown=document,
+            theme=theme,
+        )
+    except FileNotFoundError:
+        return abort(404)
 
 
-# List of supported games
 @app.route('/games')
 @cache.cached()
 def games():
-    worlds = {}
-    for game, world in AutoWorldRegister.world_types.items():
-        if not world.hidden:
-            worlds[game] = world
-    return render_template("supportedGames.html", worlds=worlds)
+    """List of supported games"""
+    return render_template("supportedGames.html", worlds=get_visible_worlds())
+
+
+@app.route('/tutorial/<string:game>/<string:file>')
+@cache.cached()
+def tutorial(game: str, file: str):
+    try:
+        theme = get_world_theme(game)
+        secure_game_name = secure_filename(game)
+        file = secure_filename(file)
+        document = render_markdown(os.path.join(
+            app.static_folder, "generated", "docs",
+            secure_game_name, file+".md"
+        ))
+        return render_template(
+            "markdown_document.html",
+            title=f"{game} Guide",
+            html_from_markdown=document,
+            theme=theme,
+        )
+    except FileNotFoundError:
+        return abort(404)
 
 
 @app.route('/tutorial/<string:game>/<string:file>/<string:lang>')
-@cache.cached()
-def tutorial(game, file, lang):
-    return render_template("tutorial.html", game=game, file=file, lang=lang, theme=get_world_theme(game))
+def tutorial_redirect(game: str, file: str, lang: str):
+    """
+    Permanent redirect old tutorial URLs to new ones to keep search engines happy.
+    e.g. /tutorial/Archipelago/setup/en -> /tutorial/Archipelago/setup_en
+    """
+    return redirect(url_for("tutorial", game=game, file=f"{file}_{lang}"), code=301)
 
 
 @app.route('/tutorial/')
 @cache.cached()
 def tutorial_landing():
-    return render_template("tutorialLanding.html")
+    tutorials = {}
+    worlds = AutoWorldRegister.world_types
+    for world_name, world_type in worlds.items():
+        current_world = tutorials[world_name] = {}
+        for tutorial in world_type.web.tutorials:
+            current_tutorial = current_world.setdefault(tutorial.tutorial_name, {
+                "description": tutorial.description, "files": {}})
+            current_tutorial["files"][secure_filename(tutorial.file_name).rsplit(".", 1)[0]] = {
+                "authors": tutorial.authors,
+                "language": tutorial.language
+            }
+    tutorials = {world_name: tutorials for world_name, tutorials in title_sorted(
+        tutorials.items(), key=lambda element: "\x00" if element[0] == "Archipelago" else worlds[element[0]].game)}
+    return render_template("tutorialLanding.html", worlds=worlds, tutorials=tutorials)
 
 
 @app.route('/faq/<string:lang>/')
 @cache.cached()
-def faq(lang):
-    return render_template("faq.html", lang=lang)
+def faq(lang: str):
+    document = render_markdown(os.path.join(app.static_folder, "assets", "faq", secure_filename(lang)+".md"))
+    return render_template(
+        "markdown_document.html",
+        title="Frequently Asked Questions",
+        html_from_markdown=document,
+    )
 
 
 @app.route('/glossary/<string:lang>/')
 @cache.cached()
-def terms(lang):
-    return render_template("glossary.html", lang=lang)
+def glossary(lang: str):
+    document = render_markdown(os.path.join(app.static_folder, "assets", "glossary", secure_filename(lang)+".md"))
+    return render_template(
+        "markdown_document.html",
+        title="Glossary",
+        html_from_markdown=document,
+    )
 
 
 @app.route('/seed/<suuid:seed>')
@@ -97,49 +201,94 @@ def new_room(seed: UUID):
     return redirect(url_for("host_room", room=room.id))
 
 
-def _read_log(path: str):
-    if os.path.exists(path):
-        with open(path, encoding="utf-8-sig") as log:
-            yield from log
-    else:
-        yield f"Logfile {path} does not exist. " \
-              f"Likely a crash during spinup of multiworld instance or it is still spinning up."
+def _read_log(log: IO[Any], offset: int = 0) -> Iterator[bytes]:
+    marker = log.read(3)  # skip optional BOM
+    if marker != b'\xEF\xBB\xBF':
+        log.seek(0, os.SEEK_SET)
+    log.seek(offset, os.SEEK_CUR)
+    yield from log
+    log.close()  # free file handle as soon as possible
 
 
 @app.route('/log/<suuid:room>')
-def display_log(room: UUID):
+def display_log(room: UUID) -> Union[str, Response, Tuple[str, int]]:
     room = Room.get(id=room)
     if room is None:
         return abort(404)
     if room.owner == session["_id"]:
         file_path = os.path.join("logs", str(room.id) + ".txt")
-        if os.path.exists(file_path):
-            return Response(_read_log(file_path), mimetype="text/plain;charset=UTF-8")
-        return "Log File does not exist."
+        try:
+            log = open(file_path, "rb")
+            range_header = request.headers.get("Range")
+            if range_header:
+                range_type, range_values = range_header.split('=')
+                start, end = map(str.strip, range_values.split('-', 1))
+                if range_type != "bytes" or end != "":
+                    return "Unsupported range", 500
+                # NOTE: we skip Content-Range in the response here, which isn't great but works for our JS
+                return Response(_read_log(log, int(start)), mimetype="text/plain", status=206)
+            return Response(_read_log(log), mimetype="text/plain")
+        except FileNotFoundError:
+            return Response(f"Logfile {file_path} does not exist. "
+                            f"Likely a crash during spinup of multiworld instance or it is still spinning up.",
+                            mimetype="text/plain")
 
     return "Access Denied", 403
 
 
-@app.route('/room/<suuid:room>', methods=['GET', 'POST'])
+@app.post("/room/<suuid:room>")
+def host_room_command(room: UUID):
+    room: Room = Room.get(id=room)
+    if room is None:
+        return abort(404)
+
+    if room.owner == session["_id"]:
+        cmd = request.form["cmd"]
+        if cmd:
+            Command(room=room, commandtext=cmd)
+            commit()
+    return redirect(url_for("host_room", room=room.id))
+
+
+@app.get("/room/<suuid:room>")
 def host_room(room: UUID):
     room: Room = Room.get(id=room)
     if room is None:
         return abort(404)
-    if request.method == "POST":
-        if room.owner == session["_id"]:
-            cmd = request.form["cmd"]
-            if cmd:
-                Command(room=room, commandtext=cmd)
-                commit()
-        return redirect(url_for("host_room", room=room.id))
 
     now = datetime.datetime.utcnow()
     # indicate that the page should reload to get the assigned port
-    should_refresh = not room.last_port and now - room.creation_time < datetime.timedelta(seconds=3)
-    with db_session:
+    should_refresh = ((not room.last_port and now - room.creation_time < datetime.timedelta(seconds=3))
+                      or room.last_activity < now - datetime.timedelta(seconds=room.timeout))
+
+    if now - room.last_activity > datetime.timedelta(minutes=1):
+        # we only set last_activity if needed, otherwise parallel access on /room will cause an internal server error
+        # due to "pony.orm.core.OptimisticCheckError: Object Room was updated outside of current transaction"
         room.last_activity = now  # will trigger a spinup, if it's not already running
 
-    return render_template("hostRoom.html", room=room, should_refresh=should_refresh)
+    browser_tokens = "Mozilla", "Chrome", "Safari"
+    automated = ("update" in request.args
+                 or "Discordbot" in request.user_agent.string
+                 or not any(browser_token in request.user_agent.string for browser_token in browser_tokens))
+
+    def get_log(max_size: int = 0 if automated else 1024000) -> str:
+        if max_size == 0:
+            return "…"
+        try:
+            with open(os.path.join("logs", str(room.id) + ".txt"), "rb") as log:
+                raw_size = 0
+                fragments: List[str] = []
+                for block in _read_log(log):
+                    if raw_size + len(block) > max_size:
+                        fragments.append("…")
+                        break
+                    raw_size += len(block)
+                    fragments.append(block.decode("utf-8"))
+                return "".join(fragments)
+        except FileNotFoundError:
+            return ""
+
+    return render_template("hostRoom.html", room=room, should_refresh=should_refresh, get_log=get_log)
 
 
 @app.route('/favicon.ico')
