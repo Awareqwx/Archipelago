@@ -3,7 +3,7 @@ from .Items import (item_table, lookup_name_to_item, lookup_name_to_id as items_
 
 from .Regions import create_regions, getConnectionName
 from .Rules import set_rules
-from .Options import yooka_options
+from .Options import YookaLayleeOptions
 
 from BaseClasses import Region, Entrance, Location, MultiWorld, Item, ItemClassification, Tutorial
 from ..AutoWorld import World, WebWorld
@@ -33,7 +33,8 @@ class YookaWorld(World):
     lastItemId = max(filter(lambda val: val is not None, item_name_to_id.values()))
 
     location_name_to_id = locations_lookup_name_to_id
-    option_definitions = yooka_options
+    options_dataclass = YookaLayleeOptions
+    options: YookaLayleeOptions
     grandTomeOrder = ["TT", "GG", "MM", "CC", "GY"]
 
     data_version = 3
@@ -42,14 +43,14 @@ class YookaWorld(World):
     def generate_early(self):
         if self.options.randomize_grand_tomes:
             self.random.shuffle(self.grandTomeOrder)
-        while self.grandTomeOrder[0] is "GY":
+        while self.grandTomeOrder[0] == "GY":
             self.random.shuffle(self.grandTomeOrder)
 
     def create_items(self):
         # Set up prefill data for later
-        if not hasattr(self.multiworld, "yookaLaylee_prefillItems"):
-            self.multiworld.yookaLaylee_prefillItems = {}
-        self.multiworld.yookaLaylee_prefillItems[self.player] = {}
+        if not hasattr(self.options, "yookaLaylee_prefillItems"):
+            self.options.yookaLaylee_prefillItems = {}
+        self.options.yookaLaylee_prefillItems[self.player] = {}
 
         # Decide on which ability to prefill
         firstAbilityOptions = ["Tail Twirl", "Sonar 'Splosion", "Buddy Slam"]
@@ -95,13 +96,13 @@ class YookaWorld(World):
             for _ in range(item["quantity"]):
                 yooka_item = self.create_item(item["name"])
                 if item["name"] == "Flappy Flight" and self.options.flappy_flight_location == 3:
-                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
+                    self.options.yookaLaylee_prefillItems[self.player]["Trowzer's Flappy Flight"] = yooka_item
                 elif item["name"] == firstAbilityToInsert and self.options.force_local_first_item:
-                    self.multiworld.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
+                    self.options.yookaLaylee_prefillItems[self.player]["Trowzer's Tail Twirl"] = yooka_item
                 elif item["name"] == antiBkItemNameToInsert:
-                    self.multiworld.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
+                    self.options.yookaLaylee_prefillItems[self.player][antiBkLocationToUse] = yooka_item
                 elif item["name"] == "Pagie" and antiBkPagieLocationToUse != None:
-                    self.multiworld.yookaLaylee_prefillItems[self.player][antiBkPagieLocationToUse] = yooka_item
+                    self.options.yookaLaylee_prefillItems[self.player][antiBkPagieLocationToUse] = yooka_item
                     antiBkPagieLocationToUse = None
                 else:
                     pool.append(yooka_item)
@@ -130,9 +131,9 @@ class YookaWorld(World):
 
     def pre_fill(self):
         # Prefill all predetermined items in their relevant locations
-        for locationName, itemToInsert in self.multiworld.yookaLaylee_prefillItems[self.player].items():
+        for locationName, itemToInsert in self.options.yookaLaylee_prefillItems[self.player].items():
             self.multiworld.get_location(locationName, self.player).place_locked_item(itemToInsert)
-        self.multiworld.yookaLaylee_prefillItems.pop(self.player) # Clean up references
+        self.options.yookaLaylee_prefillItems.pop(self.player) # Clean up references
 
         # Victory item
         self.multiworld.get_location("Game Complete", self.player).place_locked_item(

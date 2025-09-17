@@ -1,4 +1,5 @@
-from Options import Range, Toggle, DefaultOnToggle, Choice, DeathLink
+from dataclasses import dataclass
+from Options import Range, Toggle, DefaultOnToggle, Choice, DeathLink, PerGameCommonOptions
 
 class ForceLocalFirstItem(Toggle):
     """If enabled, forces an ability that can deal damage into your world as the first location you can check (where Trowzer teaches you Tail Twirl). Otherwise, it will be filled into any location that is reachable from the beginning of any game."""
@@ -32,12 +33,12 @@ class DisableQuizzes(Toggle):
     """If enabled, causes the quizzes to be completely skipped."""
     display_name = "Disable Quizzes"
 
-yooka_options = {
-    "force_local_first_item": ForceLocalFirstItem,
-    "prevent_tropics_bk": PreventTropicsBK,
-    "flappy_flight_location": FlappyFlightLocation,
-    "capital_b_pagie_count": PagiesRequiredForCapitalB,
-    "randomize_grand_tomes": GrandTomeRandomization,
-    "disable_quizzes": DisableQuizzes,
-    "death_link": DeathLink
-}
+@dataclass
+class YookaLayleeOptions(PerGameCommonOptions):
+    force_local_first_item: ForceLocalFirstItem
+    prevent_tropics_bk: PreventTropicsBK
+    flappy_flight_location: FlappyFlightLocation
+    capital_b_pagie_count: PagiesRequiredForCapitalB
+    randomize_grand_tomes: GrandTomeRandomization
+    disable_quizzes: DisableQuizzes
+    death_link: DeathLink

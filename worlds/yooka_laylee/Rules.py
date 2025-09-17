@@ -4,6 +4,7 @@ from .Regions import regionMap
 from ..AutoWorld import LogicMixin
 import json
 import pkgutil
+import re
 
 cashinotokens_table = json.loads(pkgutil.get_data(__name__, "cashinotokens.json").decode())
 requiredPagiesPerTomeVanillaOrder = [
@@ -16,45 +17,76 @@ requiredPagiesPerTomeVanillaOrder = [
 randomizedWorldOrder = []
 
 class YookaLayleeLogic(LogicMixin):
-    yookaLaylee_specialRequirements = {
-        "Reptile Rush": lambda state, player: state.has("Reptile Roll", player) and state.has("Reptile Rush", player),
-        "Sonar Shield": lambda state, player: state.has("Reptile Roll", player) and state.has("Sonar Shield", player),
-        "<DamagingAbility>": lambda state, player: (
-            state.has("Tail Twirl", player)
-            or state.has("Buddy Slam", player)
-            or state.yookaLaylee_has_requirements("Sonar 'Splosion", player)
-            or state.yookaLaylee_has_requirements("Reptile Rush", player)
-            or state.yookaLaylee_has_requirements("Sonar Shield", player)
-        ),
-        "<CanAccessTribalstack>": lambda state, player: state.yookaLaylee_can_access_tropics(player), # Wrecked Crow's Nest doesn't spawn until after Tropics entered
-        "<ExpandedTribalstackTropics>": lambda state, player: state.yookaLaylee_can_access_tropics_exp(player), # Non-expanded pagie but with different options in expansion
-        "<GlacierUpperAccess>": lambda state, player: (
-            state.has("Flappy Flight", player)
-            or (state.has("Slurp State", player) and (state.has("Tail Twirl", player) or state.has("Glide", player)))
-        ),
-        "<GlacierLowerAccess>": lambda state, player: state.has("Buddy Slam", player) and state.has("Sonar Shot", player) and state.yookaLaylee_has_requirements("Reptile Rush", player),
-        "<GlacierBoss>": lambda state, player: (
-            (state.yookaLaylee_has_requirements("<GlacierUpperAccess>", player) or state.yookaLaylee_has_requirements("<GlacierLowerAccess>", player))
-            and state.has("Buddy Slam", player) and state.has("Slurp Shot", player)
-        ),
-        "<MoodymazeEntry>": lambda state, player: state.has("Buddy Bubble", player) or state.has("Lizard Lash", player) or state.has("Flappy Flight", player),
-        "<CashinoEntry>": lambda state, player: state.has("Camo Cloak", player) or state.has("Flappy Flight", player),
-        "<ExpandedCashino>": lambda state, player: state.yookaLaylee_can_access_cashino_exp(player), # Specifically for Cashino tokens requirements
-        "<GalaxyEntry>": lambda state, player: state.has("Flappy Flight", player) or state.has("Glide", player) or state.has("Health Booster", player, 5)
-    }
+    def yookaLaylee_canTailTwirl(self, player):
+        return self.has("Tail Twirl", player)
+    
+    def yookaLaylee_canReptileRoll(self, player):
+        return self.has("Reptile Roll", player)
+    
+    def yookaLaylee_canGlide(self, player):
+        return self.has("Glide", player)
+    
+    def yookaLaylee_canBuddyBubble(self, player):
+        return self.has("Buddy Bubble", player)
+    
+    def yookaLaylee_canCamoCloak(self, player):
+        return self.has("Camo Cloak", player)
+    
+    def yookaLaylee_canFlappyFlight(self, player):
+        return self.has("Flappy Flight", player)
+    
+    def yookaLaylee_canSonarShot(self, player):
+        return self.has("Sonar Shot", player)
+    
+    def yookaLaylee_canSlurpShot(self, player):
+        return self.has("Slurp Shot", player)
+    
+    def yookaLaylee_canBuddySlam(self, player):
+        return self.has("Buddy Slam", player)
+    
+    def yookaLaylee_canSlurpState(self, player):
+        return self.has("Slurp State", player)
+    
+    def yookaLaylee_canLizardLeap(self, player):
+        return self.has("Lizard Leap", player)
+    
+    def yookaLaylee_canLizardLash(self, player):
+        return self.has("Lizard Lash", player)
 
-    yookaLaylee_tomeRequirementsVanillaOrder = [
-        lambda self, player: self.yookaLaylee_can_access_HT_hub_entrance(player) and (self.has("Reptile Roll", player) or self.has("Flappy Flight", player)),
-        lambda self, player: self.yookaLaylee_can_access_HT_hub_B(player) and (self.has("Glide", player) or self.has("Flappy Flight", player)),
-        lambda self, player: self.yookaLaylee_can_access_HT_waterworks(player) and (self.has("Buddy Bubble", player) or self.has("Lizard Lash", player) or self.has("Flappy Flight", player)),
-        lambda self, player: self.yookaLaylee_can_access_HT_outside(player) and self.has("Camo Cloak", player),
-        lambda self, player: self.yookaLaylee_can_access_HT_finalArea(player)
-    ]
+    def yookaLaylee_canSonarSplosion(self, player):
+        return self.has("Sonar 'Splosion", player)
+    
+    def yookaLaylee_canReptileRush(self, player):
+        return self.yookaLaylee_canReptileRoll(player) and self.has("Reptile Rush", player)
+
+    def yookaLaylee_canSonarShield(self, player):
+        return self.yookaLaylee_canReptileRoll(player) and self.has("Sonar Shield", player)
+    
+    def yookaLaylee_hasHealthBoosterCount(self, player, count):
+        return self.has("Health Booster", player, count)
+    
+    def yookaLaylee_hasDamagingAbility(self, player):
+        return (self.yookaLaylee_canTailTwirl(player)
+            or self.yookaLaylee_canBuddySlam(player)
+            or self.yookaLaylee_canSonarSplosion(player)
+            or self.yookaLaylee_canReptileRush(player)
+            or self.yookaLaylee_canSonarShield(player))
     
     def yookaLaylee_checkRequirementsForWorld(self, player, worldIdentifier, expanded = False):
         worldOrderIndex = randomizedWorldOrder.index(worldIdentifier)
-        return (self.has("Pagie", player, requiredPagiesPerTomeVanillaOrder[worldOrderIndex][0 if expanded else 1])
-                and self.yookaLaylee_tomeRequirementsVanillaOrder[worldOrderIndex](self, player))
+        if (self.has("Pagie", player, requiredPagiesPerTomeVanillaOrder[worldOrderIndex][1 if expanded else 0])):
+            match worldOrderIndex:
+                case 0:
+                    return self.yookaLaylee_can_access_HT_hub_entrance(player) and (self.yookaLaylee_canReptileRoll(player) or self.yookaLaylee_canFlappyFlight(player))
+                case 1:
+                    return self.yookaLaylee_can_access_HT_hub_B(player) and (self.yookaLaylee_canGlide(player) or self.yookaLaylee_canFlappyFlight(player))
+                case 2:
+                    return self.yookaLaylee_can_access_HT_waterworks(player) and (self.yookaLaylee_canBuddyBubble(player) or self.yookaLaylee_canLizardLash(player) or self.yookaLaylee_canFlappyFlight(player))
+                case 3:
+                    return self.yookaLaylee_can_access_HT_outside(player) and self.yookaLaylee_canCamoCloak(player)
+                case 4:
+                    return self.yookaLaylee_can_access_HT_finalArea(player)
+        return False
 
     def yookaLaylee_can_access_HT_hub_entrance(self, player):
         return self.yookaLaylee_has_requirements("<DamagingAbility>", player)
@@ -123,9 +155,34 @@ class YookaLayleeLogic(LogicMixin):
 
     def yookaLaylee_has_requirements(self, requirements, player, searchMode = 0):
         if isinstance(requirements, str): # Is ability name
-            if requirements in self.yookaLaylee_specialRequirements:
-                return self.yookaLaylee_specialRequirements[requirements](self, player)
-            elif "<CashinoTokens" in requirements:
+            match requirements:
+                case "Reptile Rush":
+                    return self.yookaLaylee_canReptileRush(player)
+                case "Sonar Shield":
+                    return self.yookaLaylee_canSonarShield(player)
+                case "<DamagingAbility>":
+                    return self.yookaLaylee_hasDamagingAbility(player)
+                case "<CanAccessTribalstack>": # Wrecked Crow's Nest doesn't spawn until after Tropics entered
+                    return self.yookaLaylee_can_access_tropics(player)
+                case "<ExpandedTribalstackTropics>": # Non-expanded pagie but with different options in expansion
+                    return self.yookaLaylee_can_access_tropics_exp(player)
+                case "<GlacierUpperAccess>":
+                    return (self.yookaLaylee_canFlappyFlight(player)
+                        or (self.yookaLaylee_canSlurpState(player) and (self.yookaLaylee_canTailTwirl(player) or self.yookaLaylee_canGlide(player))))
+                case "<GlacierLowerAccess>":
+                    return self.yookaLaylee_canBuddySlam(player) and self.yookaLaylee_canSonarShot(player) and self.yookaLaylee_canReptileRush(player)
+                case "<GlacierBoss>":
+                    return ((self.yookaLaylee_has_requirements("<GlacierUpperAccess>", player) or self.yookaLaylee_has_requirements("<GlacierLowerAccess>", player))
+                        and self.yookaLaylee_canBuddySlam(player) and self.yookaLaylee_canSlurpShot(player))
+                case "<MoodymazeEntry>":
+                    return self.yookaLaylee_canBuddyBubble(player) or self.yookaLaylee_canLizardLash(player) or self.yookaLaylee_canFlappyFlight(player)
+                case "<CashinoEntry>":
+                    return self.yookaLaylee_canCamoCloak(player) or self.yookaLaylee_canFlappyFlight(player)
+                case "<ExpandedCashino>": # Specifically for Cashino tokens requirements
+                    return self.yookaLaylee_can_access_cashino_exp(player)
+                case "<GalaxyEntry>":
+                    return self.yookaLaylee_canFlappyFlight(player) or self.yookaLaylee_canGlide(player) or self.yookaLaylee_hasHealthBoosterCount(player, 5)
+            if "<CashinoTokens" in requirements:
                 tokenLevel = int(requirements.removeprefix("<CashinoTokens").removesuffix(">"))
                 return self.yookaLaylee_can_get_cashino_token_count(player, tokenLevel * 10)
             elif "<(" in requirements:
