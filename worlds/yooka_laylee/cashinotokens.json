@@ -279,12 +279,7 @@
             "AND": [
                 "<CashinoEntry>",
                 "<ExpandedCashino>",
-                {
-                    "OR": [
-                        "Camo Cloak",
-                        "Sonar 'Splosion"
-                    ]
-                }
+                "Camo Cloak"
             ]
         }
     },

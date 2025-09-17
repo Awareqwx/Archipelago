@@ -466,7 +466,9 @@
                 "Reptile Roll",
                 "Lizard Leap",
                 "Glide",
-                "Camo Cloak"
+                "Camo Cloak",
+                "Buddy Slam",
+                "Buddy Bubble"
             ]
         }
     },
@@ -857,7 +859,7 @@
     {
         "id": 625490586,
         "name": "Assist Tubbz",
-        "region": "Glitterglaze Glacier",
+        "region": "Expanded Glacier",
         "requiresAbilities": {
             "AND": [
                 {
@@ -1942,7 +1944,6 @@
         "region": "Expanded Cashino",
         "requiresAbilities": {
             "AND": [
-                "<GalaxyEntry>",
                 {
                     "OR": [
                         {
